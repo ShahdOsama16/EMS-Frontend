@@ -1,0 +1,198 @@
+<!-- <section class="single-product-page">
+
+  <div *ngFor="let product of products">
+    <h3>{{ product.title }}</h3>
+    <img [src]="product.imageUrl" alt="{{ product.title }}" width="100">
+    <p>Price: £{{ product.price }}</p>
+    <a [routerLink]="['/product', product.id]">View Details</a>
+  </div>
+
+  <div *ngIf="errorMessage" class="error-message">
+    <p>{{ errorMessage }}</p>
+  </div>
+
+  <div *ngIf="loading" class="loading-indicator">
+    <p>Loading product details...</p>
+  </div>
+
+  <div *ngIf="!loading && singleProduct" class="product-details">
+    <div class="product-image-container">
+      <img *ngIf="singleProduct.imageUrl" [src]="singleProduct.imageUrl" alt="{{ singleProduct.title }}" class="product-image">
+      <p *ngIf="!singleProduct.imageUrl" class="no-image">No Image Available</p>
+    </div>
+
+    <div class="product-info">
+      <h1 class="product-title">{{ singleProduct.title }}</h1>
+      <div class="product-price">
+        <span class="currency">£</span>{{ singleProduct.price | number:'1.2-2' }}
+      </div>
+      <div class="product-availability">
+        Availability: <span *ngIf="singleProduct.quantityAvailable > 0" class="available">In Stock ({{ singleProduct.quantityAvailable }})</span>
+        <span *ngIf="!singleProduct.quantityAvailable" class="unavailable">Availability Unknown</span>
+      </div>
+      <p class="product-description">{{ singleProduct.description }}</p>
+
+      <div class="product-quantity">
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" [(ngModel)]="quantityToAdd" min="1" value="1">
+      </div>
+
+      <div class="product-actions">
+        <button (click)="addToCart()" class="add-to-cart-button" routerLink="/cart">Add To Cart</button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!loading && !singleProduct && !errorMessage" class="not-found">
+    <p>Product not found.</p>
+  </div>
+
+  <hr>
+
+  <h2>Create New Product</h2>
+  <button (click)="toggleCreateForm()" class="btn btn-primary">{{ showCreateForm ? 'Hide Form' : 'Show Create Form' }}</button>
+
+  <div *ngIf="showCreateForm" class="admin-create-product">
+    <div *ngIf="createErrorMessage" class="alert alert-danger">{{ createErrorMessage }}</div>
+    <div *ngIf="createSuccessMessage" class="alert alert-success">{{ createSuccessMessage }}</div>
+
+    <form [formGroup]="createProductForm" (ngSubmit)="onCreateProductSubmit()">
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" id="title" formControlName="title" class="form-control">
+        <div *ngIf="createProductForm.get('title')?.invalid && (createProductForm.get('title')?.dirty || createProductForm.get('title')?.touched)" class="error-message">Title is required.</div>
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea id="description" formControlName="description" class="form-control"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="price">Price (£)</label>
+        <input type="number" id="price" formControlName="price" class="form-control">
+        <div *ngIf="createProductForm.get('price')?.invalid && (createProductForm.get('price')?.dirty || createProductForm.get('price')?.touched)" class="error-message">
+          <div *ngIf="createProductForm.get('price')?.errors?.['required']">Price is required.</div>
+          <div *ngIf="createProductForm.get('price')?.errors?.['min']">Price must be at least 0.</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="imageUrl">Image URL</label>
+        <input type="text" id="imageUrl" formControlName="imageUrl" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="quantityAvailable">Quantity Available</label>
+        <input type="number" id="quantityAvailable" formControlName="quantityAvailable" class="form-control">
+        <div *ngIf="createProductForm.get('quantityAvailable')?.invalid && (createProductForm.get('quantityAvailable')?.dirty || createProductForm.get('quantityAvailable')?.touched)" class="error-message">
+          <div *ngIf="createProductForm.get('quantityAvailable')?.errors?.['required']">Quantity is required.</div>
+          <div *ngIf="createProductForm.get('quantityAvailable')?.errors?.['min']">Quantity must be at least 0.</div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Create Product</button>
+    </form>
+  </div>
+
+</section> -->
+
+
+<section class="single-product-page">
+
+  <div *ngFor="let product of products">
+    <h3>{{ product.title }}</h3>
+    <img [src]="product.imageUrl" alt="{{ product.title }}" width="100">
+    <p>Price: £{{ product.price }}</p>
+    <a [routerLink]="['/product', product.id]">View Details</a>
+  </div>
+
+  <div *ngIf="errorMessage" class="error-message">
+    <p>{{ errorMessage }}</p>
+  </div>
+
+  <div *ngIf="loading" class="loading-indicator">
+    <p>Loading product details...</p>
+  </div>
+
+  <div *ngIf="!loading && singleProduct" class="product-details">
+    <div class="product-image-container">
+      <img *ngIf="singleProduct.imageUrl" [src]="singleProduct.imageUrl" alt="{{ singleProduct.title }}" class="product-image">
+      <p *ngIf="!singleProduct.imageUrl" class="no-image">No Image Available</p>
+    </div>
+
+    <div class="product-info">
+      <h1 class="product-title">{{ singleProduct?.title }}</h1>
+      <div class="product-price">
+        <span class="currency">£</span>{{ singleProduct?.price | number:'1.2-2' }}
+      </div>
+      <div class="product-availability">
+        Availability: <span *ngIf="singleProduct?.quantityAvailable > 0" class="available">In Stock ({{ singleProduct?.quantityAvailable }})</span>
+        <span *ngIf="!singleProduct?.quantityAvailable" class="unavailable">Availability Unknown</span>
+      </div>
+      <p class="product-description">{{ singleProduct?.description }}</p>
+
+      <div class="product-quantity">
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" [(ngModel)]="quantityToAdd" min="1" value="1">
+      </div>
+
+      <div class="product-actions">
+        <button (click)="addToCart()" class="add-to-cart-button" routerLink="/cart">Add To Cart</button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!loading && !singleProduct && !errorMessage" class="not-found">
+    <p>Product not found.</p>
+  </div>
+
+  <hr>
+<!-- 
+  <h2>Create New Product</h2>
+  <button (click)="toggleCreateForm()" class="btn btn-primary">{{ showCreateForm ? 'Hide Form' : 'Show Create Form' }}</button>
+
+  <div *ngIf="showCreateForm" class="admin-create-product">
+    <div *ngIf="createErrorMessage" class="alert alert-danger">{{ createErrorMessage }}</div>
+    <div *ngIf="createSuccessMessage" class="alert alert-success">{{ createSuccessMessage }}</div>
+
+    <form [formGroup]="createProductForm" (ngSubmit)="onCreateProductSubmit()">
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" id="title" formControlName="title" class="form-control">
+        <div *ngIf="createProductForm.get('title')?.invalid && (createProductForm.get('title')?.dirty || createProductForm.get('title')?.touched)" class="error-message">Title is required.</div>
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea id="description" formControlName="description" class="form-control"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="price">Price (£)</label>
+        <input type="number" id="price" formControlName="price" class="form-control">
+        <div *ngIf="createProductForm.get('price')?.invalid && (createProductForm.get('price')?.dirty || createProductForm.get('price')?.touched)" class="error-message">
+          <div *ngIf="createProductForm.get('price')?.errors?.['required']">Price is required.</div>
+          <div *ngIf="createProductForm.get('price')?.errors?.['min']">Price must be at least 0.</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="imageUrl">Image URL</label>
+        <input type="text" id="imageUrl" formControlName="imageUrl" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="quantityAvailable">Quantity Available</label>
+        <input type="number" id="quantityAvailable" formControlName="quantityAvailable" class="form-control">
+        <div *ngIf="createProductForm.get('quantityAvailable')?.invalid && (createProductForm.get('quantityAvailable')?.dirty || createProductForm.get('quantityAvailable')?.touched)" class="error-message">
+          <div *ngIf="createProductForm.get('quantityAvailable')?.errors?.['required']">Quantity is required.</div>
+          <div *ngIf="createProductForm.get('quantityAvailable')?.errors?.['min']">Quantity must be at least 0.</div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Create Product</button>
+    </form>
+  </div> -->
+
+</section>

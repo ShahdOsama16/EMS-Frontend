@@ -1,0 +1,38 @@
+<div class="checkout-page">
+  <h2>Checkout</h2>
+
+  <div *ngIf="!isLoggedIn" class="login-section">
+    <p>Please log in to proceed with your order.</p>
+    <button (click)="login()">Log In</button>
+  </div>
+
+  <div *ngIf="isLoggedIn">
+    <div class="user-info">
+      <h3>Shipping Information</h3>
+      <p><strong>Name:</strong><input type="text" class="form-control" formControlName="name" placeholder="name"></p>
+      <p><strong>Address:</strong><input type="text" class="form-control" formControlName="address" placeholder="address"></p>
+      <p><strong>Email:</strong> <input type="text" class="form-control" formControlName="email"  placeholder="email"></p>
+            <button (click)="logout()">Logout</button>
+    </div>
+
+    <h3>Your Cart</h3>
+    <div class="cart-items">
+      <div *ngFor="let item of cartItems" class="cart-item">
+        <div class="item-details">
+          <span>{{ item.name }}</span>
+          <span>Qty: {{ item.quantity }}</span>
+        </div>
+        <span class="item-price">${{ item.price * item.quantity | number: '1.2-2' }}</span>
+      </div>
+    </div>
+
+    <div class="order-summary">
+      <h3>Order Summary</h3>
+      <p><strong>Subtotal:</strong> ${{ total | number: '1.2-2' }}</p>
+      <p><strong>Shipping:</strong> $5.00</p>
+      <p><strong>Total:</strong> ${{ total + 5 | number: '1.2-2' }}</p>
+    </div>
+
+    <button class="place-order-button" (click)="placeOrder()">Place Order</button>
+  </div>
+ </div>

@@ -1,0 +1,46 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+@font-face {
+    font-family: merrifont;
+    src: url(../../../public/assets/fonts/Merriweather-Black.ttf);
+}
+.buy-product{
+    background-image: url(../../../public/assets/images/textured-bg-brown-min.webp);
+    width: 100%;
+    height: 105vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    backdrop-filter: blur;
+    background-position: center center;
+}
+.buy-img img{
+    width: 600px;
+    height: 600px;
+}
+.buy-content h5{
+    color: var(--main);
+    line-height: 1.2em;
+    font-size: 1.0625rem;
+    font-weight: 700;
+    font-family: merrifont;
+}
+.buy-content h1{
+    font-family: merrifont;
+    font-size: 50px;
+    line-height: 1.4em;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+.buy-content p{
+    color: rgba(0, 0, 0, 0.582);
+    font-size: 22px;
+}
+.buy-content button{
+    background-color: #337ab7;
+}
+.buy-content button:hover{
+    background-color: #337ab7;
+}

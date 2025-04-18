@@ -1,0 +1,110 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-align: center !important;
+}
+
+@font-face {
+    font-family: face;
+    src: url(../../../public/assets/fonts/Rubik-bubbles/RubikBubbles-Regular.ttf);  
+}
+@font-face {
+    font-family: secondfont;
+    src: url(../../../public/assets/fonts/Merienda/static/Merienda-ExtraBold.ttf);
+}
+@font-face {
+    font-family: face8;
+    src: url(../../../public/assets/fonts/Nerko/NerkoOne-Regular.ttf);
+}
+@font-face {
+    font-family: myface2;
+    src: url(../../../public/assets/fonts/Jost/static/Jost-Medium.ttf);  
+}
+@font-face {
+    font-family: jost;
+    src: url(../../../public/assets/fonts/Jost/static/Jost-Bold.ttf);
+}
+.recipes-page{
+    padding-top: 50px;
+}
+.recipe-heading{
+    position: relative;
+    padding-bottom: 50px;
+}
+.recipe-heading h1{
+    font-family: face;
+    font-size: 48px;
+    color: #2a86ff;
+}
+.recipe-heading h4{
+    font-family: secondfont;
+    font-size: 48px;
+    color:#2a86ff;
+}
+.recipe-heading::before{
+    content:"___________";
+    position: absolute;
+    top:-11px;
+    left: 120px;
+    font-size: xx-large;
+    color: #2a86ff;
+
+}
+.recipe-heading::after{
+    content:"___________";
+    position: absolute;
+    top:-11px;
+    right: 120px;
+    font-size: xx-large;
+    color: #2a86ff;
+}
+.recipes-content{
+    margin-left: 50px;
+    margin-right: 50px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap:30px;
+}
+.card{
+    width: 30%;
+    border: 8px solid rgba(153, 205, 251, 0.3);
+    border-radius: 15px !important;
+    background-image: url(../../../public/assets/images/textured-bg-brown-min.webp);
+}
+.card img{
+    width: 100%;
+    border-bottom: 6px groove rgba(153, 205, 251, 0.3) !important;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.card-body h5{
+    font-family: face8;
+    padding: 5px;
+    font-size: 28px;
+}
+.card-body p{
+    font-family: myface2;
+    padding-bottom: 5px;
+    font-size: 20px;
+    font-weight: 500;
+    color: rgba(0,0,0,0.6);
+}
+.card-body a{
+    font-family: jost;
+    margin-bottom: 20px !important;
+    font-size: 20px;
+    font-weight: 900;
+    background: linear-gradient(90deg, #0667e4, #00b6ee) !important;
+    /* border: none; */
+    transition: all 5s ease-in-out;
+}
+.card-body a:hover{
+    background: linear-gradient(90deg, #0667e4, #00b6ee) !important;
+    border: none;
+}
+
+
+
+

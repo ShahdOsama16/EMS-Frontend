@@ -1,0 +1,201 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-align: center !important;
+}
+@font-face {
+    font-family: face2;
+    src: url(../../../public/assets/fonts/Lora/static/Lora-BoldItalic.ttf);
+}
+@font-face {
+    font-family: myface;
+    src: url(../../../public/assets/fonts/Allura/Allura-Regular.ttf);
+}
+@font-face {
+    font-family: myface2;
+    src: url(../../../public/assets/fonts/Jost/static/Jost-Medium.ttf);
+}
+@font-face {
+    font-family: myface3;
+    src: url(../../../public/assets/fonts/Jost/static/Jost-Regular.ttf);
+}
+
+.TITLE{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    
+}
+.title h1{
+    font-family:face2;
+    font-style: italic !important;
+    font-weight: bolder;
+    font-style: normal;
+    font-size: 60px;
+    color: #ff30a5;
+    margin-bottom: 100px;
+    z-index: 9999;
+}
+.circle1{
+    position: absolute;
+    top: -10px;
+    right:190px;
+    box-shadow: 0px 0px 14px rgb(230, 180, 205); 
+    background: linear-gradient(90deg, rgb(236, 236, 236), #feedf9) !important;
+    border-radius: 50%;
+    width:100px;
+    height: 100px;
+    transition: all 0.5s ease-in;
+}
+.circle2{
+    position: absolute;
+    top: -15px;
+    right:280px;
+    box-shadow: 0px 0px 14px rgb(230, 180, 205); 
+    background: linear-gradient(90deg, rgb(236, 236, 236), #feedf9) !important;
+    border-radius: 50%;
+    width:110px;
+    height: 110px;
+    transition: all 0.5s ease-in;
+}
+.circle3{
+    position: absolute;
+    top: -10px;
+    left:190px;
+    box-shadow: 0px 0px 14px rgb(230, 180, 205); 
+    background: linear-gradient(90deg, rgb(236, 236, 236), #feedf9) !important;
+    border-radius: 50%;
+    width:100px;
+    height: 100px;
+    transition: all 0.5s ease-in;
+}
+.circle4{
+    position: absolute;
+    top: -15px;
+    left:280px;
+    box-shadow: 0px 0px 14px rgb(230, 180, 205); 
+    background: linear-gradient(90deg, rgb(236, 236, 236), #feedf9) !important;
+    border-radius: 50%;
+    width:110px;
+    height: 110px;
+    transition: all 0.5s ease-in;
+}
+.circle5{
+    position: absolute;
+    top: -20px;
+    right: 380px;
+    box-shadow: 0px 0px 14px rgb(230, 180, 205); 
+    background: linear-gradient(90deg, rgb(236, 236, 236), #feedf9) !important;
+    border-radius: 50%;
+    width:120px;
+    height: 120px;
+    transition: all 0.5s ease-in;
+}
+.circle7{
+    position: absolute;
+    top: -20px;
+    left:380px;
+    box-shadow: 0px 0px 14px rgb(230, 180, 205); 
+    background: linear-gradient(90deg, rgb(236, 236, 236), #feedf9) !important;
+    border-radius: 50%;
+    width:120px;
+    height: 120px;
+    transition: all 0.5s ease-in;
+}
+ .circle3:hover, .circle4:hover, .circle7:hover{
+    margin-left: 6px;
+}
+.circle1:hover, .circle2:hover, .circle5:hover{
+    margin-right: 6px;
+}
+.stretching{
+    background-image: url(../../../public/assets/images/textured-bground-brown.webp);
+}
+.stretch-content{
+    margin-left: 90px;
+    margin-right: 90px;
+    gap:60px !important;
+}
+.stretch-content h3{
+    text-align: left !important;
+    font-family: myface;
+    font-weight: bolder;
+    font-size:50px;
+    padding-top: 60px;
+}
+.stretch-content p{
+    text-align: left !important;
+    color: rgba(0,0,0,0.5);
+    font-family: myface2;
+    font-size: 28px;
+    padding-top: 15px;
+}
+.stretch-content video{
+    border-radius: 70px;
+    box-shadow: 0 0 100px #720e47;
+    width: 500px;
+    height: 400px;
+}
+.stretching-online{
+    margin-top: 140px;
+}
+.stretching-online h2{
+    font-size: 48px;
+    font-family:monospace;
+    font-weight: 500;
+    color:black;
+}
+.stretching-online i{
+    color:#ff30a5;
+}
+.line{
+    position: relative;
+    width: 250px;
+    height: 2px;
+    background-color: #ff6fc0;
+    margin: 15px auto;
+}
+.line::after{
+    position: absolute;
+    content: "";
+    top:4px;
+    left: 24%;
+    height:2px;
+    width: 130px;
+    background-color: #ff6fc0;
+}
+.stretching-videos{
+    margin-top: 30px;
+    margin-left: 30px;
+    margin-right: 30px;
+
+}
+.videoos{
+    margin-top: 45px;
+    display: flex;
+    justify-content:center;
+    gap: 45px;
+    
+}
+.single-video{
+    border: 10px solid #fca1d4;
+    height: 435px;
+    border-radius: 6px;
+    background-color: rgba(0, 0, 0, .1);
+}
+.single-video iframe{
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+}
+.single-video p{
+    font-family: myface3;
+    padding-top: 14px;
+    font-size: 18px;
+    color: rgba(0,0,0,0.5);
+    font-weight: 600;
+}
+
+
+
+

@@ -1,0 +1,67 @@
+
+
+
+
+
+
+
+<!-- 
+<div class="cart-page">
+    <div id="cart-items">
+      <div *ngFor="let item of cartItems" class="cart-item">
+        <div>
+          <span>{{ item.name }}</span> - <span>${{ item.price }}</span>
+          <button (click)="changeQuantity(item, -1)">-</button>
+          <span>{{ item.quantity }}</span>
+          <button (click)="changeQuantity(item, 1)">+</button>
+        </div>
+        <button (click)="removeItem(item)">Remove</button>
+      </div>
+    </div>
+    <div id="cart-total">
+      Total: ${{ total }}
+    </div>
+    <label for="Quantity">Quantity</label>
+    <select name="Quantity">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select>
+    <button (click)="proceedToCheckout()">Proceed to Checkout</button>
+  </div> -->
+
+
+
+  <div class="cart-page">
+    <div class="cart-header">
+      <h2>Your Shopping Cart</h2>
+    </div>
+  
+    <div id="cart-items">
+      <div *ngFor="let item of cartItems" class="cart-item">
+        <div class="item-details">
+          <img [src]="item.imageUrl" alt="{{ item.name }}" class="item-image">
+          <div class="item-info">
+            <span class="item-name">{{ item.name }}</span>
+            <span class="item-price">${{ item.price }}</span>
+          </div>
+        </div>
+        <div class="quantity-control">
+          <button class="quantity-button" (click)="changeQuantity(item, -1)">-</button>
+          <span class="item-quantity">{{ item.quantity }}</span>
+          <button class="quantity-button" (click)="changeQuantity(item, 1)">+</button>
+        </div>
+        <div class="item-total-price">
+          ${{ item.price * item.quantity }}
+        </div>
+        <button class="remove-button" (click)="removeItem(item)">Remove</button>
+      </div>
+    </div>
+    <div id="cart-total">
+      <div class="total-label">Subtotal:</div>
+      <div class="total-amount">${{ total }}</div>
+    </div>
+    <button class="checkout-button" (click)="proceedToCheckout()">Proceed to Checkout</button>
+  </div>

@@ -1,0 +1,531 @@
+@font-face{
+    font-family: myfont; 
+    src:url(../../../public/assets/fonts/KalniaGlaze/static/KalniaGlaze_Expanded-Bold.ttf);
+   
+}
+@font-face{
+    font-family: myfont2; 
+    src:url(../../../public/assets/fonts/Foldit/static/Foldit-ExtraBold.ttf);
+}
+@font-face{
+    font-family: myfont3; 
+    src:url(../../../public/assets/fonts/Jost/static/Jost-ExtraBold.ttf);
+}
+@font-face{
+    font-family: myfont5;
+    src:url(../../../public/assets/fonts/Merienda/Merienda-VariableFont_wght.ttf);
+}
+@font-face {
+  font-family: jost;
+  src: url(../../../public/assets/fonts/Jost/static/Jost-Bold.ttf);
+}
+
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.carousel-item{
+    position: relative;
+}
+
+.carousel-control-prev button {
+    background-color: #308dff;
+    padding: 25px 30px;
+    text-align: center;
+} 
+
+
+span .carousel-control-prev-icon {
+    background-color: #30d2ff;
+    padding: 25px 30px;
+
+}
+
+span .carousel-control-next-icon {
+    background-color: #308dff;
+    padding: 25px 30px;
+
+
+}
+.carousel-control-prev .carousel-control-prev-icon,
+.carousel-control-next .carousel-control-next-icon {
+  position: absolute;
+  padding: 30px 35px;
+  background-size: 55%;
+  background-color:#308dff;
+  bottom:140px;
+  
+}
+.carousel-control-prev .carousel-control-prev-icon {
+  left: 0;
+  border-radius: 0px 50% 50% 0px;
+  
+  
+}
+.carousel-control-next .carousel-control-next-icon {
+  right: 0;
+  border-radius: 50% 0 0 50%;
+
+
+  
+}
+img{
+    width: 100% !important;
+    height: 650px !important;
+}
+.home h1::after{
+    content: "professional i-motion EMS|";
+    margin-left: 10px;
+    font-family: myfont5;
+    backdrop-filter: blur(100px) !important;
+    background: linear-gradient(90deg, #0667e4, #00b6ee);
+    background-color: transparent !important;
+    color: white!important;
+    
+   
+    animation: typing 5s ease-out infinite alternate;
+
+}
+@keyframes typing{
+    0% {
+    content: "P|";
+  }
+  1% {
+    content: "Pr|";
+  }
+  2% {
+    content: "Pro|";
+  }
+  3% {
+    content: "Prof|";
+  }
+  4% {
+    content: "Profe|";
+  }
+  5% {
+    content: "Profes|";
+  }
+  6% {
+    content: "Profess|";
+  }
+  7% {
+    content: "Professi|";
+  }
+  8% {
+    content: "Professio|";
+  }
+  9% {
+    content: "Profession|";
+  }
+  10% {
+    content: "Professiona|";
+  }
+  11% {
+    content: "Professional|";
+  }
+  12% {
+    content: "Professional i|";
+  }
+  13% {
+    content: "Professional i-m|";
+  }
+  14% {
+    content: "Professional i-mo|";
+  }
+  15% {
+    content: "Professional i-mot|";
+  }
+  16% {
+    content: "Professional i-moti|";
+  }
+  17% {
+    content: "Professional i-motio|";
+  }
+  18% {
+    content: "Professional i-motion|";
+  }
+  19% {
+    content: "Professional i-motion E|";
+  }
+  20% {
+    content: "Professional i-motion Em |";
+  }
+  21% {
+    content: "Professional i-motion Ems|";
+  }
+  22% {
+    content: "Professional i-motion Em|";
+  }
+  23% {
+    content: "Professional i-motion E|";
+  }
+  24% {
+    content: "Professional i-motio|";
+  }
+  25% {
+    content: "Professional i-moti|";
+  }
+  26% {
+    content: "Professional i-mot|";
+  }
+  27% {
+    content: "Professional i-mo|";
+  }
+  28% {
+    content: "Professional i-m|";
+  }
+  29% {
+    content: "Professional i-|";
+  }
+  30% {
+    content: "Professional i|";
+  }
+  31% {
+    content: "Professional  |";
+  }
+  32% {
+    content: "Professiona|";
+  }
+  33% {
+    content: "Profession|";
+  }
+  34% {
+    content: "Professio|";
+  }
+  35% {
+    content: "Professi|";
+  }
+  36% {
+    content: "Profess |";
+  }
+  37% {
+    content: "Profes|";
+  }
+  38% {
+    content: "Profe|";
+  }
+  39% {
+    content: "Prof|";
+  }
+  40% {
+    content: "Profes|";
+  }
+  41% {
+    content: "Prof|";
+  }
+  42% {
+    content: "Pro|";
+  }
+  43% {
+    content: "Pr|";
+  }
+  44% {
+    content: "P|";
+  }
+  /* 45% { */
+    /* content: "Pro|";
+  }
+  46% {
+    content: "Pr|";
+    
+  }
+  
+  47% {
+    content: "P|";
+  } */
+}
+.layer{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgb(0, 0, 0, 0.5);
+    
+    width: 100% !important;
+    height: 700px !important;
+}
+.carousel-caption h1{
+    margin-bottom: 70px ;
+
+}
+.carousel-inner{
+    width: 100% !important;
+}
+
+
+.carousel-caption h2{
+    margin-bottom: 70px;
+    font-size: 40px;
+    font-family: myfont3;
+}
+.carousel-caption p{
+
+    margin-bottom: 80px ;
+    font-size: 20px;
+    font-family: myfont3;
+
+}
+
+.carousel-caption button {
+    border-radius: 50rem;
+    background-color: #13357b !important;
+    color: white;
+    padding: 16px 48px;
+    font-size: 24px;
+    transition: 0.5s;
+    backdrop-filter: blur(100px) !important;
+    background: linear-gradient(90deg, #0667e4, #00b6ee);
+    background-color: transparent !important;
+    color: white!important;
+    font-family: jost;
+}
+
+.carousel-caption button:hover {
+    background-color: white !important ;
+    color: #13357b !important;
+}
+.carousel-control-prev , .carousel-control-next {
+  height: 300px !important;
+  top: 40% !important;
+} 
+.carousel-caption{
+  top: 25% !important; 
+}
+
+
+/* ... (your existing styles) ... */
+
+/* Responsive Styles */
+
+/* For very small screens (phones) */
+@media (max-width: 576px) {
+  /* .Home-page {
+   
+  } */
+
+  .carousel-item img {
+    height: 300px !important; /* Adjust image height */
+  }
+
+  .layer {
+    height: 300px !important; /* Adjust layer height */
+  }
+
+  .carousel-caption {
+    top: 10% !important; /* Adjust caption position */
+  }
+
+  .carousel-caption h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  .carousel-caption p {
+    font-size: 14px;
+    margin-bottom: 30px;
+  }
+
+  .carousel-caption button {
+    padding: 10px 20px;
+    font-size: 16px;
+  }
+
+  .carousel-control-prev,
+  .carousel-control-next {
+    height: 100px !important;
+    top: 50% !important;
+  }
+
+  .carousel-control-prev .carousel-control-prev-icon,
+  .carousel-control-next .carousel-control-next-icon {
+    padding: 20px 25px; /* Added 'px' here */
+    bottom: 50px;
+  }
+}
+
+/* For small screens (tablets) */
+@media (min-width: 577px) and (max-width: 768px) {
+  /* .Home-page {
+    
+  } */
+
+  .carousel-item img {
+    height: 400px !important; /* Adjust image height */
+  }
+
+  .layer {
+    height: 400px !important; /* Adjust layer height */
+  }
+
+  .carousel-caption {
+    top: 15% !important; /* Adjust caption position */
+  }
+
+  .carousel-caption h2 {
+    font-size: 28px;
+    margin-bottom: 30px;
+  }
+
+  .carousel-caption p {
+    font-size: 16px;
+    margin-bottom: 40px;
+  }
+
+  .carousel-caption button {
+    padding: 12px 30px;
+    font-size: 18px;
+  }
+
+  .carousel-control-prev,
+  .carousel-control-next {
+    height: 150px !important;
+    top: 45% !important;
+  }
+
+  .carousel-control-prev .carousel-control-prev-icon,
+  .carousel-control-next .carousel-control-next-icon {
+    padding: 25px 30px; /* Added 'px' here */
+    bottom: 80px;
+  }
+}
+
+/* For medium screens (desktops) */
+@media (min-width: 769px) and (max-width: 992px) {
+   /* .Home-page {
+    
+  } */
+
+  .carousel-item img {
+    height: 500px !important; /* Adjust image height */
+  }
+
+  .layer {
+    height: 500px !important; /* Adjust layer height */
+  }
+
+  .carousel-caption {
+    top: 20% !important; /* Adjust caption position */
+  }
+
+  .carousel-caption h2 {
+    font-size: 32px;
+    margin-bottom: 40px;
+  }
+
+  .carousel-caption p {
+    font-size: 18px;
+    margin-bottom: 50px;
+  }
+
+  .carousel-caption button {
+    padding: 14px 35px;
+    font-size: 20px;
+  }
+
+  .carousel-control-prev,
+  .carousel-control-next {
+    height: 200px !important;
+    top: 42% !important;
+  }
+
+  .carousel-control-prev .carousel-control-prev-icon,
+  .carousel-control-next .carousel-control-next-icon {
+    padding: 28px 32px; /* Added 'px' here */
+    bottom: 100px;
+  }
+}
+
+/* For large screens (large desktops) */
+@media (min-width: 993px) and (max-width: 1200px) {
+   /* .Home-page {
+    
+  } */
+  .carousel-item img {
+    height: 600px !important; /* Adjust image height */
+  }
+
+  .layer {
+    height: 600px !important; /* Adjust layer height */
+  }
+
+  .carousel-caption {
+    top: 22% !important; /* Adjust caption position */
+  }
+
+  .carousel-caption h2 {
+    font-size: 36px;
+    margin-bottom: 50px;
+  }
+
+  .carousel-caption p {
+    font-size: 20px;
+    margin-bottom: 60px;
+  }
+
+  .carousel-caption button {
+    padding: 16px 40px;
+    font-size: 22px;
+  }
+
+  .carousel-control-prev,
+  .carousel-control-next {
+    height: 250px !important;
+    top: 41% !important;
+  }
+
+  .carousel-control-prev .carousel-control-prev-icon,
+  .carousel-control-next .carousel-control-next-icon {
+    padding: 29px 33px; /* Added 'px' here */
+    bottom: 120px;
+  }
+}
+
+/* For extra large screens (very large desktops) */
+@media (min-width: 1201px) {
+   /* .Home-page {
+    
+  } */
+
+  .carousel-item img {
+    height: 650px !important; /* Revert to original height */
+  }
+
+  .layer {
+    height: 700px !important; /* Revert to original height */
+  }
+
+  .carousel-caption {
+    top: 25% !important; /* Revert to original caption position */
+  }
+
+  .carousel-caption h2 {
+    font-size: 40px; /* Revert to original font size */
+    margin-bottom: 70px;
+  }
+
+  .carousel-caption p {
+    font-size: 20px; /* Revert to original font size */
+    margin-bottom: 80px;
+  }
+
+  .carousel-caption button {
+    padding: 16px 48px; /* Revert to original padding */
+    font-size: 24px; /* Revert to original font size */
+  }
+
+  .carousel-control-prev,
+  .carousel-control-next {
+    height: 300px !important; /* Revert to original height */
+    top: 40% !important; /* Revert to original top position */
+  }
+
+  .carousel-control-prev .carousel-control-prev-icon,
+  .carousel-control-next .carousel-control-next-icon {
+    padding: 30px 35px; /* Revert to original padding */
+    bottom: 140px; /* Revert to original bottom position */
+  }
+}
