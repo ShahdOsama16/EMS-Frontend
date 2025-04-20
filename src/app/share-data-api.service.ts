@@ -204,9 +204,19 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
   // Profile Endpoints
   getMyProfile(): Observable<any> {
-   return this._httpClient.get(`https://passantmohamed-001-site1.mtempurl.com/api/app/authentication/current-user-details`);
+    const token = localStorage.getItem('accessToken'); 
+  
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,           
+      'Content-Type': 'application/json'             
+    });
+  
+    return this._httpClient.get(
+      'https://passantmohamed-001-site1.mtempurl.com/api/app/authentication/current-user-details',
+      { headers }
+    );
   }
-
+  
   updateMyProfile(profileData: any): Observable<any> {
    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
    return this._httpClient.put(`${this.baseUrl}/account/my-profile`, profileData, { headers });
@@ -223,10 +233,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   }
 
   getSingleRecipe(id: number): Observable<any> {
-    return this._httpClient.get(`${this.baseUrl}/app/recipe/${id}?MaxResultCount=66`); // Correct way to pass id and parameter
+    return this._httpClient.get(`${this.baseUrl}/app/recipe/${id}`); // Correct way to pass id and parameter
   }
   getRecipesbyid(id: number): Observable<any> {
-    return this._httpClient.get(``); // MAKE SURE THIS ENDPOINT IS CORRECT
+    return this._httpClient.get(`${this.baseUrl}/app/recipe/${id}`); // MAKE SURE THIS ENDPOINT IS CORRECT
   }
 
   // Role Endpoints (rest are fine)
@@ -375,14 +385,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   getContactMessages(): Observable<any> {
     return this._httpClient.get(`https://passantmohamed-001-site1.mtempurl.com/api/app/contact-us`);
   }
-
-
-
-  // login(credentials: any): Observable<LoginResponse> {
-  //   Adjust the endpoint to your actual login API endpoint
-  //   return this.http.post<LoginResponse>(`${this.baseUrl}/api/auth/login`, credentials);
-  // }
-
   // Example of a method to make an authenticated request
   getSecureData(): Observable<any> {
     const token = localStorage.getItem('accessToken');
@@ -392,7 +394,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
     return this._httpClient.get(`${this.baseUrl}/api/secure-endpoint`, { headers });
   }
   clearAuthData() {
-    localStorage.removeItem('access_token');
+    localStorage.removeItem('accessToken');
     localStorage.removeItem('user_role');
     // Or clear all:
     // localStorage.clear();

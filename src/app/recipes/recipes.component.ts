@@ -369,7 +369,7 @@ export class RecipesComponent implements OnInit {
           this.recipes = res.items.map((item: any, index: number) => ({
             ...item,
             image: `https://passantmohamed-001-site1.mtempurl.com/images/${item.image}`,
-            id: index
+            id: index+1
           
           }));
           console.log('this.recipes after assignment:', this.recipes);

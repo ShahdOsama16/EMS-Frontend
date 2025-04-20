@@ -90,7 +90,7 @@ export class SingleProductComponent implements OnInit {
   }
 
   loadRecipeDetails(id: string): void {
-    this._ShareDataApiService.getSingleRecipe(parseInt(id, 10)).subscribe({
+    this._ShareDataApiService.getSingleRecipe(parseInt(id)).subscribe({
       next: (res: any) => {
         if (res) {
           this.singleRecipe = {
@@ -102,7 +102,7 @@ export class SingleProductComponent implements OnInit {
             servings: res.servings,
             difficulty: res.difficulty,
             cuisine: res.cuisine,
-            image: res.image, 
+            image: this.imageBaseUrl +res.image, 
             id: res.id,
             mealType: res.mealType,
             caloriesPerServing: res.caloriesPerServing,

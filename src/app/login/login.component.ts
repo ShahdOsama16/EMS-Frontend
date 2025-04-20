@@ -1,10 +1,8 @@
-// login.component.ts
-// login.component.ts
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ShareDataApiService } from '../share-data-api.service';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -27,8 +25,7 @@ export class LoginComponent {
         next: (response) => {
           console.log('Login API Response:', response);
 
-          if (response && response.accessToken !== null && response.accessToken !== undefined && response.accessToken !== '' &&
-              response && response.role !== null && response.role !== undefined && response.role !== '') {
+          if (response && response.accessToken && response.role) {
             console.log('Login successful! Token and role are present and valid.');
             localStorage.setItem('accessToken', response.accessToken);
             localStorage.setItem('user_role', response.role);
@@ -37,8 +34,8 @@ export class LoginComponent {
           } else {
             console.warn('Login successful response did not contain expected data (missing accessToken or role).', response);
             alert('Login was successful, but the application may not function correctly due to missing access token or user role. Check the server response.');
-            this._Router.navigate(['/all']); // Consider if navigation should still happen
-            this._ShareDataApiService.isLogin.next(true); // Consider if login state should still be true
+            this._Router.navigate(['/all']);
+            this._ShareDataApiService.isLogin.next(true);
           }
         },
         error: (error) => {
@@ -56,6 +53,7 @@ export class LoginComponent {
       alert('Please ensure the form is filled out correctly.');
     }
   }
+
   logout() {
     this._ShareDataApiService.clearAuthData();
   }
