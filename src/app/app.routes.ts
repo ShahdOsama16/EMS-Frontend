@@ -46,17 +46,7 @@ export const routes: Routes = [
     {path:'buysingleproduct', component: BuysingleproductComponent, canActivate:[myGuardGuard]},
     {path:'register', component: RegisterComponent},
     {path:'login', component: LoginComponent},
-
-
-
     { path: 'stretching/:id', component: StretchingComponent },
-//   { path: 'workout-details/:id', component: WorkoutDetailsComponent },
-
-
-
-
-
-
     {path:"workouts", component:WorkoutsComponent,canActivate:[myGuardGuard]},
     {path:"stretching",component:StretchingComponent ,canActivate:[myGuardGuard]},
     {path:"fitness",component:FitnessComponent, canActivate:[myGuardGuard]},

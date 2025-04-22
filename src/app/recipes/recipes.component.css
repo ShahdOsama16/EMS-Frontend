@@ -105,6 +105,61 @@
     border: none;
 }
 
-
+/* Styles specifically for smaller devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) {
+    .recipes-page {
+      padding: 10px;
+    }
+  
+    .recipe-heading {
+      margin-bottom: 20px;
+    }
+  
+    .recipe-heading h1 {
+      font-size: 1.8em;
+      margin-bottom: 5px;
+    }
+  
+    .recipe-heading h4 {
+      font-size: 1em;
+    }
+  
+    .recipes-content {
+      grid-template-columns: 1fr; /* Single column */
+      gap: 10px;
+    }
+  
+    .card {
+      border-radius: 5px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+  
+    .card-body {
+      padding: 10px;
+    }
+  
+    .card-body h5 {
+      font-size: 1.2em;
+      margin-bottom: 5px;
+    }
+  
+    .card-body p {
+      font-size: 0.9em;
+      margin-bottom: 10px;
+    }
+  
+    .card-body a.btn {
+      font-size: 0.9em;
+      padding: 8px 12px;
+      border-radius: 3px;
+    }
+  
+    .alert-danger {
+      padding: 8px;
+      font-size: 0.9em;
+      margin-bottom: 10px;
+      border-radius: 3px;
+    }
+  }
 
 

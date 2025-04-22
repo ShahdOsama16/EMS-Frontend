@@ -195,6 +195,110 @@
     font-weight: 600;
 }
 
+/* Media Queries for Responsiveness */
 
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+    .col-md-2 {
+      flex: 0 0 auto;
+      width: 16.66666667%;
+    }
+    .circle1,
+    .circle2,
+    .circle3,
+    .circle4,
+    .circle5,
+    .circle6,
+    .circle7 {
+      width: 80px;
+      height: 80px;
+    }
+  
+    .circle1 {
+      right: 230px;
+    }
+  
+    .circle2 {
+      right: 300px;
+    }
+  
+    .circle3 {
+      left: 230px;
+    }
+  
+    .circle4 {
+      left: 300px;
+    }
+  
+    .circle5,
+    .circle7 {
+      width: 90px;
+      height: 90px;
+    }
+  
+    .circle5 {
+      right: 380px;
+    }
+  
+    .circle7 {
+      left: 380px;
+    }
+  
+    .stretch-content .row {
+      flex-direction: row; /* Arrange video and text horizontally */
+      align-items: center; /* Vertically align */
+    }
+  
+    .stretch-content .col-5, .stretch-content .col-7 {
+      margin-bottom: 0; /* Remove bottom margin when side-by-side */
+    }
+  }
+  
+  /* Medium devices (tablets, 768px and up) */
+  @media (min-width: 768px) {
+    .row-cols-md-2 > .col {
+      width: 50%;
+    }
+  
+    .col-md-5 {
+      flex: 0 0 auto;
+      width: 41.66666667%;
+    }
+  
+    .col-md-7 {
+      flex: 0 0 auto;
+      width: 58.33333333%;
+    }
+  
+    .title h1 {
+      font-size: 3em;
+    }
+  
+    .stretch-content h3 {
+      font-size: 2em;
+    }
+  }
+  
+  /* Large devices (desktops, 992px and up) */
+  @media (min-width: 992px) {
+    .row-cols-lg-3 > .col {
+      width: 33.33333333%;
+    }
+  
+    .stretching-online h2 {
+      font-size: 2.2em;
+    }
+  }
+  
+  /* Extra large devices (large desktops, 1200px and up) */
+  @media (min-width: 1200px) {
+    .title h1 {
+      font-size: 3.5em;
+    }
+  
+    .stretch-content h3 {
+      font-size: 2.2em;
+    }
+  }
 
 

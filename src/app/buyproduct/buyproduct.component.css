@@ -44,3 +44,85 @@
 .buy-content button:hover{
     background-color: #337ab7;
 }
+
+
+/* Media Queries for Responsiveness */
+
+/* Extra small devices (phones, less than 576px) */
+@media (max-width: 575.98px) {
+    .buy-container {
+      flex-direction: column; /* Stack image and text */
+      text-align: center; /* Center text */
+      padding: 20px;
+    }
+  
+    .buy-img img {
+      max-width: 80%; /* Adjust image size on small screens */
+      height: auto;
+      margin-bottom: 20px;
+    }
+  
+    .buy-content {
+      text-align: center;
+    }
+  
+    .buy-content h1 {
+      font-size: 2rem;
+      margin-bottom: 15px;
+    }
+  
+    .buy-content p {
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+    }
+  }
+  
+  /* Small devices (landscape phones, 576px and up) */
+  @media (min-width: 576px) and (max-width: 767.98px) {
+    .buy-container {
+      padding: 30px;
+    }
+  
+    .buy-content h1 {
+      font-size: 2.2rem;
+    }
+  
+    .buy-content p {
+      font-size: 0.95rem;
+    }
+  }
+  
+  /* Medium devices (tablets, 768px and up) */
+  @media (min-width: 768px) and (max-width: 991.98px) {
+    .buy-container {
+      padding: 40px;
+    }
+  
+    .buy-content h1 {
+      font-size: 2.8rem;
+    }
+  
+    .buy-content p {
+      font-size: 1.05rem;
+    }
+  }
+  
+  /* Large devices (desktops, 992px and up) */
+  @media (min-width: 992px) {
+    .buy-container {
+      padding: 50px;
+    }
+  
+    .buy-content h1 {
+      font-size: 3rem;
+    }
+  
+    .buy-content p {
+      font-size: 1.1rem;
+    }
+  
+    .buy-img img {
+      max-width: 500px; /* Adjust image size on larger screens */
+      height: auto;
+    }
+  }
