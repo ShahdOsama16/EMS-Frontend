@@ -1,26 +1,13 @@
-// import { Component } from '@angular/core';
-// import { RouterLink } from '@angular/router';
 
-// @Component({
-//     selector: 'app-contact',
-//     imports: [],
-//     templateUrl: './contact.component.html',
-//     styleUrl: './contact.component.css'
-// })
-// export class ContactComponent {
-   
-
-
-// }
 
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { ShareDataApiService } from '../share-data-api.service'; 
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-contact',
-  imports:[ReactiveFormsModule],
+  imports:[ReactiveFormsModule,CommonModule],
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.css']
 })

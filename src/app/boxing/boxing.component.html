@@ -20,53 +20,31 @@
     </div>
     <div class="stretching-online">
         <h2>NO-EQUIPMENT <i class="fa-solid fa-dumbbell"></i></h2>
-        <h2>Daily Home ABS Workout</h2>
+        <h2>Daily Home legs Workout</h2>
         <div class="line"></div>
-    </div>
-    <div class="stretching-videos">
-        <div class="videoos">
-                <div class="single-video">
-                <!-- <video controls src="../../assets/videos/boxing/boxing5.mp4"></video> -->
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/wB8GhqtKLdk?si=VaKOtzt9HE9DzGF_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                <p>10 Minute Beginner Boxing Workout | 
-                    <br> Good Moves | Well+Good</p>
-                </div>
-                <div class="single-video">
-                <!-- <video controls src="../../assets/videos/boxing/boxing6.mp4"></video> -->
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/OfZFdwW322E?si=xigBVzFrjYAk7SVz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                <p>Kickbox-HIIT Workout 17 mins
-                    <br></p>
-                </div>
-        </div>
-        <div class="videoos">
-            <div class="single-video">
-            <!-- <video controls src="../../assets/videos/boxing/boxing1.mp4"></video> -->
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/kEDTWnNyyEU?si=Rb6h-qqin5nsb9lq" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <p>10-Minute Total -
-                <br> Body Boxing Workout</p>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+          <div *ngFor="let workout of  AbsWorkouts " class="col">
+            <div class="card h-100">
+              <iframe
+              *ngIf="workout.videoUrl"
+              class="card-img-top"
+              [src]="getSafeVideoUrl(workout.videoUrl)"
+              title="{{ workout.name }} video player"
+              frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+                style="height: 200px;" ></iframe>
+              <div class="card-body">
+                <h5 class="card-title">{{ workout.name }}</h5>
+                <p class="card-text">{{ workout.description }}</p>
+                <!-- <p class="card-text"><small class="text-muted">ID: {{ workout.id }}</small></p> -->
+                <p class="card-text"><small class="text-muted">Category: {{ workout.category }}</small></p>
+                <a [routerLink]="['/boxing', workout.id]" class="btn btn-primary">Let's Trainee</a>
+                <a [routerLink]="['/workout-details', workout.id]" class="btn btn-secondary ms-2"><i class="fas fa-link"></i> Details</a>
+              </div>
             </div>
-            <div class="single-video">
-                <!-- <video controls src="../../assets/videos/boxing/boxing2.mp4"></video> -->
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/uGoS-AWW7jY?si=ZgScJF3yp8DlUlPb" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                <p>15 Minute Boxing Workout at Home _ 
-                    <br>Boxercise </p>
-                </div>
+          </div>
         </div>
-        <div class="videoos pb-5">
-            <div class="single-video">
-            <!-- <video controls src="../../assets/videos/boxing/boxing3.mp4"></video> -->
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/gcO6hP06Cpw?si=kPr3fRHPMkjF_cvF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <p>10 Min Feel Good Boxing Workout For Beginners, 
-                <br>No Equipment, All Standing Exercises </p>
-            </div>
-            <div class="single-video">
-            <!-- <video controls src="../../assets/videos/boxing/boxing4.mp4"></video> -->
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/1bjKpgrbm6o?si=0oHuQfgxJfkRMA3t" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <p>15 MIN BOXING CARDIO - Aerobic Style_ 
-                <br>dancy_ cool _ rhythmic _ </p>
-          
-            </div>
-        </div>
-        
-    </div>
+      </div>
 </section>

@@ -22,6 +22,7 @@ export class NavbarComponent implements OnInit{
   }
   logOut(): void {
     this.router.navigate(['/login']);
+    this.shareDataApiService.clearAuthData();
     this.shareDataApiService.isLogin.next(false);
   }
 

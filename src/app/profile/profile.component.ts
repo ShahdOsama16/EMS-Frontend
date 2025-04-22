@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms'; // For upda
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+
 @Component({
  selector: 'app-profile',
  imports: [
@@ -60,6 +61,30 @@ export class ProfileComponent implements OnInit {
    this.isEditing = false;
    this.updateForm.reset(this.profileData); // Reset form to original data
  }
+ getFullAge(bod: string): string {
+  const birthDate = new Date(bod);
+  const today = new Date();
+
+  let years = today.getFullYear() - birthDate.getFullYear();
+  let months = today.getMonth() - birthDate.getMonth();
+  let days = today.getDate() - birthDate.getDate();
+
+  // Adjust if current month/day is before birthday month/day
+  if (days < 0) {
+    months--;
+    const prevMonth = new Date(today.getFullYear(), today.getMonth(), 0); // last day of previous month
+    days += prevMonth.getDate();
+  }
+
+  if (months < 0) {
+    years--;
+    months += 12;
+  }
+
+  return `${years} Years, ${months} Months, ${days} Days`;
+}
+
+
 
  saveProfile(): void {
    if (this.updateForm.valid) {

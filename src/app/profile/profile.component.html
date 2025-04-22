@@ -23,10 +23,11 @@
   
         <div *ngIf="!isEditing; else editProfile">
           <h3>Name</h3>
-          <p>{{ profileData.name }}</p>
+          <p>{{ profileData.userName }}</p>
   
           <h3>Age</h3>
-          <p>{{ profileData.age }} Years</p>
+          <p>{{ getFullAge(profileData.bod) }}</p>
+
   
           <h3>Email</h3>
           <p>{{ profileData.email }}</p>

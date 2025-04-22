@@ -1,4 +1,4 @@
-*{
+/* *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -224,4 +224,462 @@
 
 
 
+ */
+ /* styles.css or stretching.component.css */
+
+/* --- General Body Styles --- */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Professional and clean font */
+    color: #333; /* Darker, more professional default text color */
+    line-height: 1.6;
+    background-image: url(../../../public/assets/images/textured-bground-brown.webp);
+  }
+  
+  /* --- Section: Stretching --- */
+  .stretching {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    background-color: #f4f6f8; /* Very light grey for a subtle background */
+  }
+  
+  .TITLE {
+    margin-top: 4rem;
+    text-align: center;
+    color: #0056b3; /* A slightly deeper blue for a more sophisticated feel */
+  }
+  
+  .title h1 {
+    color: #0056b3;
+    font-size: 2.5rem;
+    font-weight: 500; /* Semi-bold for emphasis */
+    margin-bottom: 1.5rem;
+  }
+  
+  .title div[class^="circle"] {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0 6px;
+    opacity: 0.8; /* Slightly reduce opacity for a softer look */
+  }
+  
+  .title .circle1 { background-color: #0056b3; }
+  .title .circle2 { background-color: #555; } /* Darker grey */
+  .title .circle3 { background-color: #0056b3; }
+  .title .circle4 { background-color: #222; } /* Even darker grey/black */
+  .title .circle5 { background-color: #0056b3; }
+  .title .circle6 { background-color: #555; }
+  .title .circle7 { background-color: #0056b3; }
+  
+  /* --- Section: Stretch Content (Text & GIF) --- */
+  .stretch-content {
+    margin-top: 3rem;
+  }
+  
+  .stretch-content h3 {
+    color: #0056b3;
+    font-size: 1.8rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+  }
+  
+  .stretch-content p {
+    color: #444;
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+  
+  .stretch-content video {
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* More pronounced shadow */
+    width: 100%;
+    height: auto;
+    object-fit: cover; /* Ensure the GIF scales nicely */
+  }
+  
+  /* --- Section: Machine (Interactive Elements) --- */
+  .machine {
+    margin-top: 4rem;
+    padding: 3rem;
+    background-color: #fff; /* Clean white background */
+    border-radius: 0.75rem;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* More prominent shadow */
+    border: 1px solid #ddd; /* Subtle border */
+  }
+  
+  .machine h2 {
+    color: #333;
+    font-size: 2rem;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .machine .line {
+    background-color: #777; /* Darker grey line */
+    height: 2px;
+    width: 60%;
+    margin: 0.75rem auto 2rem auto;
+  }
+  
+  .machine .mach-buttons h4 {
+    color: #333;
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .machine .turn button,
+  .machine .modes button,
+  .machine .time button,
+  .machine .power button {
+    margin-right: 0.75rem;
+    margin-bottom: 0.75rem;
+    border: 1px solid #bbb;
+    background-color: #eee;
+    color: #333;
+    border-radius: 0.3rem;
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+  }
+  
+  .machine .turn button:hover,
+  .machine .modes button:hover,
+  .machine .time button:hover,
+  .machine .power button:hover {
+    background-color: #0056b3;
+    color: white;
+    border-color: #0056b3;
+  }
+  
+  .machine .time button.active {
+    background-color: #0056b3;
+    color: white;
+    border-color: #0056b3;
+  }
+  
+  /* --- Section: Stretching Online (Workout Cards) --- */
+  .stretching-online {
+    margin-top: 4rem;
+    text-align: center;
+  }
+  .stretching{
+    background-image: url(../../../public/assets/images/textured-bground-brown.webp);
+}
+  .stretching-online h2 {
+    color: #333;
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+  }
+  
+  .stretching-online h2 i {
+    color: #777;
+  }
+  
+  .stretching-online h3 {
+    color: #0056b3;
+    font-size: 2.2rem;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+  }
+  
+  .stretching-online .line {
+    background-color: #777;
+    height: 2px;
+    width: 40%;
+    margin: 0.75rem auto 2rem auto;
+  }
+  
+  .stretching-online .card {
+    border: none; /* Remove default card border */
+    border-radius: 0.75rem;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* More significant shadow for depth */
+    transition: transform 0.2s ease-in-out; /* Subtle hover effect */
+  }
+  
+  .stretching-online .card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .stretching-online .card-img-top {
+    height: 220px; /* Slightly taller video area */
+    object-fit: cover;
+    border-top-left-radius: 0.75rem;
+    border-top-right-radius: 0.75rem;
+    background-color: #222; /* Darker fallback */
+  }
+  
+  .stretching-online .card-body {
+    background-color: #fff; /* Clean white card body */
+    color: #333;
+    padding: 1.5rem;
+  }
+  
+  .stretching-online .card-title {
+    color: #0056b3;
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+  
+  .stretching-online .card-text {
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+  
+  .stretching-online .card-text small {
+    color: #777;
+  }
+  
+  .stretching-online .btn {
+    font-size: 1rem;
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.3rem;
+    transition: transform 0.1s ease-in-out;
+  }
+  
+  .stretching-online .btn:hover {
+    transform: scale(1.02);
+  }
+  
+  .stretching-online .btn-primary {
+    background-color: #0056b3;
+    border-color: #0056b3;
+    color: white;
+  }
+  
+  .stretching-online .btn-primary:hover {
+    background-color: #003d82;
+    border-color: #003d82;
+  }
+  
+  .stretching-online .btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+    color: white;
+  }
+  
+  .stretching-online .btn-secondary:hover {
+    background-color: #545b62;
+    border-color: #545b62;
+  }
+  
+  .stretching-online .btn-outline-secondary {
+    color: #6c757d;
+    border-color: #6c757d;
+  }
+  
+  .stretching-online .btn-outline-secondary:hover {
+    background-color: #545b62;
+    border-color: #545b62;
+    color: white;
+  }
+
+  /* Media Queries for Responsiveness */
+
+/* Extra small devices (phones, less than 576px) */
+@media (max-width: 575.98px) {
+    .title h1 {
+      font-size: 2.2em;
+    }
+  
+    .stretch-content .row {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .stretch-content .col-5,
+    .stretch-content .col-7 {
+      width: 100%;
+      margin-bottom: 15px;
+    }
+  
+    .machine .row {
+      flex-direction: column; /* Stack columns */
+      align-items: center; /* Center items horizontally */
+    }
+  
+    .machine .mach-img,
+    .machine .mach-buttons {
+      width: 80%; /* Make them take more width */
+    }
+  
+    .machine .modes h4,
+    .machine .time h4,
+    .machine .power h4 {
+      width: 100%;
+      text-align: center;
+    }
+  
+    .machine .modes,
+    .machine .time,
+    .machine .power {
+      justify-content: center; /* Center buttons */
+    }
+  
+    .stretching-online h2 {
+      font-size: 1.8em;
+    }
+  
+    .card-title {
+      font-size: 1.3em;
+    }
+  }
+  
+  /* Small devices (landscape phones, 576px and up) */
+  @media (min-width: 576px) and (max-width: 767.98px) {
+    .stretch-content .row {
+      flex-direction: row;
+      align-items: center;
+    }
+    .circle1,
+    .circle2,
+    .circle3,
+    .circle4,
+    .circle5,
+    .circle6,
+    .circle7 {
+      width: 80px;
+      height: 80px;
+    }
+  
+    .circle1 {
+      right: 230px;
+    }
+  
+    .circle2 {
+      right: 300px;
+    }
+  
+    .circle3 {
+      left: 230px;
+    }
+  
+    .circle4 {
+      left: 300px;
+    }
+  
+    .circle5,
+    .circle7 {
+      width: 90px;
+      height: 90px;
+    }
+  
+    .circle5 {
+      right: 380px;
+    }
+  
+    .circle7 {
+      left: 380px;
+    }
+    .stretch-content .col-5,
+    .stretch-content .col-7 {
+      width: 50%;
+      margin-bottom: 0;
+    }
+  
+    .machine .row {
+      flex-direction: row; /* Keep columns side by side */
+      align-items: flex-start;
+    }
+  
+    .machine .mach-img {
+      width: 40%;
+    }
+  
+    .machine .mach-buttons {
+      width: 55%;
+    }
+  
+    .title h1 {
+      font-size: 2.8em;
+    }
+  
+    .stretch-content h3 {
+      font-size: 1.6em;
+    }
+  
+    .stretching-online h2 {
+      font-size: 2em;
+    }
+  
+    .card-title {
+      font-size: 1.4em;
+    }
+  }
+  
+  /* Medium devices (tablets, 768px and up) */
+  @media (min-width: 768px) and (max-width: 991.98px) {
+    .row-cols-md-2 > .col {
+      width: 50%;
+    }
+  
+    .machine .row {
+      align-items: center; /* Vertically align image and buttons */
+    }
+  
+    .title h1 {
+      font-size: 3em;
+    }
+  
+    .stretch-content h3 {
+      font-size: 1.8em;
+    }
+  
+    .stretching-online h2 {
+      font-size: 2.1em;
+    }
+  
+    .card-title {
+      font-size: 1.5em;
+    }
+  }
+  
+  /* Large devices (desktops, 992px and up) */
+  @media (min-width: 992px) and (max-width: 1199.98px) {
+    .row-cols-lg-3 > .col {
+      width: 33.33333333%;
+    }
+  
+    .title h1 {
+      font-size: 3.2em;
+    }
+  
+    .stretch-content h3 {
+      font-size: 2em;
+    }
+  
+    .stretching-online h2 {
+      font-size: 2.2em;
+    }
+  
+    .card-title {
+      font-size: 1.5em;
+    }
+  }
+  
+  /* Extra large devices (large desktops, 1200px and up) */
+  @media (min-width: 1200px) {
+    .title h1 {
+      font-size: 3.5em;
+    }
+  
+    .stretch-content h3 {
+      font-size: 2.2em;
+    }
+  
+    .stretching-online h2 {
+      font-size: 2.4em;
+    }
+  
+    .card-title {
+      font-size: 1.6em;
+    }
+  }
 

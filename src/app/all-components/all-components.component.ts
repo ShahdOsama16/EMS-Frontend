@@ -3,9 +3,11 @@ import { ProductComponent } from '../product/product.component';
 import { AboutComponent } from '../about/about.component';
 import { FooterComponent } from '../footer/footer.component';
 import { BuyproductComponent } from '../buyproduct/buyproduct.component';
-import { WorkoutsComponent } from '../workouts/workouts.component'; // Import WorkoutsComponent
-import { RecipesComponent } from '../recipes/recipes.component';   // Import RecipesComponent
-import { ContactComponent } from '../contact/contact.component';   // Import ContactComponent
+import { WorkoutsComponent } from '../workouts/workouts.component'; 
+import { RecipesComponent } from '../recipes/recipes.component';  
+import { ContactComponent } from '../contact/contact.component';   
+import {  ReactiveFormsModule } from '@angular/forms';
+import { CheckoutComponent } from '../checkout/checkout.component';
 
 @Component({
   selector: 'app-all-components',
@@ -17,7 +19,11 @@ import { ContactComponent } from '../contact/contact.component';   // Import Con
     BuyproductComponent,
     WorkoutsComponent, // Add WorkoutsComponent to imports
     RecipesComponent,  // Add RecipesComponent to imports
-    ContactComponent,  // Add ContactComponent to imports
+    ContactComponent, 
+    ReactiveFormsModule,
+    CheckoutComponent, // Add ContactComponent to imports
+    ContactComponent,
+
   ],
   templateUrl: './all-components.component.html',
   styleUrl: './all-components.component.css',

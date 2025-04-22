@@ -85,23 +85,37 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
   // Cart Endpoints
   addToCart(productData: any): Observable<any> {
-   const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-   return this._httpClient.post(`${this.baseUrl}/add`, productData, { headers });
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this._httpClient.post(`${this.baseUrl}/add`, productData, { headers });
   }
 
-  getCartItems(): Observable<any> {
-   return this._httpClient.get(`${this.baseUrl}/items`);
+  // GET /items
+  getCartItems(): Observable<any[]> {
+    return this._httpClient.get<any[]>(`${this.baseUrl}/items`);
   }
 
+  // POST /api/app/cart/to-cart/{productId}
   addProductToCart(productId: string): Observable<any> {
-   const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-   return this._httpClient.post(`<span class="math-inline">\{this\.baseUrl\}/app/cart/to\-cart/</span>{productId}`, {}, { headers });
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this._httpClient.post(`${this.baseUrl}/api/app/cart/to-cart/${productId}`, {}, { headers });
   }
 
-  getCartItemsDetailed(): Observable<any> {
-   return this._httpClient.get(`${this.baseUrl}/app/cart/cart-items`);
+  // GET /api/app/cart/cart-items
+  getCartItemsDetailed(): Observable<any[]> {
+    return this._httpClient.get<any[]>(`${this.baseUrl}/api/app/cart/cart-items`);
   }
 
+  updateCartItemQuantity(itemId: string, quantity: number): Observable<any> {
+    return this._httpClient.put<any>(`${this.baseUrl}/api/cart/items/${itemId}`, { quantity });
+  }
+
+  removeCartItem(itemId: string): Observable<void> {
+    return this._httpClient.delete<void>(`${this.baseUrl}/api/cart/items/${itemId}`);
+  }
+
+  clearCart(): Observable<void> {
+    return this._httpClient.delete<void>(`${this.baseUrl}/api/cart`);
+  }
   // ContactUs Endpoints
   createContactUs(contactData: any): Observable<any> {
    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
@@ -171,19 +185,18 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
   // Order Endpoints
   createOrder(orderData: any): Observable<any> {
-   const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-   return this._httpClient.post(`${this.baseUrl}/create`, orderData, { headers });
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this._httpClient.post(`${this.baseUrl}/create`, orderData, { headers });
   }
 
   placeOrder(orderData: any): Observable<any> {
-   const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-   return this._httpClient.post(`${this.baseUrl}/app/order/order`, orderData, { headers });
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this._httpClient.post(`${this.baseUrl}/api/app/order/order`, orderData, { headers });
   }
 
   getOrderSummary(): Observable<any> {
-   return this._httpClient.get(`${this.baseUrl}/app/order/order-summary`);
+    return this._httpClient.get<any>(`${this.baseUrl}/app/order/order-summary`);
   }
-
   // Permissions Endpoints
   getPermissions(): Observable<any> {
    return this._httpClient.get(`${this.baseUrl}/permission-management/permissions`);
@@ -204,9 +217,19 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
   // Profile Endpoints
   getMyProfile(): Observable<any> {
-   return this._httpClient.get(`https://passantmohamed-001-site1.mtempurl.com/api/app/authentication/current-user-details`);
+    const token = localStorage.getItem('accessToken'); 
+  
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,           
+      'Content-Type': 'application/json'             
+    });
+  
+    return this._httpClient.get(
+      'https://passantmohamed-001-site1.mtempurl.com/api/app/authentication/current-user-details',
+      { headers }
+    );
   }
-
+  
   updateMyProfile(profileData: any): Observable<any> {
    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
    return this._httpClient.put(`${this.baseUrl}/account/my-profile`, profileData, { headers });
@@ -223,10 +246,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   }
 
   getSingleRecipe(id: number): Observable<any> {
-    return this._httpClient.get(`${this.baseUrl}/app/recipe/${id}?MaxResultCount=66`); // Correct way to pass id and parameter
+    return this._httpClient.get(`${this.baseUrl}/app/recipe/${id}`); // Correct way to pass id and parameter
   }
   getRecipesbyid(id: number): Observable<any> {
-    return this._httpClient.get(``); // MAKE SURE THIS ENDPOINT IS CORRECT
+    return this._httpClient.get(`${this.baseUrl}/app/recipe/${id}`); // MAKE SURE THIS ENDPOINT IS CORRECT
   }
 
   // Role Endpoints (rest are fine)
@@ -375,14 +398,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   getContactMessages(): Observable<any> {
     return this._httpClient.get(`https://passantmohamed-001-site1.mtempurl.com/api/app/contact-us`);
   }
-
-
-
-  // login(credentials: any): Observable<LoginResponse> {
-  //   Adjust the endpoint to your actual login API endpoint
-  //   return this.http.post<LoginResponse>(`${this.baseUrl}/api/auth/login`, credentials);
-  // }
-
   // Example of a method to make an authenticated request
   getSecureData(): Observable<any> {
     const token = localStorage.getItem('accessToken');
@@ -392,7 +407,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
     return this._httpClient.get(`${this.baseUrl}/api/secure-endpoint`, { headers });
   }
   clearAuthData() {
-    localStorage.removeItem('access_token');
+    localStorage.removeItem('accessToken');
     localStorage.removeItem('user_role');
     // Or clear all:
     // localStorage.clear();

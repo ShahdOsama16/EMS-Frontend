@@ -18,54 +18,34 @@
             </div>
         </div>
     </div>
+   
     <div class="stretching-online">
         <h2>NO-EQUIPMENT <i class="fa-solid fa-dumbbell"></i></h2>
-        <h2>Daily Home Legs Workout</h2>
+        <h2>Daily Home legs Workout</h2>
         <div class="line"></div>
-    </div>
-    <div class="stretching-videos">
-        <div class="videoos">
-                <div class="single-video">
-                <!-- <video controls src="../../assets/videos/arx/arx1.mp4"></video> -->
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/v8CDptlpeys?si=Ua2-RT2F6Of5bZdT" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                <p>15 min CARDIO AEROBICS WORKOUT | All Standing | Low Impact |
-                    <br> No Squats | Move to the Beat ♫</p>
-                </div>
-                <div class="single-video">
-                <!-- <video controls src="../../assets/videos/arx/arx2.mp4"></video> -->
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/oFON1wxbdjw?si=YBBjOC5d1GeTKb_a" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                <p>30 min CARDIO AEROBICS WORKOUT ♫ |
-                    <br> No Jumping | No Squats </p>
-                </div>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+          <div *ngFor="let workout of  legsWorkouts " class="col">
+            <div class="card h-100">
+              <iframe
+              *ngIf="workout.videoUrl"
+              class="card-img-top"
+              [src]="getSafeVideoUrl(workout.videoUrl)"
+              title="{{ workout.name }} video player"
+              frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+                style="height: 200px;" ></iframe>
+              <div class="card-body">
+                <h5 class="card-title">{{ workout.name }}</h5>
+                <p class="card-text">{{ workout.description }}</p>
+                <!-- <p class="card-text"><small class="text-muted">ID: {{ workout.id }}</small></p> -->
+                <p class="card-text"><small class="text-muted">Category: {{ workout.category }}</small></p>
+                <a [routerLink]="['/aerobics', workout.id]" class="btn btn-primary">Let's Trainee</a>
+                <a [routerLink]="['/workout-details', workout.id]" class="btn btn-secondary ms-2"><i class="fas fa-link"></i> Details</a>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="videoos">
-            <div class="single-video">
-            <!-- <video controls src="../../assets/videos/arx/arx3.mp4"></video> -->
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/flfjRWzjfC4?si=66gJ9hJahmPytCYm" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <p>Lose Weight - Lose Belly Fat 
-                <br>| Aerobic Exercises at Home to Stay Healthy  </p>
-            </div>
-            <div class="single-video">
-            <!-- <video controls src="../../assets/videos/arx/arx4 (1).mp4"></video> -->
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/AsWRGMnpjs4?si=8QAm52kZp6uBjibW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <p>Legs_ Bums _ Tums 
-                <br>15 MINUTE WORKOUT </p>
-            </div>
-        </div>
-        <div class="videoos pb-5">
-            <div class="single-video">
-            <!-- <video controls src="../../assets/videos/arx/arx4 (2).mp4"></video> -->
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/nG69wuXHwxg?si=qnf8P8KdI7pP2q3Z" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <p>10 MIN BEGINNER LEG WORKOUT .. with breaks! Booty, 
-                <br>Thighs & Hamstrings / No Equipment I Pamela Reif</p>
-            </div>
-            <div class="single-video">
-            <!-- <video controls src="../../assets/videos/arx/arx5.mp4"></video> -->
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/6hOAGDbkLOw?si=ZfwSIGKPVZeHwbDB" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <p>Bum workout - 
-                <br>10 minutes</p>
-            </div>
-        </div>
-        
-    </div>
+      </div>
 </section>

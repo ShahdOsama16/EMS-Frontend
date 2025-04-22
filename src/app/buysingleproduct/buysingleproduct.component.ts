@@ -23,7 +23,7 @@ import { CommonModule } from '@angular/common';
   createProductForm: FormGroup;
   createErrorMessage: string = '';
   createSuccessMessage: string = '';
-
+  imageBaseUrl = 'https://passantmohamed-001-site1.mtempurl.com/images/';
   constructor(
     private _SharedDataService: ShareDataApiService,
     private cartService: SharedCartService,
@@ -84,7 +84,7 @@ import { CommonModule } from '@angular/common';
       const cartItem = {
         id: this.singleProduct.id,
         name: this.singleProduct.title,
-        image: this.singleProduct.imageUrl,
+        image: this.imageBaseUrl + this.singleProduct.imageUrl,
         price: this.singleProduct.price,
         quantity: this.quantityToAdd,
       };

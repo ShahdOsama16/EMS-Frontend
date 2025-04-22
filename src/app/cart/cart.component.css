@@ -230,3 +230,144 @@ margin-left: 400px;
         justify-content: center;
     }
 }
+
+
+/* Media Queries for Responsiveness */
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+    .cart-item {
+      gap: 20px;
+    }
+  
+    .item-details {
+      flex-direction: row;
+    }
+  
+    .item-info {
+      align-items: flex-start;
+    }
+  
+    .quantity-control {
+      flex-direction: row;
+    }
+  
+    .item-total-price {
+      min-width: 80px;
+      text-align: right;
+    }
+  }
+  
+  /* Medium devices (tablets, 768px and up) */
+  @media (min-width: 768px) {
+    .cart-item {
+      align-items: center;
+    }
+  
+    .item-details {
+      flex-direction: row;
+    }
+  
+    .quantity-control {
+      flex-direction: row;
+    }
+  
+    .checkout-button {
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+  
+  /* Large devices (desktops, 992px and up) */
+  @media (min-width: 992px) {
+    .cart-page {
+      padding: 30px;
+    }
+  
+    .cart-header h2 {
+      font-size: 2.5em;
+    }
+  
+    .cart-item {
+      padding: 20px;
+      gap: 30px;
+    }
+  
+    .item-image {
+      width: 100px;
+      height: 100px;
+    }
+  
+    .item-info {
+      gap: 8px;
+    }
+  
+    .quantity-control {
+      gap: 15px;
+    }
+  
+    .quantity-button {
+      padding: 8px 15px;
+      font-size: 1.1em;
+    }
+  
+    .item-quantity {
+      font-size: 1.2em;
+      min-width: 30px;
+    }
+  
+    .item-total-price {
+      min-width: 100px;
+      font-size: 1.2em;
+    }
+  
+    .remove-button {
+      padding: 10px 20px;
+      font-size: 1em;
+    }
+  
+    #cart-total {
+      font-size: 1.4em;
+    }
+  
+    .checkout-button {
+      max-width: 500px;
+      padding: 15px 25px;
+      font-size: 1.2em;
+    }
+  }
+  
+  /* Extra small devices (phones, less than 576px) */
+  @media (max-width: 575.98px) {
+    .cart-item {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+  
+    .item-details {
+      flex-direction: row;
+      align-items: center;
+      width: 100%;
+    }
+  
+    .item-info {
+      flex-grow: 1;
+    }
+  
+    .quantity-control {
+      flex-direction: row;
+      width: 100%;
+      justify-content: space-between;
+    }
+  
+    .item-total-price {
+      width: 100%;
+      text-align: left;
+    }
+  
+    .remove-button {
+      width: 100%;
+    }
+  }

@@ -18,54 +18,34 @@
             </div>
         </div>
     </div>
+   
     <div class="stretching-online">
         <h2>NO-EQUIPMENT <i class="fa-solid fa-dumbbell"></i></h2>
-        <h2>Daily Home Bi & Tri Workout</h2>
+        <h2>Daily Home  Bi & Tri Workout</h2>
         <div class="line"></div>
-    </div>
-    <div class="stretching-videos">
-        <div class="videoos">
-                <div class="single-video">
-                <!-- <video controls src="../../assets/videos/fitness/fitness1.mp4"></video> -->
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/PqqJBaE4srs?si=zWrTcDJCkGTQj7Os" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                <p>10 MIN CARDIO WORKOUT AT HOME
-                    <br> (No Jumping/Apartment Friendly, No Equipment)</p>
-                </div>
-                <div class="single-video">
-                <!-- <video controls src="../../assets/videos/fitness/fitness2.mp4"></video> -->
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/PwXUHMKamP8?si=nZhkoxBnrvXAf6jI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                <p>10 MIN CARDIO HIIT WORKOUT - ALL STANDING -
-                    <br> Full Body, No Equipment, No Repeats </p>
-                </div>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+          <div *ngFor="let workout of biTriWorkouts" class="col">
+            <div class="card h-100">
+              <iframe
+              *ngIf="workout.videoUrl"
+              class="card-img-top"
+              [src]="getSafeVideoUrl(workout.videoUrl)"
+              title="{{ workout.name }} video player"
+              frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+                style="height: 200px;" ></iframe>
+              <div class="card-body">
+                <h5 class="card-title">{{ workout.name }}</h5>
+                <p class="card-text">{{ workout.description }}</p>
+                <!-- <p class="card-text"><small class="text-muted">ID: {{ workout.id }}</small></p> -->
+                <p class="card-text"><small class="text-muted">Category: {{ workout.category }}</small></p>
+                <a [routerLink]="['/fitness', workout.id]" class="btn btn-primary">Let's Trainee</a>
+                <a [routerLink]="['/workout-details', workout.id]" class="btn btn-secondary ms-2"><i class="fas fa-link"></i> Details</a>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="videoos">
-            <div class="single-video">
-            <!-- <video controls src="../../assets/videos/fitness/fitness3.mp4"></video> -->
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/DHOPWvO3ZcI?si=vL9prBkVzUyoCGB8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <p>10 MIN UPPER BODY WORKOUT - 
-                <br>Home Workout, No Equipment  </p>
-            </div>
-            <div class="single-video">
-            <!-- <video controls src="../../assets/videos/fitness/fitness4.mp4"></video> -->
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/J3Qd-Q9WcMY?si=Ekp44nAgw_1ddX7U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <p>10 Minute Full Body Finisher
-                <br>  Workout </p>
-            </div>
-        </div>
-        <div class="videoos pb-5">
-            <div class="single-video">
-            <!-- <video controls src="../../assets/videos/fitness/fitness5.mp4"></video> -->
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/M0uO8X3_tEA?si=hvL-42XY5MTDEYdh" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <p>20 Minute Full Body Cardio
-                <br> HIIT Workout  </p>
-            </div>
-            <div class="single-video">
-            <!-- <video controls src="../../assets/videos/fitness/fitness6.mp4"></video> -->
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/DU8q18kM0KY?si=O4UatNw8uYkR3mti" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <p>10 MIN GLUTES PUMP Home Workout -
-                <br>10 Minutes Booty Workout, No Equipment</p>
-            </div>
-        </div>
-        
-    </div>
+      </div>
 </section>

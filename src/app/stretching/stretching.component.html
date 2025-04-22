@@ -1,216 +1,167 @@
 <section class="stretching pt-5 pb-5">
-    <div class="TITLE mt-5">
-      <div class="title">
-        <h1>Chest Exercises</h1>
-        <div class="circle1"></div> <div class="circle2"></div>
-        <div class="circle3"></div> <div class="circle4"></div>
-        <div class="circle5"></div> <div class="circle6"></div><div class="circle7"></div>
+  <div class="TITLE mt-5">
+    <div class="title">
+      <h1>Chest Exercises</h1>
+      <div class="circle1"></div>
+      <div class="circle2"></div>
+      <div class="circle3"></div>
+      <div class="circle4"></div>
+      <div class="circle5"></div>
+      <div class="circle6"></div>
+      <div class="circle7"></div>
+    </div>
+  </div>
+  <div class="stretch-content">
+    <div class="row g-2">
+      <div class="col-5">
+        <video autoplay loop muted src="../../assets/images/stretch gif.mp4"></video>
+      </div>
+      <div class="col-7">
+        <h3>What is Chest Exercises?</h3>
+        <p>
+          Stretching is the key to unlocking your body's full potential. It involves
+          extending your muscles to improve flexibility, range of motion, and
+          overall mobility. Regular stretching can help prevent injuries, reduce
+          muscle soreness, and enhance your performance in various physical
+          activities.
+        </p>
       </div>
     </div>
-    <div class="stretch-content">
-      <div class="row g-2">
-        <div class="col-5">
-          <video autoplay loop muted src="../../assets/images/stretch gif.mp4"></video>
+  </div>
+  <div class="machine">
+    <h2>Prepare your Goals</h2>
+    <div class="line"></div>
+    <div class="row">
+      <div class="mach-img col-5"></div>
+      <div class="mach-buttons col-7">
+        <div class="turn">
+          <button>Turn On</button>
+          <button>Turn Off</button>
         </div>
-        <div class="col-7">
-          <h3>What is Chest Exercises?</h3>
-          <p>Stretching is the key to unlocking your body's full potential. It involves extending your muscles to improve flexibility, range of motion, and overall mobility. Regular stretching can help prevent injuries, reduce muscle soreness, and enhance your performance in various physical activities.</p>
+        <div class="modes">
+          <h4>Modes</h4>
+          <button>Acupunture</button>
+          <button>Stroke</button>
+          <button>Massage</button>
+          <button>Cupping</button>
+          <button>Manipulation</button>
+          <button>Scraping</button>
+          <button>Weight Reducing</button>
+          <button>Immunotherapy</button>
         </div>
-      </div>
-    </div>
-    <div class="machine">
-      <h2>Prepare your Goals</h2>
-      <div class="line"></div>
-      <div class="row">
-        <div class="mach-img col-5"></div>
-        <div class="mach-buttons col-7">
-          <div class="turn">
-            <button>Turn On</button>
-            <button>Turn Off</button>
-          </div>
-          <div class="modes">
-            <h4>Modes</h4>
-            <button>Acupunture</button>
-            <button>Stroke</button>
-            <button>Massage</button>
-            <button>Cupping</button>
-            <button>Manipulation</button>
-            <button>Scraping</button>
-            <button>Weight Reducing</button>
-            <button>Immunotherapy</button>
-          </div>
-          <div class="time">
-            <h4>Time</h4>
-            <button>5 minutes</button>
-            <button>10 minutes</button>
-            <button>15 minutes</button>
-          </div>
-          <div class="power">
-            <h4>Power</h4>
-            <button>1 watt</button>
-            <button>2 watt</button>
-            <button>3 watt</button>
-            <button>4 watt</button>
-            <button>5 watt</button>
-            <button>6 watt</button>
-            <button>7 watt</button>
-            <button>8 watt</button>
-            <button>9 watt</button>
-            <button>10 watt</button>
-            <button>11 watt</button>
-            <button>12 watt</button>
-            <button>13 watt</button>
-            <button>14 watt</button>
-            <button>15 watt</button>
-          </div>
+        <div class="time">
+          <h4>Time</h4>
+          <button>5 minutes</button>
+          <button>10 minutes</button>
+          <button>15 minutes</button>
         </div>
-      </div>
-    </div>
-    <div class="stretching-online">
-      <h2>NO-EQUIPMENT <i class="fa-solid fa-dumbbell"></i></h2>
-      <h2>Daily Home Chest Workout</h2>
-      <div class="line"></div>
-    </div>
-    <div class="stretching-videos">
-      <div *ngFor="let workout of chestWorkouts" class="col-lg-4 col-md-6 col-sm-12 mb-3">
-        <div class="explore-img">
-          <img class="w-100 img-fluid" [src]="workout.imageUrl || '../assets/images/default-workout.jpg'" [alt]="workout.name || 'Workout Image'">
-          <div class="explore-info">
-            <h5>{{ workout.name }}</h5>
-            <a [routerLink]="['/stretching', workout.id]">Let's Trainee
-              <i class="fa fa-arrow-right ms-2"></i>
-            </a>
-          </div>
-          <div class="explore-overlayer">
-            <a [routerLink]="['/workout-details', workout.id]" class="text-white"><i class="fas fa-link fa-2x"></i></a>
-          </div>
-        </div>
-      </div>
-      <div class="videoos">
-        <div class="single-video">
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/g_tea8ZNk5A?si=vvviO2CjY0eX_LdY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-          <p>15 Min. Full Body Stretch | Daily Routine for Flexibility,<br> Mobility&nbsp;&amp;&nbsp;Relaxation</p>
-        </div>
-        <div class="single-video">
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/s-7lyvblFNI?si=5HoT7V02zUDzAkJP" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-          <p>Stretches for Neck, Shoulder & Upper Back Pain Relief |<br> 10 min. Yoga to release Tension and Relax</p>
-        </div>
-      </div>
-      <div class="videoos pb-5">
-        <div class="single-video">
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/yMNLa17g9uc?si=59pbC_7H42gpW2Xe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-          <p>15 Min. Leg Stretch | Flexibility Routine for Hamstrings,<br> Butt & Hips </p>
-        </div>
-        <div class="single-video">
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/BPlCatqZRPI?si=WNk2fKUlGBQB4gaA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-          <p>Fix your posture and reduce backpain |<br> 10 Minute Daily Stretch Routine</p>
+        <div class="power">
+          <h4>Power</h4>
+          <button>1 watt</button>
+          <button>2 watt</button>
+          <button>3 watt</button>
+          <button>4 watt</button>
+          <button>5 watt</button>
+          <button>6 watt</button>
+          <button>7 watt</button>
+          <button>8 watt</button>
+          <button>9 watt</button>
+          <button>10 watt</button>
+          <button>11 watt</button>
+          <button>12 watt</button>
+          <button>13 watt</button>
+          <button>14 watt</button>
+          <button>15 watt</button>
         </div>
       </div>
     </div>
-  </section> 
-
-
-
-<!-- 
-  <section class="stretching pt-5 pb-5">
-    <div class="TITLE mt-5">
-      <div class="title">
-        <h1>Chest Exercises</h1>
-        <div class="circle1"></div> <div class="circle2"></div>
-        <div class="circle3"></div> <div class="circle4"></div>
-        <div class="circle5"></div> <div class="circle6"></div><div class="circle7"></div>
-      </div>
-    </div>
-    <div class="stretch-content">
-      <div class="row g-2">
-        <div class="col-5">
-          <video autoplay loop muted src="../../assets/images/stretch gif.mp4"></video>
-        </div>
-        <div class="col-7">
-          <h3>What is Chest Exercises?</h3>
-          <p>Stretching is the key to unlocking your body's full potential. It involves extending your muscles to improve flexibility, range of motion, and overall mobility. Regular stretching can help prevent injuries, reduce muscle soreness, and enhance your performance in various physical activities.</p>
-        </div>
-      </div>
-    </div>
-    <div class="machine">
-      <h2>Prepare your Goals</h2>
-      <div class="line"></div>
-      <div class="row">
-        <div class="mach-img col-5"></div>
-        <div class="mach-buttons col-7">
-          <div class="turn">
-            <button>Turn On</button>
-            <button>Turn Off</button>
-          </div>
-          <div class="modes">
-            <h4>Modes</h4>
-            <button>Acupunture</button>
-            <button>Stroke</button>
-            <button>Massage</button>
-            <button>Cupping</button>
-            <button>Manipulation</button>
-            <button>Scraping</button>
-            <button>Weight Reducing</button>
-            <button>Immunotherapy</button>
-          </div>
-          <div class="time">
-            <h4>Time</h4>
-            <button>5 minutes</button>
-            <button>10 minutes</button>
-            <button>15 minutes</button>
-          </div>
-          <div class="power">
-            <h4>Power</h4>
-            <button>1 watt</button>
-            <button>2 watt</button>
-            <button>3 watt</button>
-            <button>4 watt</button>
-            <button>5 watt</button>
-            <button>6 watt</button>
-            <button>7 watt</button>
-            <button>8 watt</button>
-            <button>9 watt</button>
-            <button>10 watt</button>
-            <button>11 watt</button>
-            <button>12 watt</button>
-            <button>13 watt</button>
-            <button>14 watt</button>
-            <button>15 watt</button>
+  </div>
+  <div class="stretching-online">
+    <h2>NO-EQUIPMENT <i class="fa-solid fa-dumbbell"></i></h2>
+    <h2>Daily Home Chest Workout</h2>
+    <div class="line"></div>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+      <div *ngFor="let workout of chestWorkouts" class="col">
+        <div class="card h-100">
+          <iframe
+          *ngIf="workout.videoUrl"
+          class="card-img-top"
+          [src]="getSafeVideoUrl(workout.videoUrl)"
+          title="{{ workout.name }} video player"
+          frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+            style="height: 200px;" ></iframe>
+          <div class="card-body">
+            <h5 class="card-title">{{ workout.name }}</h5>
+            <p class="card-text">{{ workout.description }}</p>
+            <!-- <p class="card-text"><small class="text-muted">ID: {{ workout.id }}</small></p> -->
+            <p class="card-text"><small class="text-muted">Category: {{ workout.category }}</small></p>
+            <a [routerLink]="['/stretching', workout.id]" class="btn btn-primary">Let's Trainee</a>
+            <a [routerLink]="['/workout-details', workout.id]" class="btn btn-secondary ms-2"><i class="fas fa-link"></i> Details</a>
           </div>
         </div>
       </div>
     </div>
-    <div class="stretching-online">
-      <h2>NO-EQUIPMENT <i class="fa-solid fa-dumbbell"></i></h2>
-      <h2>Daily Home Chest Workout</h2>
-      <div class="line"></div>
-    </div>
-    <div class="stretching-videos">
-      <div *ngFor="let workout of chestWorkouts" class="col-lg-4 col-md-6 col-sm-12 mb-3">
-        <div class="explore-img">
-          <img class="w-100 img-fluid" [src]="workout.imageUrl || '../../assets/images/default-workout.jpg'" [alt]="workout.name || 'Workout Image'">
-          <div class="explore-info">
-            <h5>{{ workout.name }}</h5>
-            <a [routerLink]="['/stretching', workout.id]">Let's Trainee
-              <i class="fa fa-arrow-right ms-2"></i>
-            </a>
-          </div>
-          <div class="explore-overlayer">
-            <a [routerLink]="['/workout-details', workout.id]" class="text-white"><i class="fas fa-link fa-2x"></i></a>
-          </div>
+  </div>
+</section>
+  <!-- <div class="stretching-videos">
+    <div
+      *ngFor="let workout of chestWorkouts; let i = index"
+      class="col-lg-4 col-md-6 col-sm-12 mb-3"
+    >
+      <div class="explore-img">
+        <img
+          class="w-100 img-fluid"
+          [src]="workout.videoUrl" [alt]="workout.name || 'Workout Image'"
+        />
+        <div class="explore-info">
+          <h5>{{ workout.name }}</h5>
+          <a [routerLink]="['/stretching', workout.id]">
+            Let's Trainee
+            <i class="fa fa-arrow-right ms-2"></i>
+          </a>
+        </div>
+        <div class="explore-overlayer">
+          <a [routerLink]="['/workout-details', workout.id]" class="text-white"
+            ><i class="fas fa-link fa-2x"></i
+          ></a>
         </div>
       </div>
-      </div>
-  </section>
-
-
-  <section class="stretching-details pt-5 pb-5">
-    <div class="container">
-      <div *ngIf="workoutDetails">
-        <h1>{{ workoutDetails.name }}</h1>
-        <p>{{ workoutDetails.description }}</p>
-        </div>
-      <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
-      <div *ngIf="!workoutDetails && !errorMessage">Loading workout details...</div>
     </div>
-  </section> -->
+    <div class="videoos">
+      <div *ngFor="let workout of chestWorkouts | slice:0:2" class="single-video">
+        <iframe
+          *ngIf="workout.videoUrl"
+          width="560"
+          height="315"
+          [src]="getSafeVideoUrl(workout.videoUrl)"
+          title="{{ workout.name }} video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
+        <p>{{ workout.description }}</p>
+        <p *ngIf="!workout.videoUrl">No video available for this workout.</p>
+      </div>
+    </div>
+    <div class="videoos pb-5">
+      <div *ngFor="let workout of chestWorkouts | slice:2:4" class="single-video">
+        <iframe
+          *ngIf="workout.videoUrl"
+          width="560"
+          height="315"
+          [src]="getSafeVideoUrl(workout.videoUrl)"
+          title="{{ workout.name }} video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
+        <p>{{ workout.description }}</p>
+        <p *ngIf="!workout.videoUrl">No video available for this workout.</p>
+      </div>
+    </div>
+  </div> -->
