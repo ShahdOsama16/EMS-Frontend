@@ -50,11 +50,6 @@ export class NavbarComponent implements OnInit{
 
 
 
-  // @HostListener('window:scroll', ['$event'])
-  // onWindowScroll() {
-  //   this.isScrolled = window.pageYOffset > 100;
-  // }
-
 window.addEventListener('scroll', () => {
   const navbar = document.querySelector('.navbar'); // Select by class name
   if (navbar) { // Check if the element exists before trying to manipulate it
