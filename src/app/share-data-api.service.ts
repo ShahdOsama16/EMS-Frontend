@@ -8,9 +8,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
  export class ShareDataApiService {
   isLogin = new BehaviorSubject<boolean>(!!localStorage.getItem('accessToken')); // Initialize based on existing token
   private baseUrl = 'https://passantmohamed-001-site1.mtempurl.com/api'; // Keep your base URL
+  private userRoleSubject = new BehaviorSubject<string | null>(localStorage.getItem('user_role')); // Initialize from localStorage
 
   constructor(private _httpClient: HttpClient) { }
-
+ isAdminUser(): boolean {
+    return this.userRoleSubject.value === 'admin';
+  }
   login(loginData: any): Observable<any> {
    const headers = new HttpHeaders({
     'accept': 'text/plain',
@@ -80,7 +83,15 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   }
 
   getCurrentUserDetails(): Observable<any> {
-   return this._httpClient.get(`${this.baseUrl}/app/authentication/current-user-details`);
+    const token = localStorage.getItem('accessToken');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json' // Assuming you're expecting JSON
+    });
+    return this._httpClient.get(
+      `${this.baseUrl}/app/authentication/current-user-details`, // Use the correct endpoint
+      { headers }
+    );
   }
 
   // Cart Endpoints
@@ -415,3 +426,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   }
   
 }
+
+
+
