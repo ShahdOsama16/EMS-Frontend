@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { SharedCartService } from '../../shared-cart.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
+import { SharedCartService } from '../../shared-cart.service';
 import { ShareDataApiService } from '../share-data-api.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
@@ -17,18 +17,18 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   cartItems: any[] = [];
   total: number = 0;
   cartSubscription: Subscription | undefined;
+  orderSummarySubscription: Subscription | undefined;
   errorMessage: string = '';
   isLoadingCart: boolean = false;
-  checkoutForm: FormGroup;
-  orderPlacedMessage: string = '';
   isLoadingOrderSummary: boolean = false;
   orderSummary: any;
-  message: string = '';
+  checkoutForm: FormGroup;
+  orderPlacedMessage: string = '';
 
   constructor(
     private cartService: SharedCartService,
-    private router: Router,
     private apiService: ShareDataApiService,
+    private router: Router,
     private fb: FormBuilder
   ) {
     this.checkoutForm = this.fb.group({
@@ -36,29 +36,29 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       address: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
     });
-    this.isLoggedIn = !!localStorage.getItem('authToken'); // Example
+    this.isLoggedIn = !!localStorage.getItem('authToken');
   }
 
   ngOnInit(): void {
-    this.loadCartItems();
-    if (this.isLoggedIn) {
-      this.loadOrderSummary();
-    }
+    this.loadCartData();
   }
 
   ngOnDestroy(): void {
     if (this.cartSubscription) {
       this.cartSubscription.unsubscribe();
     }
+    if (this.orderSummarySubscription) {
+      this.orderSummarySubscription.unsubscribe();
+    }
   }
 
-  loadCartItems(): void {
+  loadCartData(): void {
     this.isLoadingCart = true;
     this.cartSubscription = this.cartService.getCartItemsDetailed().subscribe({
-      next: (data) => {
-        this.cartItems = data;
+      next: (items) => {
+        this.cartItems = items;
         this.calculateTotal();
-        this.updateCartCount();
+        this.loadOrderSummary(); // Load order summary after cart items
         this.isLoadingCart = false;
       },
       error: (error) => {
@@ -71,10 +71,10 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
   loadOrderSummary(): void {
     this.isLoadingOrderSummary = true;
-    this.apiService.getOrderSummary().subscribe({
-      next: (data) => {
-        console.log('Order Summary Data:', data);
-        this.orderSummary = data;
+    this.orderSummarySubscription = this.apiService.getOrderSummary().subscribe({
+      next: (summary) => {
+        console.log('Order Summary Data:', summary);
+        this.orderSummary = summary;
         this.isLoadingOrderSummary = false;
       },
       error: (error) => {
@@ -102,7 +102,6 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         if (index !== -1) {
           this.cartItems[index] = { ...this.cartItems[index], quantity: updatedItem.quantity };
           this.calculateTotal();
-          this.updateCartCount();
         }
         this.isLoadingCart = false;
       },
@@ -120,7 +119,6 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       next: () => {
         this.cartItems = this.cartItems.filter((cartItem) => cartItem.id !== item.id);
         this.calculateTotal();
-        this.updateCartCount();
         this.isLoadingCart = false;
       },
       error: (error) => {
@@ -131,75 +129,61 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     });
   }
 
-  updateCartCount(): void {
-    const newCount = this.cartItems.reduce((total, item) => total + item.quantity, 0);
-    this.cartService.updateCartItemQuantity; // Corrected call
-  }
-
-  login(): void {
-    localStorage.setItem('authToken', 'fake_token'); // Placeholder
-    this.isLoggedIn = true;
-    this.router.navigate(['/checkout']); // Redirect back to checkout
-  }
-
-  logout(): void {
-    localStorage.removeItem('authToken'); // Example
-    this.isLoggedIn = false;
-    this.orderSummary = null;
-    this.message = 'Logged out successfully.';
-  }
-
   proceedToCheckout(): void {
     if (!this.isLoggedIn) {
       this.router.navigate(['/login']);
       return;
     }
     if (this.cartItems.length > 0) {
+      this.router.navigate(['/checkout-form']); // Ensure this route exists
     } else {
       this.errorMessage = 'Your cart is empty. Add items to proceed.';
     }
   }
 
+  login(): void {
+    localStorage.setItem('authToken', 'fake_token');
+    this.isLoggedIn = true;
+    this.loadCartData(); // Reload cart and order summary after login
+  }
+
+  logout(): void {
+    localStorage.removeItem('authToken');
+    this.isLoggedIn = false;
+    this.cartItems = [];
+    this.total = 0;
+    this.orderSummary = null;
+  }
 
   placeOrder(): void {
-    if (this.isLoggedIn) {
-      if (this.checkoutForm.valid && this.cartItems.length > 0) {
-        const orderData = {
-          shippingInfo: this.checkoutForm.value,
-          items: this.cartItems.map(item => ({
-            productId: item.product?.id,
-            quantity: item.quantity
-          })),
-          totalAmount: this.orderSummary?.total || this.total + 5,
-          shippingCost: this.orderSummary?.shippingCost || 5
-          // Add other necessary order details based on your API requirements
-        };
+    if (this.isLoggedIn && this.checkoutForm.valid && this.cartItems.length > 0) {
+      const orderData = {
+        shippingInfo: this.checkoutForm.value,
+        items: this.cartItems.map(item => ({ productId: item.id, quantity: item.quantity })),
+        totalAmount: this.orderSummary?.total || this.total + 5,
+        shippingCost: this.orderSummary?.shipping || 5 // Assuming 'shipping' in orderSummary
+      };
 
-        this.apiService.createOrder(orderData).subscribe({
-          next: (response) => {
-            console.log('Order placed successfully:', response);
-            this.orderPlacedMessage = 'Order placed successfully!';
-            this.cartService.clearCart().subscribe(() => {
-              this.cartItems = [];
-              this.total = 0;
-              this.updateCartCount();
-              this.checkoutForm.reset();
-              this.router.navigate(['/order-confirmation']); // Adjust your route
-            });
-          },
-          error: (error) => {
-            console.error('Error placing order:', error);
-            this.errorMessage = 'Failed to place order.';
-            alert('There was an error placing your order. Please try again.');
-          }
-        });
-      } else {
-        this.errorMessage = 'Please fill in all shipping information and ensure your cart is not empty.';
-        alert('Please fill in all shipping information and ensure your cart is not empty.');
-      }
+      this.apiService.createOrder(orderData).subscribe({
+        next: (response) => {
+          console.log('Order placed successfully:', response);
+          this.orderPlacedMessage = 'Order placed successfully!';
+          this.cartService.clearCart().subscribe(() => {
+            this.cartItems = [];
+            this.total = 0;
+            this.checkoutForm.reset();
+            this.router.navigate(['/order-confirmation']);
+          });
+        },
+        error: (error) => {
+          console.error('Error placing order:', error);
+          this.errorMessage = 'Failed to place order.';
+          alert('There was an error placing your order. Please try again.');
+        }
+      });
     } else {
-      alert('Please log in to place your order.');
-      this.router.navigate(['/login']); // Optionally redirect to login
+      this.errorMessage = 'Please fill in all shipping information and ensure your cart is not empty.';
+      alert('Please fill in all shipping information and ensure your cart is not empty.');
     }
   }
 }

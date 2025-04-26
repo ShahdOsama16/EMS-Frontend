@@ -1,7 +1,7 @@
 <div class="checkout-page">
   <h2>Checkout</h2>
 
-  <div *ngIf="isLoggedIn" class="login-section">
+  <div *ngIf="!isLoggedIn" class="login-section">
     <p>Please log in to proceed with your order.</p>
     <button (click)="login()">Log In</button>
   </div>
@@ -10,37 +10,9 @@
     <div class="user-info">
       <h3>Shipping Information</h3>
       <form [formGroup]="checkoutForm">
-        <div>
-          <label for="name"><strong>Name:</strong></label>
-          <input type="text" id="name" class="form-control" formControlName="name" placeholder="name" />
-          <div
-            *ngIf="checkoutForm.get('name')?.invalid && (checkoutForm.get('name')?.dirty || checkoutForm.get('name')?.touched)"
-            class="error-message"
-          >
-            Name is required.
-          </div>
-        </div>
-        <div>
-          <label for="address"><strong>Address:</strong></label>
-          <input type="text" id="address" class="form-control" formControlName="address" placeholder="address" />
-          <div
-            *ngIf="checkoutForm.get('address')?.invalid && (checkoutForm.get('address')?.dirty || checkoutForm.get('address')?.touched)"
-            class="error-message"
-          >
-            Address is required.
-          </div>
-        </div>
-        <div>
-          <label for="email"><strong>Email:</strong></label>
-          <input type="email" id="email" class="form-control" formControlName="email" placeholder="email" />
-          <div
-            *ngIf="checkoutForm.get('email')?.invalid && (checkoutForm.get('email')?.dirty || checkoutForm.get('email')?.touched)"
-            class="error-message"
-          >
-            <div *ngIf="checkoutForm.get('email')?.errors?.['required']">Email is required.</div>
-            <div *ngIf="checkoutForm.get('email')?.errors?.['email']">Invalid email format.</div>
-          </div>
-        </div>
+        <p><strong>Name:</strong><input type="text" class="form-control" formControlName="name" placeholder="name"></p>
+        <p><strong>Address:</strong><input type="text" class="form-control" formControlName="address" placeholder="address"></p>
+        <p><strong>Email:</strong> <input type="text" class="form-control" formControlName="email" placeholder="email"></p>
       </form>
       <button (click)="logout()">Logout</button>
     </div>
@@ -68,21 +40,19 @@
     <div class="order-summary">
       <h3>Order Summary</h3>
       <div *ngIf="isLoadingOrderSummary">Loading order summary...</div>
-      <div *ngIf="!isLoadingOrderSummary && !errorMessage && cartItems.length > 0">
-        <p><strong>Subtotal:</strong> ${{ total | number: '1.2-2' }}</p>
-        <p><strong>Shipping:</strong> $5.00</p>
-        <p><strong>Total:</strong> ${{ total + 5 | number: '1.2-2' }}</p>
-        <div *ngIf="orderSummary">
-          <p><strong>Server Subtotal:</strong> ${{ orderSummary.subtotal | number: '1.2-2' }}</p>
-          <p><strong>Server Shipping:</strong> ${{ orderSummary.shippingCost | number: '1.2-2' }}</p>
-          <p><strong>Server Total:</strong> ${{ orderSummary.total | number: '1.2-2' }}</p>
-        </div>
+      <div *ngIf="orderSummary && !isLoadingOrderSummary">
+        <p><strong>Subtotal:</strong> ${{ orderSummary.subtotal }}</p>
+        <p><strong>Shipping:</strong> ${{ orderSummary.shipping }}</p>
+        <p><strong>Total:</strong> ${{ orderSummary.total }}</p>
       </div>
-      <div *ngIf="!isLoadingOrderSummary && errorMessage">
+      <div *ngIf="!orderSummary && !isLoadingOrderSummary && !errorMessage">
+        <p>Order summary not available.</p>
+      </div>
+      <div *ngIf="errorMessage">
         <p class="error-message">Error loading order summary.</p>
       </div>
-      <div *ngIf="cartItems.length === 0 && !isLoadingCart && !errorMessage">Your cart is empty.</div>
     </div>
+
 
     <button class="place-order-button" (click)="placeOrder()">Place Order</button>
     <div *ngIf="orderPlacedMessage" class="success-message">{{ orderPlacedMessage }}</div>

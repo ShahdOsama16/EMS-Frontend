@@ -2,22 +2,27 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs';
+
 @Injectable({
   providedIn: 'root'
 })
 export class SharedCartService {
-  private cartCountSubject = new BehaviorSubject<number>(0);
-  cartCount$ = this.cartCountSubject.asObservable();
-  private baseUrl = 'https://passantmohamed-001-site1.mtempurl.com/api';
+  private _cartCountSubject = new BehaviorSubject<number>(0);
+  cartCount$ = this._cartCountSubject.asObservable();
+  private baseUrl = 'https://passantmohamed-001-site1.mtempurl.com/api'; // Assuming this is still the correct base URL
 
   constructor(private http: HttpClient) {
     this.loadInitialCartCount();
   }
 
-  private loadInitialCartCount(): void {
+  private updateCartCount(items: any[]): void {
+    this._cartCountSubject.next(items.reduce((total, item) => total + item.quantity, 0));
+  }
+
+  public loadInitialCartCount(): void {
     this.getCartItemsDetailed().subscribe({
       next: (items) => {
-        this.cartCountSubject.next(items.reduce((total, item) => total + item.quantity, 0));
+        this.updateCartCount(items);
       },
       error: (error) => {
         console.error('Error loading initial cart count:', error);
@@ -39,23 +44,30 @@ export class SharedCartService {
   // POST /api/app/cart/to-cart/{productId}
   addProductToCart(productId: string): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post(`<span class="math-inline">\{this\.baseUrl\}/api/app/cart/to\-cart/</span>{productId}`, {}, { headers });
+    return this.http.post(`${this.baseUrl}/api/app/cart/to-cart/${productId}`, {}, { headers });
   }
 
   // GET /api/app/cart/cart-items
   getCartItemsDetailed(): Observable<any[]> {
     return this.http.get<any>(`${this.baseUrl}/app/cart/cart-items`).pipe(
-      // Assuming the response is directly the array now
-      map(response => response as any[])
+      map(response => {
+        const items = response as any[];
+        this.updateCartCount(items);
+        return items.map(item => ({
+          ...item,
+          id: item.productId // Assuming 'productId' is the correct identifier
+        }));
+      })
     );
   }
 
   updateCartItemQuantity(itemId: string, quantity: number): Observable<any> {
-    return this.http.put<any>(`<span class="math-inline">\{this\.baseUrl\}/api/cart/items/</span>{itemId}`, { quantity });
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post<any>(`${this.baseUrl}/api/app/cart/update-item`, { itemId, quantity }, { headers })
   }
 
   removeCartItem(itemId: string): Observable<void> {
-    return this.http.delete<void>(`<span class="math-inline">\{this\.baseUrl\}/api/cart/items/</span>{itemId}`);
+    return this.http.delete<void>(`${this.baseUrl}/api/cart/items/${itemId}`);
   }
 
   clearCart(): Observable<void> {
@@ -75,14 +87,4 @@ export class SharedCartService {
   getOrderSummary(): Observable<any> {
     return this.http.get<any>(`${this.baseUrl}/api/app/order/order-summary`);
   }
-
-  // updateCartCount(): void {
-  //   if (this.cartService.cartCount$) {
-  //     (this.cartService.cartCount$ as BehaviorSubject<number>).next(
-  //       this.cartItems.reduce((total, item) => total + item.quantity, 0)
-  //     );
-  //   }
-  // }
-
-
 }
