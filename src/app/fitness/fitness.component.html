@@ -10,62 +10,92 @@
     <div class="stretch-content">
         <div class="row g-2">
             <div class="col-5">
-                <video autoplay loop muted src="../../assets/images/fitness gif.mp4"></video>
+                <video autoplay loop muted src="../../assets/images/bi w tri gif  .mp4"></video>
             </div>
             <div class="col-7">
                 <h3>What is Bi & Tri?</h3>
-                <p>Fitness is more than just looking good; it's a cornerstone of overall health and well-being. It's about empowering your body to perform at its best, boosting energy levels, and enhancing your quality of life.</p>
+                <p>Biceps and triceps exercises are essential for well-rounded arm development, focusing on the front and back of the upper arms, respectively. Biceps exercises, like curls, primarily target the muscles responsible for elbow flexion and forearm supination. Triceps exercises, such as extensions and presses, work the muscles that extend the elbow joint. A balanced routine incorporating various exercises for both muscle groups ensures comprehensive arm strength and definition.</p>
             </div>
         </div>
     </div>
-    <div class="stretching-online">
+   
+    <div class="machine textedit">
+      <h2>Prepare your Goals</h2>
+      <div class="line"></div>
+      <div class="row">
+        <div class="mach-img col-5"></div>
+        <div class="mach-buttons col-7">
+          <div class="turn">
+            <button>Turn On</button>
+            <button>Turn Off</button>
+          </div>
+          <div class="modes">
+            <h4>Modes</h4>
+            <button>Acupunture</button>
+            <button>Stroke</button>
+            <button>Massage</button>
+            <button>Cupping</button>
+            <button>Manipulation</button>
+            <button>Scraping</button>
+            <button>Weight Reducing</button>
+            <button>Immunotherapy</button>
+          </div>
+          <div class="time">
+            <h4>Time</h4>
+            <button>5 minutes</button>
+            <button>10 minutes</button>
+            <button>15 minutes</button>
+          </div>
+          <div class="power">
+            <h4>Power</h4>
+            <button>1 watt</button>
+            <button>2 watt</button>
+            <button>3 watt</button>
+            <button>4 watt</button>
+            <button>5 watt</button>
+            <button>6 watt</button>
+            <button>7 watt</button>
+            <button>8 watt</button>
+            <button>9 watt</button>
+            <button>10 watt</button>
+            <button>11 watt</button>
+            <button>12 watt</button>
+            <button>13 watt</button>
+            <button>14 watt</button>
+            <button>15 watt</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="stretching-online  single-video">
         <h2>NO-EQUIPMENT <i class="fa-solid fa-dumbbell"></i></h2>
-        <h2>Daily Home Bi & Tri Workout</h2>
+        <h2>Daily Home  Bi & Tri Workout</h2>
         <div class="line"></div>
-    </div>
-    <div class="stretching-videos">
-        <div class="videoos">
-                <div class="single-video">
-                <!-- <video controls src="../../assets/videos/fitness/fitness1.mp4"></video> -->
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/PqqJBaE4srs?si=zWrTcDJCkGTQj7Os" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                <p>10 MIN CARDIO WORKOUT AT HOME
-                    <br> (No Jumping/Apartment Friendly, No Equipment)</p>
-                </div>
-                <div class="single-video">
-                <!-- <video controls src="../../assets/videos/fitness/fitness2.mp4"></video> -->
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/PwXUHMKamP8?si=nZhkoxBnrvXAf6jI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                <p>10 MIN CARDIO HIIT WORKOUT - ALL STANDING -
-                    <br> Full Body, No Equipment, No Repeats </p>
-                </div>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 editvideo">
+          <div *ngFor="let workout of biTriWorkouts" class="col">
+            <div class="card h-100">
+              <iframe width="700" height="800"
+              *ngIf="workout.videoUrl"
+              class="card-img-top"
+              [src]="getSafeVideoUrl(workout.videoUrl)"
+              title="{{ workout.name }} video player"
+              frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+                style="height: 200px;" ></iframe>
+              <div class="card-body">
+                <h5 class="card-title">{{ workout.name }}</h5>
+                <p class="card-text">{{ workout.description }}</p>
+                <!-- <p class="card-text"><small class="text-muted">ID: {{ workout.id }}</small></p> -->
+                <!-- <p class="card-text"><small class="text-muted">Category: {{ workout.category }}</small></p>
+                <a [routerLink]="['/fitness', workout.id]" class="btn btn-primary">Let's Trainee</a>
+                <a [routerLink]="['/workout-details', workout.id]" class="btn btn-secondary ms-2"><i class="fas fa-link"></i> Details</a> -->
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="videoos">
-            <div class="single-video">
-            <!-- <video controls src="../../assets/videos/fitness/fitness3.mp4"></video> -->
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/DHOPWvO3ZcI?si=vL9prBkVzUyoCGB8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <p>10 MIN UPPER BODY WORKOUT - 
-                <br>Home Workout, No Equipment  </p>
-            </div>
-            <div class="single-video">
-            <!-- <video controls src="../../assets/videos/fitness/fitness4.mp4"></video> -->
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/J3Qd-Q9WcMY?si=Ekp44nAgw_1ddX7U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <p>10 Minute Full Body Finisher
-                <br>  Workout </p>
-            </div>
-        </div>
-        <div class="videoos pb-5">
-            <div class="single-video">
-            <!-- <video controls src="../../assets/videos/fitness/fitness5.mp4"></video> -->
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/M0uO8X3_tEA?si=hvL-42XY5MTDEYdh" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <p>20 Minute Full Body Cardio
-                <br> HIIT Workout  </p>
-            </div>
-            <div class="single-video">
-            <!-- <video controls src="../../assets/videos/fitness/fitness6.mp4"></video> -->
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/DU8q18kM0KY?si=O4UatNw8uYkR3mti" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <p>10 MIN GLUTES PUMP Home Workout -
-                <br>10 Minutes Booty Workout, No Equipment</p>
-            </div>
-        </div>
-        
-    </div>
+      </div>
 </section>

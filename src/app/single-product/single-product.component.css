@@ -112,6 +112,61 @@
     box-shadow: 20px 20px 20px #ffa7ca, -20px -20px 20px rgba(197, 139, 251, 0.5);
 }
 
-
+/* Styles specifically for smaller devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) {
+    .single-heading {
+      margin-bottom: 20px;
+    }
+  
+    .single-heading h1 {
+      font-size: 2em;
+    }
+  
+    .single-recipe {
+      padding: 10px;
+      flex-direction: column; /* Stack image and content */
+      align-items: center;
+      gap: 15px;
+    }
+  
+    .single-recipe img {
+      max-width: 100%;
+      margin-bottom: 10px;
+    }
+  
+    .single-content {
+      text-align: center;
+    }
+  
+    .single-content h2 {
+      font-size: 1.5em;
+      margin-bottom: 3px;
+    }
+  
+    .single-content h3 {
+      font-size: 1.2em;
+      margin-bottom: 5px;
+    }
+  
+    .single-content h4 {
+      font-size: 0.95em;
+      margin-bottom: 3px;
+    }
+  
+    .single-body {
+      padding: 10px;
+    }
+  
+    .single-body h3 {
+      font-size: 1.3em;
+      margin-bottom: 8px;
+      gap: 8px;
+    }
+  
+    .single-body span {
+      font-size: 0.95em;
+      line-height: 1.5;
+    }
+  }
 
 

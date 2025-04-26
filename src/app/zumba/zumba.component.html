@@ -2,72 +2,102 @@
     <div class="TITLE mt-5">
         <div class="title">
             <h1>Back</h1>
-            <div class="circle1"></div> <div class="circle2"></div>
-            <div class="circle3"></div> <div class="circle4"></div>
-            <div class="circle5"></div> <div class="circle6"></div><div class="circle7"></div>
+            <div class="circle1"></div>
+      <div class="circle2"></div>
+      <div class="circle3"></div>
+      <div class="circle4"></div>
+      <div class="circle5"></div>
+      <div class="circle6"></div>
+      <div class="circle7"></div>
         </div>
     </div>
     <div class="stretch-content">
         <div class="row g-2">
             <div class="col-5">
-                <video autoplay loop muted src="../../assets/images/zumba gif.mp4"></video>
+                <video autoplay loop muted src="../../assets/images/back gif.mp4"></video>
             </div>
             <div class="col-7">
                 <h3>What is Back Exercises?</h3>
-                <p>Zumba is a high-energy dance fitness program that combines Latin rhythms with easy-to-follow moves.
-                    It's more than just a workout; it's a party! Created by Colombian dancer and choreographer Beto Perez, Zumba has taken the world by storm, becoming one of the most popular fitness trends</p>
+                <p>Back exercises are crucial for building a strong, wide, and thick back, contributing significantly to overall upper body strength, posture, and injury prevention. These exercises target a complex group of muscles including the latissimus dorsi, rhomboids, trapezius, and erector spinae. Movements range from pulling exercises like rows and pull-ups that build width and thickness, to exercises that focus on the upper and lower back for stability and posture. A comprehensive back workout incorporates a variety of these movements to ensure balanced development.</p>
             </div>
         </div>
     </div>
-    <div class="stretching-online">
+    <div class="machine textedit">
+      <h2>Prepare your Goals</h2>
+      <div class="line"></div>
+      <div class="row">
+        <div class="mach-img col-5"></div>
+        <div class="mach-buttons col-7">
+          <div class="turn">
+            <button>Turn On</button>
+            <button>Turn Off</button>
+          </div>
+          <div class="modes">
+            <h4>Modes</h4>
+            <button>Acupunture</button>
+            <button>Stroke</button>
+            <button>Massage</button>
+            <button>Cupping</button>
+            <button>Manipulation</button>
+            <button>Scraping</button>
+            <button>Weight Reducing</button>
+            <button>Immunotherapy</button>
+          </div>
+          <div class="time">
+            <h4>Time</h4>
+            <button>5 minutes</button>
+            <button>10 minutes</button>
+            <button>15 minutes</button>
+          </div>
+          <div class="power">
+            <h4>Power</h4>
+            <button>1 watt</button>
+            <button>2 watt</button>
+            <button>3 watt</button>
+            <button>4 watt</button>
+            <button>5 watt</button>
+            <button>6 watt</button>
+            <button>7 watt</button>
+            <button>8 watt</button>
+            <button>9 watt</button>
+            <button>10 watt</button>
+            <button>11 watt</button>
+            <button>12 watt</button>
+            <button>13 watt</button>
+            <button>14 watt</button>
+            <button>15 watt</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="stretching-online single-video">
         <h2>NO-EQUIPMENT <i class="fa-solid fa-dumbbell"></i></h2>
-        <h2>Daily Home Back Workout</h2>
+        <h2>Daily Home back Workout</h2>
         <div class="line"></div>
-    </div>
-    <div class="stretching-videos">
-        <div class="videoos">
-                <div class="single-video">
-                <!-- <video controls src="../../assets/videos/zumba/zumba4.mp4"></video> -->
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/F4BJst5d9Ac?si=TW4hyUil3PC78fvp" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                <p>10 Mins Easy Weight Loss Zumba Dance Workout 
-                    <br>Best Home Workout To Lose Weight</p>
-                </div>
-                <div class="single-video">
-                <!-- <video controls src="../../assets/videos/zumba/zumba1.mp4"></video> -->
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/mZeFvX3ALKY?si=FNEk9Sdka-3oaSlU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                <p>Zumba 10-Minute Beginners Latin 
-                    <br>Dance Mini-Workout</p>
-                </div>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 videoedit">
+          <div *ngFor="let workout of  backWorkouts" class="col">
+            <div class="card h-100">
+              <iframe width="700" height="800"
+              *ngIf="workout.videoUrl"
+              class="card-img-top"
+              [src]="getSafeVideoUrl(workout.videoUrl)"
+              title="{{ workout.name }} video player"
+              frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+                style="height: 200px;" ></iframe>
+              <div class="card-body">
+                <h5 class="card-title">{{ workout.name }}</h5>
+                <p class="card-text">{{ workout.description }}</p>
+                <!-- <p class="card-text"><small class="text-muted">ID: {{ workout.id }}</small></p> -->
+                <!-- <p class="card-text"><small class="text-muted">Category: {{ workout.category }}</small></p>
+                <a [routerLink]="['/zumba', workout.id]" class="btn btn-primary">Let's Trainee</a>
+                <a [routerLink]="['/workout-details', workout.id]" class="btn btn-secondary ms-2"><i class="fas fa-link"></i> Details</a> -->
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="videoos">
-            <div class="single-video">
-            <!-- <video controls src="../../assets/videos/zumba/zumba5.mp4"></video> -->
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/PtmsytNzdvc?si=MnSmFomJ4SDTER91" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <p>Simple Zumba Dance Workout For Beginners At Home -
-                <br> 10 Mins Easy Cardio Exercises For Weight loss </p>
-            </div>
-            <div class="single-video">
-            <!-- <video controls src="../../assets/videos/zumba/zumba6.mp4"></video> -->
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/mKDYAeKphLg?si=sBU3T3yZy9uouJF2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <p>15 Min Zumba Cardio Workout Beginners Latin 
-                <br>Dance ZUMBA CLASS |Exercise To Lose Weight FAST</p>
-            </div>
-        </div>
-        <div class="videoos pb-5">
-            <div class="single-video">
-            <!-- <video controls src="../../assets/videos/zumba/zumba3.mp4"></video> -->
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/ZCEse63kISk?si=YAuqSvod25zF1IZW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <p>15 Minute At-home Non-stop
-                <br>  Bollywood High Intensity Dance Workout</p>
-            </div>
-            <div class="single-video">
-            <!-- <video controls src="../../assets/videos/zumba/zumba2.mp4"></video> -->
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/9_MxwQw10RI?si=sJFCXKjMTLUuz4lI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <p>10-minute workouts – 
-                <br> Zumba Beginner’s Level</p>
-            </div>
-        </div>
-        
-    </div>
+      </div>
 </section>
 

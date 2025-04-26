@@ -8,9 +8,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
  export class ShareDataApiService {
   isLogin = new BehaviorSubject<boolean>(!!localStorage.getItem('accessToken')); // Initialize based on existing token
   private baseUrl = 'https://passantmohamed-001-site1.mtempurl.com/api'; // Keep your base URL
+  private userRoleSubject = new BehaviorSubject<string | null>(localStorage.getItem('user_role')); // Initialize from localStorage
 
   constructor(private _httpClient: HttpClient) { }
-
+ isAdminUser(): boolean {
+    return this.userRoleSubject.value === 'admin';
+  }
   login(loginData: any): Observable<any> {
    const headers = new HttpHeaders({
     'accept': 'text/plain',
@@ -80,28 +83,50 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   }
 
   getCurrentUserDetails(): Observable<any> {
-   return this._httpClient.get(`${this.baseUrl}/app/authentication/current-user-details`);
+    const token = localStorage.getItem('accessToken');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json' // Assuming you're expecting JSON
+    });
+    return this._httpClient.get(
+      `${this.baseUrl}/app/authentication/current-user-details`, // Use the correct endpoint
+      { headers }
+    );
   }
 
   // Cart Endpoints
   addToCart(productData: any): Observable<any> {
-   const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-   return this._httpClient.post(`${this.baseUrl}/add`, productData, { headers });
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this._httpClient.post(`${this.baseUrl}/add`, productData, { headers });
   }
 
-  getCartItems(): Observable<any> {
-   return this._httpClient.get(`${this.baseUrl}/items`);
+  // GET /items
+  getCartItems(): Observable<any[]> {
+    return this._httpClient.get<any[]>(`${this.baseUrl}/items`);
   }
 
+  // POST /api/app/cart/to-cart/{productId}
   addProductToCart(productId: string): Observable<any> {
-   const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-   return this._httpClient.post(`<span class="math-inline">\{this\.baseUrl\}/app/cart/to\-cart/</span>{productId}`, {}, { headers });
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this._httpClient.post(`${this.baseUrl}/api/app/cart/to-cart/${productId}`, {}, { headers });
   }
 
-  getCartItemsDetailed(): Observable<any> {
-   return this._httpClient.get(`${this.baseUrl}/app/cart/cart-items`);
+  // GET /api/app/cart/cart-items
+  getCartItemsDetailed(): Observable<any[]> {
+    return this._httpClient.get<any[]>(`${this.baseUrl}/api/app/cart/cart-items`);
   }
 
+  updateCartItemQuantity(itemId: string, quantity: number): Observable<any> {
+    return this._httpClient.put<any>(`${this.baseUrl}/api/cart/items/${itemId}`, { quantity });
+  }
+
+  removeCartItem(itemId: string): Observable<void> {
+    return this._httpClient.delete<void>(`${this.baseUrl}/api/cart/items/${itemId}`);
+  }
+
+  clearCart(): Observable<void> {
+    return this._httpClient.delete<void>(`${this.baseUrl}/api/cart`);
+  }
   // ContactUs Endpoints
   createContactUs(contactData: any): Observable<any> {
    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
@@ -171,19 +196,18 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
   // Order Endpoints
   createOrder(orderData: any): Observable<any> {
-   const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-   return this._httpClient.post(`${this.baseUrl}/create`, orderData, { headers });
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this._httpClient.post(`${this.baseUrl}/create`, orderData, { headers });
   }
 
   placeOrder(orderData: any): Observable<any> {
-   const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-   return this._httpClient.post(`${this.baseUrl}/app/order/order`, orderData, { headers });
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this._httpClient.post(`${this.baseUrl}/api/app/order/order`, orderData, { headers });
   }
 
   getOrderSummary(): Observable<any> {
-   return this._httpClient.get(`${this.baseUrl}/app/order/order-summary`);
+    return this._httpClient.get<any>(`${this.baseUrl}/app/order/order-summary`);
   }
-
   // Permissions Endpoints
   getPermissions(): Observable<any> {
    return this._httpClient.get(`${this.baseUrl}/permission-management/permissions`);
@@ -402,3 +426,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   }
   
 }
+
+
+

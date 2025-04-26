@@ -9,30 +9,52 @@
   <div *ngIf="isLoggedIn">
     <div class="user-info">
       <h3>Shipping Information</h3>
-      <p><strong>Name:</strong><input type="text" class="form-control" formControlName="name" placeholder="name"></p>
-      <p><strong>Address:</strong><input type="text" class="form-control" formControlName="address" placeholder="address"></p>
-      <p><strong>Email:</strong> <input type="text" class="form-control" formControlName="email"  placeholder="email"></p>
-            <button (click)="logout()">Logout</button>
+      <form [formGroup]="checkoutForm">
+        <p><strong>Name:</strong><input type="text" class="form-control" formControlName="name" placeholder="name"></p>
+        <p><strong>Address:</strong><input type="text" class="form-control" formControlName="address" placeholder="address"></p>
+        <p><strong>Email:</strong> <input type="text" class="form-control" formControlName="email" placeholder="email"></p>
+      </form>
+      <button (click)="logout()">Logout</button>
     </div>
 
     <h3>Your Cart</h3>
     <div class="cart-items">
+      <div *ngIf="isLoadingCart">Loading cart items...</div>
+      <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+      <div *ngIf="cartItems.length === 0 && !isLoadingCart && !errorMessage">Your cart is empty.</div>
       <div *ngFor="let item of cartItems" class="cart-item">
         <div class="item-details">
-          <span>{{ item.name }}</span>
+          <span>{{ item.product?.name }}</span>
           <span>Qty: {{ item.quantity }}</span>
         </div>
-        <span class="item-price">${{ item.price * item.quantity | number: '1.2-2' }}</span>
+        <span class="item-price">${{ item.product?.price * item.quantity | number: '1.2-2' }}</span>
+        <div class="quantity-controls">
+          <button (click)="changeQuantity(item, -1)">-</button>
+          <span>{{ item.quantity }}</span>
+          <button (click)="changeQuantity(item, 1)">+</button>
+        </div>
+        <button (click)="removeItem(item)">Remove</button>
       </div>
     </div>
 
     <div class="order-summary">
       <h3>Order Summary</h3>
-      <p><strong>Subtotal:</strong> ${{ total | number: '1.2-2' }}</p>
-      <p><strong>Shipping:</strong> $5.00</p>
-      <p><strong>Total:</strong> ${{ total + 5 | number: '1.2-2' }}</p>
+      <div *ngIf="isLoadingOrderSummary">Loading order summary...</div>
+      <div *ngIf="orderSummary && !isLoadingOrderSummary">
+        <p><strong>Subtotal:</strong> ${{ orderSummary.subtotal }}</p>
+        <p><strong>Shipping:</strong> ${{ orderSummary.shipping }}</p>
+        <p><strong>Total:</strong> ${{ orderSummary.total }}</p>
+      </div>
+      <div *ngIf="!orderSummary && !isLoadingOrderSummary && !errorMessage">
+        <p>Order summary not available.</p>
+      </div>
+      <div *ngIf="errorMessage">
+        <p class="error-message">Error loading order summary.</p>
+      </div>
     </div>
 
+
     <button class="place-order-button" (click)="placeOrder()">Place Order</button>
+    <div *ngIf="orderPlacedMessage" class="success-message">{{ orderPlacedMessage }}</div>
   </div>
- </div>
+</div>

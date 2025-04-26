@@ -6,45 +6,46 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
+  standalone: true,
   imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
   loginData = new FormGroup({
-    phoneNumber: new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(9), Validators.pattern(/^[A-Z]/)]),
+    phoneNumber: new FormControl(null, [
+      Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(9),
+      Validators.pattern(/^[A-Z]/)
+    ]),
     password: new FormControl(null, [Validators.required])
   });
 
-  constructor(private _ShareDataApiService: ShareDataApiService, private _Router: Router) { }
+  constructor(
+    private _ShareDataApiService: ShareDataApiService,
+    private _Router: Router
+  ) {}
 
   userlogindisplay() {
     if (this.loginData.valid) {
-      console.log('Login form value:', this.loginData.value);
       this._ShareDataApiService.login(this.loginData.value).subscribe({
         next: (response) => {
-          console.log('Login API Response:', response);
-
           if (response && response.accessToken && response.role) {
-            console.log('Login successful! Token and role are present and valid.');
             localStorage.setItem('accessToken', response.accessToken);
             localStorage.setItem('user_role', response.role);
-            this._Router.navigate(['/all']);
             this._ShareDataApiService.isLogin.next(true);
+            this._Router.navigate(['/all']);
           } else {
-            console.warn('Login successful response did not contain expected data (missing accessToken or role).', response);
-            alert('Login was successful, but the application may not function correctly due to missing access token or user role. Check the server response.');
-            this._Router.navigate(['/all']);
-            this._ShareDataApiService.isLogin.next(true);
+            alert(response.message || 'Login failed: Invalid credentials.');
           }
         },
         error: (error) => {
-          console.error('Login failed:', error);
-          let errorMessage = 'An error occurred during login. Please try again later.';
+          let errorMessage = 'An error occurred during login.';
           if (error?.error?.message) {
             errorMessage = 'Login failed: ' + error.error.message;
           } else if (error?.status === 401) {
-            errorMessage = 'Login failed: Invalid username or password.';
+            errorMessage = 'Login failed: Unauthorized.';
           }
           alert(errorMessage);
         }
@@ -56,5 +57,9 @@ export class LoginComponent {
 
   logout() {
     this._ShareDataApiService.clearAuthData();
+    this._ShareDataApiService.isLogin.next(false);
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('user_role');
+    this._Router.navigate(['/login']);
   }
 }
