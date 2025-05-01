@@ -50,7 +50,8 @@
   .navimg {
     font-family: myfont3;
     font-size: 25px; /* Slightly smaller font */
-    color: white; /* Ensure text is visible */
+    /* color: rgb(3, 95, 141); Ensure text is visible */
+    color: rgb(2, 90, 134);
   }
   
   .navbar-nav .nav-link { /* Targets all nav links within navbar-nav */
@@ -58,6 +59,8 @@
     padding: 10px 15px; /* Consistent padding */
     font-family: myfont3;
     transition: color 0.3s ease; /* Smooth transition for text color */
+    color: rgb(12, 108, 156);
+    /* color: rgb(2, 90, 134); */
   }
   
   .navbar-nav .nav-link:hover {
