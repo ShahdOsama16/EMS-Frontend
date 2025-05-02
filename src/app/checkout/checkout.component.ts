@@ -156,34 +156,39 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   }
 
   placeOrder(): void {
-    if (this.isLoggedIn && this.checkoutForm.valid && this.cartItems.length > 0) {
-      const orderData = {
-        shippingInfo: this.checkoutForm.value,
-        items: this.cartItems.map(item => ({ productId: item.id, quantity: item.quantity })),
-        totalAmount: this.orderSummary?.total || this.total + 5,
-        shippingCost: this.orderSummary?.shipping || 5 // Assuming 'shipping' in orderSummary
-      };
-
-      this.apiService.createOrder(orderData).subscribe({
-        next: (response) => {
-          console.log('Order placed successfully:', response);
-          this.orderPlacedMessage = 'Order placed successfully!';
-          this.cartService.clearCart().subscribe(() => {
-            this.cartItems = [];
-            this.total = 0;
-            this.checkoutForm.reset();
-            this.router.navigate(['/order-confirmation']);
-          });
-        },
-        error: (error) => {
-          console.error('Error placing order:', error);
-          this.errorMessage = 'Failed to place order.';
-          alert('There was an error placing your order. Please try again.');
-        }
-      });
-    } else {
+    if (!this.isLoggedIn || !this.checkoutForm.valid || this.cartItems.length === 0) {
       this.errorMessage = 'Please fill in all shipping information and ensure your cart is not empty.';
-      alert('Please fill in all shipping information and ensure your cart is not empty.');
+      alert(this.errorMessage);
+      return;
     }
+  
+    const orderData = {
+      shippingInfo: this.checkoutForm.value,
+      items: this.cartItems.map(item => ({
+        productId: item.id,
+        quantity: item.quantity
+      })),
+      totalAmount: this.orderSummary?.total || this.total + 5,
+      shippingCost: this.orderSummary?.shipping || 5
+    };
+  
+    this.apiService.createOrder(true).subscribe({
+      next: (response) => {
+        console.log('Order placed successfully:', response);
+        this.orderPlacedMessage = 'Order placed successfully!';
+        this.cartService.clearCart().subscribe(() => {
+          this.cartItems = [];
+          this.total = 0;
+          this.checkoutForm.reset();
+          this.router.navigate(['/order-confirmation']);
+        });
+      },
+      error: (error) => {
+        console.error('Error placing order:', error);
+        this.errorMessage = 'Failed to place order.';
+        alert('There was an error placing your order. Please try again.');
+      }
+    });
   }
+  
 }
