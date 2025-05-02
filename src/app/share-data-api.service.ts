@@ -125,7 +125,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   }
 
   clearCart(): Observable<void> {
-    return this._httpClient.delete<void>(`${this.baseUrl}/api/cart`);
+    return this._httpClient.delete<void>(`${this.baseUrl}/app/cart/from-cart/1`);
   }
   // ContactUs Endpoints
   createContactUs(contactData: any): Observable<any> {
@@ -195,10 +195,22 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   }
 
   // Order Endpoints
-  createOrder(orderData: any): Observable<any> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this._httpClient.post(`${this.baseUrl}/create`, orderData, { headers });
+  createOrder(isCod: boolean): Observable<any> {
+    const token = localStorage.getItem('accessToken'); 
+  
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,       
+      'Content-Type': 'application/json'
+    });
+  
+    return this._httpClient.post(
+      `${this.baseUrl}/app/order/order?isCod=${isCod}`,
+      {}, // ✅ Empty body
+      { headers } // ✅ Third argument: options
+    );
   }
+  
+  
 
   placeOrder(orderData: any): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
@@ -206,7 +218,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   }
 
   getOrderSummary(): Observable<any> {
-    return this._httpClient.get<any>(`${this.baseUrl}/app/order/order-summary`);
+    const token = localStorage.getItem('accessToken'); 
+  
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,       
+      'Content-Type': 'application/json'
+    });
+    return this._httpClient.get<any>(`${this.baseUrl}/app/order/order-summary`, { headers });
   }
   // Permissions Endpoints
   getPermissions(): Observable<any> {

@@ -78,19 +78,19 @@ import { CommonModule } from '@angular/common';
       }
     });
   }
-
   addToCart(): void {
     if (this.singleProduct && this.quantityToAdd > 0) {
       const cartItem = {
-        id: this.singleProduct.id,
-        name: this.singleProduct.title,
-        image: this.imageBaseUrl + this.singleProduct.imageUrl,
-        price: this.singleProduct.price,
-        quantity: this.quantityToAdd,
+        productId: this.singleProduct.id,
+        quantity: this.quantityToAdd
       };
-      this.cartService.addToCart(cartItem);
+      this.cartService.addToCart(cartItem).subscribe({
+        next: (res) => console.log('Item added:', res),
+        error: (err) => console.error('Error adding to cart:', err)
+      });
     }
   }
+  
 
   toggleCreateForm(): void {
     this.showCreateForm = !this.showCreateForm;
