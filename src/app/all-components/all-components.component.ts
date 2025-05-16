@@ -22,9 +22,7 @@ import { FitnessInfoComponent } from '../fitness-info/fitness-info.component';
     RecipesComponent,
     ContactComponent, 
     ReactiveFormsModule,
-    CheckoutComponent, 
-    ContactComponent,
-    FitnessInfoComponent,
+    ContactComponent
 
   ],
   templateUrl: './all-components.component.html',
