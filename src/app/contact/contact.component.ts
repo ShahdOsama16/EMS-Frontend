@@ -1,5 +1,4 @@
 
-
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { ShareDataApiService } from '../share-data-api.service'; 
@@ -29,13 +28,12 @@ export class ContactComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Optional: Any initialization logic here
   }
 
   submitContactForm(formData: any): void {
     console.log('Form Data:', formData); 
     this.shareDataApiService.createContactUs(formData).subscribe({
-      // ...
+      
     });
   }
 
@@ -49,12 +47,8 @@ export class ContactComponent implements OnInit {
         next: (response) => {
           console.log('Contact message sent successfully:', response);
           this.submissionSuccess = true;
-          this.contactForm.reset(); // Clear the form on success
+          this.contactForm.reset(); 
         },
-        // error: (error) => {
-        //   console.error('Error sending contact message:', error);
-        //   this.submissionError = 'There was an error sending your message. Please try again later.';
-        // }
       });
     } else {
       Object.values(this.contactForm.controls).forEach(control => {

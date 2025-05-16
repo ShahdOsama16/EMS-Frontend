@@ -322,6 +322,108 @@
     color: rgba(0,0,0,0.5);
     font-weight: 600;
 }
+@media (max-width: 575.98px) {
+    .workouts-heading h1 {
+      font-size: 2em;
+    }
+  
+    .col-4 {
+      width: 100%;
+    }
+  
+    .explore-info h5 {
+      font-size: 1.1em;
+    }
+  
+    .explore-info a {
+      font-size: 0.85em;
+    }
+  
+    .explore-overlayer i {
+      font-size: 1.5em;
+    }
+  }
+  
+  @media (min-width: 576px) and (max-width: 767.98px) {
+    .workouts-heading h1 {
+      font-size: 2.2em;
+    }
+  
+    .col-4 {
+      width: 50%; 
+    }
+  
+    .explore-info h5 {
+      font-size: 1.15em;
+    }
+  
+    .explore-info a {
+      font-size: 0.9em;
+    }
+  
+    .explore-overlayer i {
+      font-size: 1.7em;
+    }
+  }
+  @media (min-width: 768px) and (max-width: 991.98px) {
+    .workouts-heading h1 {
+      font-size: 2.4em;
+    }
+  
+    .col-4 {
+      width: 33.33333333%; 
+    }
+  
+    .explore-info h5 {
+      font-size: 1.2em;
+    }
+  
+    .explore-info a {
+      font-size: 0.95em;
+    }
+  
+    .explore-overlayer i {
+      font-size: 1.8em;
+    }
+  }
+  
+  
+  @media (min-width: 992px) and (max-width: 1199.98px) {
+    .workouts-heading h1 {
+      font-size: 2.6em;
+    }
+  
+    .explore-info h5 {
+      font-size: 1.25em;
+    }
+  
+    .explore-info a {
+      font-size: 1em;
+    }
+  
+    .explore-overlayer i {
+      font-size: 2em;
+    }
+  }
+  
+  @media (min-width: 1200px) {
+    .workouts-heading h1 {
+      font-size: 2.8em;
+    }
+  
+    .explore-info h5 {
+      font-size: 1.3em;
+    }
+  
+    .explore-info a {
+      font-size: 1.05em;
+    }
+  
+    .explore-overlayer i {
+      font-size: 2.2em;
+    }
+  }
+  
 
 /* Media Queries for Responsiveness */
 

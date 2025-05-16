@@ -82,8 +82,12 @@ import { CommonModule } from '@angular/common';
     if (this.singleProduct && this.quantityToAdd > 0) {
       const cartItem = {
         productId: this.singleProduct.id,
-        quantity: this.quantityToAdd
+        name: this.singleProduct.title,
+        image: this.imageBaseUrl + this.singleProduct.imageUrl,
+        price: this.singleProduct.price,
+        quantity: this.quantityToAdd,
       };
+      this.cartService.addToCart(cartItem);
       this.cartService.addToCart(cartItem).subscribe({
         next: (res) => console.log('Item added:', res),
         error: (err) => console.error('Error adding to cart:', err)
@@ -116,7 +120,7 @@ import { CommonModule } from '@angular/common';
         }
       });
     } else {
-      this.createErrorMessage = 'Please fill in all required fields correctly.';
+      this.createErrorMessage = '';
       this.createSuccessMessage = '';
     }
   }

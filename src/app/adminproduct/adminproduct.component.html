@@ -1,11 +1,13 @@
 <div class="admin-product-page">
-  <h2>Admin Products</h2>
-
+  
+<br>
+<br>
+<br>
   <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
 
   <div class="product-list" *ngIf="products?.items?.length > 0; else noProducts">
     <div class="product-card" *ngFor="let product of products.items">
-      <img [src]="product.imageUrl" alt="{{ product.title }}" class="product-image">
+      <img [src]="imageBaseUrl+product.imageUrl" alt="{{ product.title }}" class="product-image">
       <div class="product-details">
         <h3>{{ product.title }}</h3>
         <p class="price">product title: ${{ product.title}}</p>

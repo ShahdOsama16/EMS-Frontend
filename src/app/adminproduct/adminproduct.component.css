@@ -1,4 +1,4 @@
-/* adminproduct.component.css */
+
 
 .admin-product-page {
   font-family: sans-serif;
@@ -12,7 +12,10 @@ h2 {
   border-bottom: 2px solid #ddd;
   padding-bottom: 10px;
 }
-
+.product-image {
+  width: 100px !important;
+  height: auto !important;
+}
 .alert-danger {
   background-color: #f8d7da;
   color: #721c24;
@@ -81,7 +84,7 @@ h2 {
 .actions {
   display: flex;
   gap: 10px;
-  margin-top: auto; /* Push actions to the bottom */
+  margin-top: auto; 
 }
 
 .update-button,
@@ -95,12 +98,12 @@ h2 {
 }
 
 .update-button {
-  background-color: #28a745; /* Green */
+  background-color: #28a745; 
   color: #fff;
 }
 
 .delete-button {
-  background-color: #dc3545; /* Red */
+  background-color: #dc3545; 
   color: #fff;
 }
 
@@ -126,7 +129,7 @@ h2 {
 }
 
 .product-image[src*="C:\\\\Users\\\\ASUS\\\\Pictures\\\\"] {
-  /* Fallback style if the path is a local computer path */
+  
   background-color: #f0f0f0;
   display: flex;
   justify-content: center;

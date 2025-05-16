@@ -84,6 +84,8 @@
 	z-index: 1;
 	position: relative;	
 	height: 100%;
+	
+	
 }
 
 .screen__background {		
@@ -392,161 +394,280 @@
 	color: #458ece;
   }
 
-
-
-/* ... (your existing styles) ... */
-
 /* Responsive Styles */
-
-/* For very small screens (phones) */
 @media (max-width: 576px) {
+
+	.footer {
+		flex-direction: column;
+		align-items: center;
+		padding: 20px;
+	}
+
+	.footer .col-4 {
+		width: 90%;
+		text-align: center;
+		margin-bottom: 20px;
+	}
+
+	.get-touch {
+		text-align: center;
+	}
+}
+
+@media (min-width: 577px) and (max-width: 768px) {
 	.login-page {
 	  padding-top: 30px !important;
+	  align-items: center; 
 	}
   
-	.screen {
-	  height: auto;
-	  width: 95%;
-	  margin: 10px auto;
+	.login-edit {
+	  padding: 15px;
 	}
   
+	 .screen {
+	  width: 60%;
+	  margin: 20px auto;
+	} 
+  
+	 .screen__content {
+	  padding: 0px;
+	}
+   
 	.login {
-	  width: 100% !important;
-	  padding: 15px !important;
-	  padding-top: 80px !important;
+	  padding-top: 30px;
 	}
   
 	.login__field {
-	  padding: 10px 0px;
+	  padding: 12px 0;
 	}
   
 	.login__input {
-	  width: 100%;
-	  font-size: 14px;
+	  font-size: 15px;
 	}
   
 	.login__submit {
-	  margin-top: 15px;
-	  padding: 12px 16px;
-	  font-size: 12px;
+	  margin-top: 20px;
+	  font-size: 15px;
+	}
+  
+	.account {
+	  font-size: 13px;
+	  padding-top: 12px;
+	}
+  
+	.signup {
+	  font-size: 15px;
 	}
   
 	.social-login {
-	  position: static;
-	  height: auto;
-	  width: 100%;
-	  margin-top: 15px;
-	  text-align: center;
+	  margin-top: 20px;
+	  padding-bottom: 20px;
+	}
+  
+	.social-login__icon {
+	  padding: 12px;
+	  font-size: 18px;
+	}
+  
+	
+	.footer {
+		flex-direction: column;
+		align-items: center;
+		padding: 30px;
+	}
+
+	.footer .col-4 {
+		width: 80%;
+		text-align: center;
+		margin-bottom: 25px;
+	}
+
+	.get-touch {
+		text-align: center;
+	}
+	.end {
+	  font-size: 13px;
+	  padding-top: 20px !important;
+	  padding-bottom: 20px !important;
+	}
+  }
+
+  @media (min-width: 769px) and (max-width: 992px) {
+	.login-page {
+	  padding-top: 50px !important; 
+	  align-items: center; 
+	}
+  
+	.login-edit {
+	  padding: 20px;
+	}
+  
+	.screen {
+	  width: 60%; 
+	  max-width: 500px; 
+	  margin: 30px auto;
+	}
+   
+	.screen__content {
+	  padding: 0px;
+	} 
+  
+	.login {
+	  padding-top: 40px;
+	}
+  
+	.login__field {
+	  padding: 15px 0;
+	}
+  
+	.login__input {
+	  font-size: 16px;
+	}
+  
+	.login__submit {
+	  margin-top: 25px;
+	  font-size: 16px;
+	}
+  
+	.account {
+	  font-size: 14px;
+	  padding-top: 15px;
+	  text-align: center; 
+	}
+  
+	.signup {
+	  font-size: 16px;
+	}
+  
+	.social-login {
+	  position: absolute; 
+	  bottom: 20px;
+	  right: 20px;
+	  text-align: right; 
+	  width: auto;
+	  margin-top: 20px;
 	}
   
 	.social-icons {
-	  justify-content: center;
+	  justify-content: flex-end; 
 	}
   
 	.social-login__icon {
 	  padding: 10px;
-	  font-size: 18px;
+	  font-size: 20px;
 	}
   
+	
 	.footer {
-	  padding: 10px;
+		flex-direction: row;
+		justify-content: space-around;
+		padding: 30px;
+	}
+
+	.footer .col-4 {
+		flex-basis: 45%;
+		text-align: center;
 	}
   
 	.get-touch {
-	  padding-left: 10px !important;
-	  text-align: center;
+	  padding-left: 50px !important;
+	  text-align: left;
 	}
   
 	.get-touch a {
 	  display: block;
-	  margin-bottom: 5px;
-	  font-size: 12px;
+	  margin-bottom: 8px;
+	  font-size: 14px;
 	}
   
 	.end {
-	  font-size: 12px;
+	  font-size: 14px;
+	  padding-top: 25px !important;
+	  padding-bottom: 25px !important;
 	}
   }
   
-  /* For small screens (tablets) */
-  @media (min-width: 577px) and (max-width: 768px) {
-	.login-page {
-	  padding-top: 50px !important;
-	}
-  
-	.screen {
-	  height: auto;
-	  width: 90%;
-	  margin: 20px auto;
-	}
-  
-	.login {
-	  width: 100% !important;
-	  padding: 20px !important;
-	  padding-top: 100px !important;
-	}
-  
-	.login__field {
-	  padding: 15px 0px;
-	}
-  
-	.login__input {
-	  width: 100%;
-	}
-  
-	.login__submit {
-	  margin-top: 20px;
-	}
-  
-	.social-login {
-	  position: static;
-	  height: auto;
-	  width: 100%;
-	  margin-top: 20px;
-	  text-align: center;
-	}
-  
-	.social-icons {
-	  justify-content: center;
-	}
-  
-	.footer {
-	  padding: 20px;
-	}
-  
-	.get-touch {
-	  padding-left: 20px !important;
-	  text-align: center;
-	}
-  
-	.get-touch a {
-	  display: block;
-	  margin-bottom: 5px;
-	}
-  }
-  
-  /* For medium screens (desktops) */
   @media (min-width: 769px) and (max-width: 992px) {
+	.footer { flex-direction: row; justify-content: space-around; padding: 30px; }
+	.footer .col-4 { flex-basis: 45%; text-align: center; } /* Adjust basis and alignment */
+	.get-touch { text-align: left; padding-left: 50px !important; } /* Adjust padding */
+  }
+  @media (min-width: 993px) and (max-width: 1200px) {
 	.login-page {
 	  padding-top: 70px !important;
-	}
-  
-	.screen {
-	  height: 500px;
-	  width: 80%;
-	}
-  
-	.login {
-	  padding-top: 120px !important;
-	}
+	  align-items: center;
   }
-  
-  /* For large screens (large desktops) */
-  @media (min-width: 993px) and (max-width: 1200px) {
-	/* Adjustments for large screens if needed */
+
+  .login-edit {
+    padding: 30px;
   }
-  
-  /* For extra large screens (very large desktops) */
-  @media (min-width: 1201px) {
-	/* Adjustments for extra large screens if needed */
+
+  .screen {
+    width: 60%;
+    max-width: 450px;
+    margin: 40px auto;
+  } 
+
+   .screen__content {
+    padding: 0px;
   }
+
+  .login {
+    padding-top: 50px;
+  }
+
+  .login__field {
+    padding: 18px 0;
+  }
+
+  .login__input {
+    font-size: 17px;
+  }
+
+  .login__submit {
+    margin-top: 30px;
+    font-size: 17px;
+  }
+
+  .account {
+    font-size: 15px;
+    padding-top: 18px;
+    text-align: center;
+  }
+
+  .signup {
+    font-size: 17px;
+  }
+
+  .social-login {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    text-align: right;
+    width: auto;
+    margin-top: 25px;
+  }
+
+  .social-icons {
+    justify-content: flex-end;
+  }
+
+  .social-login__icon {
+    padding: 12px;
+    font-size: 22px;
+  }
+
+ 
+  .get-touch a {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 15px;
+  }
+
+  .end {
+    font-size: 15px;
+    padding-top: 30px !important;
+    padding-bottom: 30px !important;
+  }
+}
+

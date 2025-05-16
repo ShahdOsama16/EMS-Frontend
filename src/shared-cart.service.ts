@@ -9,7 +9,7 @@ import { map } from 'rxjs';
 export class SharedCartService {
   private _cartCountSubject = new BehaviorSubject<number>(0);
   cartCount$ = this._cartCountSubject.asObservable();
-  private baseUrl = 'https://passantmohamed-001-site1.mtempurl.com/api'; // Assuming this is still the correct base URL
+  private baseUrl = 'https://passantmohamed-001-site1.mtempurl.com/api'; 
 
   constructor(private http: HttpClient) {
     this.loadInitialCartCount();
@@ -30,9 +30,8 @@ export class SharedCartService {
     });
   }
 
-  // POST /add
   addToCart(productData: any): Observable<any> {
-    const token = localStorage.getItem('accessToken'); // or whatever your key is
+    const token = localStorage.getItem('accessToken'); 
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
@@ -40,19 +39,14 @@ export class SharedCartService {
   
     return this.http.post(`https://passantmohamed-001-site1.mtempurl.com/add`, productData, { headers });
   }
-  
-  // GET /items
   getCartItems(): Observable<any[]> {
     return this.http.get<any[]>(`${this.baseUrl}/items`);
   }
-
-  // POST /api/app/cart/to-cart/{productId}
   addProductToCart(productId: string): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post(`${this.baseUrl}/api/app/cart/to-cart/${productId}`, {}, { headers });
   }
 
-  // GET /api/app/cart/cart-items
   getCartItemsDetailed(): Observable<any[]> {
     const token = localStorage.getItem('accessToken');
   
@@ -65,7 +59,7 @@ export class SharedCartService {
         this.updateCartCount(items);
         return items.map(item => ({
           ...item,
-          id: item.productId // Ensure Angular components relying on 'id' still work
+          id: item.productId 
         }));
       })
     );
@@ -73,21 +67,17 @@ export class SharedCartService {
   
   updateCartItemQuantity(productId: number, quantity: number): Observable<any> {
     const token = localStorage.getItem('accessToken');
-  
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json'
     });
-  
+
     return this.http.put<any>(
       `${this.baseUrl}/app/cart/cart-item/${productId}?quantity=${quantity}`,
-      {}, // empty body
+      {}, 
       { headers }
-    ) .pipe(
-      switchMap(() => this.getCartItemsDetailed()) // call after update
     );
   }
-  
 
   removeCartItem(itemId: string): Observable<void> {
   
@@ -102,45 +92,32 @@ export class SharedCartService {
       { headers }
     );
   }
+  clearCart(): Observable<void> {
+    const token = localStorage.getItem('accessToken');
   
-
-
-
-
-
-
-
-
-
-clearCart(): Observable<void> {
-  const token = localStorage.getItem('accessToken');
-
-  const headers = new HttpHeaders({
-    'Authorization': `Bearer ${token}`
-  });
-
-  return this.http.delete<void>(
-    `${this.baseUrl}/app/cart/from-cart/1`,
-    { headers }
-  );
-}
-
-
- createOrder(): Observable<any> {
-  const token = localStorage.getItem('accessToken');
-  const headers = new HttpHeaders({
-    'Authorization': `Bearer ${token}`,
-    'Accept': 'text/plain',
-    'X-Requested-With': 'XMLHttpRequest'
-  });
-
-  return this.http.post(
-    'https://passantmohamed-001-site1.mtempurl.com/api/app/order/order?isCod=true',
-    {}, // empty body
-    { headers }
-  );
-}
-
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+  
+    return this.http.delete<void>(
+      `${this.baseUrl}/app/cart/from-cart/1`,
+      { headers }
+    );
+  }
+   createOrder(): Observable<any> {
+    const token = localStorage.getItem('accessToken');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Accept': 'text/plain',
+      'X-Requested-With': 'XMLHttpRequest'
+    });
+  
+    return this.http.post(
+      'https://passantmohamed-001-site1.mtempurl.com/api/app/order/order?isCod=true',
+      {}, 
+      { headers }
+    );
+  }
 
   placeOrder(orderData: any): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
