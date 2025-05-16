@@ -155,7 +155,6 @@
 .web-icon img{
     width:60px;
     height: 60px;
-    /* border-radius: 50%; */
     margin-bottom: 14px;
 }
 .footer-img img{
@@ -190,142 +189,178 @@ hr{
 .end span{
     color: #458ece;
 }
-
-
-
-
-
-/* ... (your existing styles) ... */
-
-/* Responsive Styles */
-
-/* For very small screens (phones) */
 @media (max-width: 576px) {
-    .footer {
-      padding: 20px !important; /* Reduced padding */
-    }
-  
-    .get-touch {
-      padding-left: 20px !important;
-      text-align: center; /* Center content */
-    }
-  
-    .get-touch a {
-      display: block; /* Stack links vertically */
-      margin-bottom: 5px;
-      font-size: 14px;
-    }
-  
-    .get-center {
-      margin-top: 10px !important; /* Reduced margin */
-    }
-  
-    .get-icons {
-      margin-top: 10px !important; /* Reduced margin */
-    }
-  
-    .get-icons a {
-      width: 28px !important;
-      height: 28px !important;
-      font-size: 14px !important;
-      margin-bottom: 10px !important;
-    }
-  
-    .web-icon img {
-      width: 40px;
-      height: 40px;
-      margin-bottom: 10px !important;
-    }
-  
-    .get-name h3 {
-      font-size: 18px;
-    }
-  
-    .footer-img img {
-      width: 150px;
-      height: 150px;
-    }
-  
-    .end {
-      font-size: 12px;
-    }
+  .contact-info {
+    padding: 15px;
+    margin: 10px;
   }
-  
-  /* For small screens (tablets) */
-  @media (min-width: 577px) and (max-width: 768px) {
-    .footer {
-      padding: 30px 50px !important; /* Reduced padding */
-    }
-  
-    .get-touch {
-      padding-left: 50px !important;
-      text-align: center; /* Center content */
-    }
-  
-    .get-touch a {
-      display: block; /* Stack links vertically */
-      margin-bottom: 5px;
-      font-size: 16px;
-    }
-  
-    .get-center {
-      margin-top: 20px !important; /* Reduced margin */
-    }
-  
-    .get-icons {
-      margin-top: 20px !important; /* Reduced margin */
-    }
-  
-    .get-icons a {
-      width: 32px !important;
-      height: 32px !important;
-      font-size: 16px !important;
-      margin-bottom: 14px !important;
-    }
-  
-    .web-icon img {
-      width: 50px;
-      height: 50px;
-      margin-bottom: 14px !important;
-    }
-  
-    .get-name h3 {
-      font-size: 20px;
-    }
-  
-    .footer-img img {
-      width: 180px;
-      height: 180px;
-    }
-  
-    .end {
-      font-size: 14px;
-    }
+
+  .contact-info h3 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
   }
-  
-  /* For medium screens (desktops) */
-  @media (min-width: 769px) and (max-width: 992px) {
-    .footer {
-      padding: 30px 70px !important; /* Reduced padding */
-    }
-  
-    .get-touch {
-      padding-left: 70px !important;
-    }
+
+  .contact-info > div {
+    flex-direction: row; 
+    align-items: center; 
+    margin-bottom: 8px;
   }
-  
-  /* For large screens (large desktops) */
-  @media (min-width: 993px) and (max-width: 1200px) {
-    .footer {
-      padding: 35px 80px !important; /* Reduced padding */
-    }
-  
-    .get-touch {
-      padding-left: 80px !important;
-    }
+
+  .contact-info i {
+    font-size: 1rem;
+    margin-right: 8px;
+    width: 18px;
   }
-  
-  /* For extra large screens (very large desktops) */
-  @media (min-width: 1201px) {
-    /* Revert to original styles */
+
+  .contact-info p,
+  .contact-info a {
+    font-size: 0.9rem;
   }
+
+  .footer {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.footer .col-4 {
+    width: 90%;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.get-touch {
+    text-align: center;
+}
+  
+  
+
+}
+@media (min-width: 577px) and (max-width: 768px) {
+  .contact-info {
+    padding: 20px;
+    margin: 15px;
+  }
+
+  .contact-info h3 {
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+  }
+
+  .contact-info > div {
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .contact-info i {
+    font-size: 1.1rem;
+    margin-right: 10px;
+    width: 20px;
+  }
+
+  .contact-info p,
+  .contact-info a {
+    font-size: 0.95rem;
+  }
+  .footer {
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+}
+
+.footer .col-4 {
+    width: 80%;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.get-touch {
+    text-align: center;
+}
+}
+@media (min-width: 769px) and (max-width: 992px) {
+  .contact-info {
+    padding: 25px;
+    margin: 20px auto;
+    max-width: 700px;
+  }
+
+  .contact-info h3 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    text-align: left; 
+  }
+
+  .contact-info > div {
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  .contact-info i {
+    font-size: 1.2rem;
+    margin-right: 12px;
+    width: 22px;
+  }
+
+  .contact-info p,
+  .contact-info a {
+    font-size: 1rem;
+  }
+}
+@media (max-width: 600px) {
+  .contact-info {
+    padding: 15px;
+  }
+
+  .contact-info > div {
+    flex-direction: row;
+    align-items: flex-start; 
+  }
+
+  .contact-info i {
+    margin-bottom: 5px; 
+  }
+  .footer {
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 30px;
+}
+
+.footer .col-4 {
+    flex-basis: 45%;
+    text-align: center;
+}
+}
+
+@media (min-width: 993px) {
+  .contact-info {
+    padding: 30px;
+    margin: 30px auto;
+    max-width: 800px; 
+  }
+
+  .contact-info h3 {
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+    text-align: left;
+  }
+
+  .contact-info > div {
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+
+  .contact-info i {
+    font-size: 1.3rem;
+    margin-right: 15px;
+    width: 24px;
+  }
+
+  .contact-info p,
+  .contact-info a {
+    font-size: 1.1rem;
+  }
+}

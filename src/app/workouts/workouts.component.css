@@ -322,17 +322,13 @@
     color: rgba(0,0,0,0.5);
     font-weight: 600;
 }
-
-/* Media Queries for Responsiveness */
-
-/* Extra small devices (phones, less than 576px) */
 @media (max-width: 575.98px) {
     .workouts-heading h1 {
       font-size: 2em;
     }
   
     .col-4 {
-      width: 100%; /* Stack workout boxes */
+      width: 100%;
     }
   
     .explore-info h5 {
@@ -348,14 +344,13 @@
     }
   }
   
-  /* Small devices (landscape phones, 576px and up) */
   @media (min-width: 576px) and (max-width: 767.98px) {
     .workouts-heading h1 {
       font-size: 2.2em;
     }
   
     .col-4 {
-      width: 50%; /* Two workout boxes per row */
+      width: 50%; 
     }
   
     .explore-info h5 {
@@ -370,15 +365,13 @@
       font-size: 1.7em;
     }
   }
-  
-  /* Medium devices (tablets, 768px and up) */
   @media (min-width: 768px) and (max-width: 991.98px) {
     .workouts-heading h1 {
       font-size: 2.4em;
     }
   
     .col-4 {
-      width: 33.33333333%; /* Back to three per row */
+      width: 33.33333333%; 
     }
   
     .explore-info h5 {
@@ -394,7 +387,7 @@
     }
   }
   
-  /* Large devices (desktops, 992px and up) */
+  
   @media (min-width: 992px) and (max-width: 1199.98px) {
     .workouts-heading h1 {
       font-size: 2.6em;
@@ -413,7 +406,6 @@
     }
   }
   
-  /* Extra large devices (large desktops, 1200px and up) */
   @media (min-width: 1200px) {
     .workouts-heading h1 {
       font-size: 2.8em;

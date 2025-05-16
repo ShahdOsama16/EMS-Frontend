@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { ShareDataApiService } from '../share-data-api.service'; // Adjust path
+import { ShareDataApiService } from '../share-data-api.service'; 
 import { Subscription } from 'rxjs';
-import { CommonModule } from '@angular/common'; // Import CommonModule
+import { CommonModule } from '@angular/common'; 
 
 @Component({
   selector: 'app-message',
@@ -29,8 +29,8 @@ export class MessageComponent implements OnInit, OnDestroy {
 
   loadContactMessages(): void {
     this.messageSubscription = this.messageService.getContactMessages().subscribe({
-      next: (data) => { // Rename 'messages' to 'data' to reflect the structure
-        this.contactMessages = data.items; // Access the 'items' array
+      next: (data) => { 
+        this.contactMessages = data.items; 
         console.log('Contact Messages:', this.contactMessages);
       },
       error: (error) => {

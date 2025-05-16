@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, switchMap } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs';
 
@@ -9,7 +9,7 @@ import { map } from 'rxjs';
 export class SharedCartService {
   private _cartCountSubject = new BehaviorSubject<number>(0);
   cartCount$ = this._cartCountSubject.asObservable();
-  private baseUrl = 'https://passantmohamed-001-site1.mtempurl.com/api'; // Assuming this is still the correct base URL
+  private baseUrl = 'https://passantmohamed-001-site1.mtempurl.com/api'; 
 
   constructor(private http: HttpClient) {
     this.loadInitialCartCount();
@@ -30,53 +30,93 @@ export class SharedCartService {
     });
   }
 
-  // POST /add
   addToCart(productData: any): Observable<any> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post(`${this.baseUrl}/add`, productData, { headers });
+    const token = localStorage.getItem('accessToken'); 
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+  
+    return this.http.post(`https://passantmohamed-001-site1.mtempurl.com/add`, productData, { headers });
   }
-
-  // GET /items
   getCartItems(): Observable<any[]> {
     return this.http.get<any[]>(`${this.baseUrl}/items`);
   }
-
-  // POST /api/app/cart/to-cart/{productId}
   addProductToCart(productId: string): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post(`${this.baseUrl}/api/app/cart/to-cart/${productId}`, {}, { headers });
   }
 
-  // GET /api/app/cart/cart-items
   getCartItemsDetailed(): Observable<any[]> {
-    return this.http.get<any>(`${this.baseUrl}/app/cart/cart-items`).pipe(
-      map(response => {
-        const items = response as any[];
+    const token = localStorage.getItem('accessToken');
+  
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+  
+    return this.http.get<any[]>(`${this.baseUrl}/app/cart/cart-items`, { headers }).pipe(
+      map(items => {
         this.updateCartCount(items);
         return items.map(item => ({
           ...item,
-          id: item.productId // Assuming 'productId' is the correct identifier
+          id: item.productId 
         }));
       })
     );
   }
+  
+  updateCartItemQuantity(productId: number, quantity: number): Observable<any> {
+    const token = localStorage.getItem('accessToken');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    });
 
-  updateCartItemQuantity(itemId: string, quantity: number): Observable<any> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post<any>(`${this.baseUrl}/api/app/cart/update-item`, { itemId, quantity }, { headers })
+    return this.http.put<any>(
+      `${this.baseUrl}/app/cart/cart-item/${productId}?quantity=${quantity}`,
+      {}, 
+      { headers }
+    );
   }
 
   removeCartItem(itemId: string): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/api/cart/items/${itemId}`);
+  
+    const token = localStorage.getItem('accessToken');
+  
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+  
+    return this.http.delete<void>(
+      `${this.baseUrl}/app/cart/from-cart/1`,
+      { headers }
+    );
   }
-
   clearCart(): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/api/cart`);
+    const token = localStorage.getItem('accessToken');
+  
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+  
+    return this.http.delete<void>(
+      `${this.baseUrl}/app/cart/from-cart/1`,
+      { headers }
+    );
   }
-
-  createOrder(orderData: any): Observable<any> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post(`${this.baseUrl}/create`, orderData, { headers });
+   createOrder(): Observable<any> {
+    const token = localStorage.getItem('accessToken');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Accept': 'text/plain',
+      'X-Requested-With': 'XMLHttpRequest'
+    });
+  
+    return this.http.post(
+      'https://passantmohamed-001-site1.mtempurl.com/api/app/order/order?isCod=true',
+      {}, 
+      { headers }
+    );
   }
 
   placeOrder(orderData: any): Observable<any> {

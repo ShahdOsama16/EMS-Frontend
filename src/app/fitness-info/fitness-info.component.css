@@ -51,11 +51,13 @@
 .profile{
     background-image: url(../../../public/assets/images/textured-bg-brown-min.webp);
     background-size: cover;
-    height: 100vh;
+    height: fit-content; 
 }
 .profile-nav{
     background-color: #1e6fb6;
     padding-top: 105px;
+    height: 200vh !important; 
+    padding-bottom: 100px;
 }
 .name{
     text-align: center !important;
@@ -109,7 +111,6 @@
 }
 .profile-info p{
     color: rgba(0,0,0,0.6);
-    padding-bottom: 25px;
     font-weight: 400;
     font-size: 20px;
 }
@@ -124,4 +125,102 @@
 .head{
     background-color: #337ab7 !important;
     color:beige !important;
+}
+
+
+.fill-form label{
+    font-family: myfont5;
+    font-size: 18px;
+    font-weight: 900;
+    margin-bottom: 8px;
+}
+.fill-form input{
+    font-family: jost2;
+    font-weight:700;
+    padding: 6px 0px 6px 15px;
+    border-radius: 30px;
+    box-shadow: 0 0 10px #720e47; 
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    width: 50%;
+}
+.fill-form button{
+  font-family: jost;
+  margin-bottom: 20px !important;
+  font-size: 20px !important;
+  font-weight: 900 !important;
+  background: linear-gradient(90deg, #f45ad0, #00b6ee) !important;
+  transition: all 5s ease-in-out !important;
+  margin: 13px 10px 50px 0px !important;
+  border-radius: 50px;
+  padding: 10px !important;
+}
+.fill-form button:hover{
+    background: linear-gradient(90deg, #00b6ee, #f45ad0) !important;
+}
+.profile-info input{
+    font-family: jost2;
+    font-weight:700;
+    padding: 6px 0px 6px 15px;
+    border-radius: 30px;
+    box-shadow: 0 0 10px #720e47; 
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    width: 50%;
+}
+
+.table-form{
+    width: 95% !important;
+    border-radius: 20px !important;
+}
+.table-form thead{
+    color: #093c69;
+    background-color: rgba(0,0,0,0.1);
+    text-align: center;
+    font-family: jost;
+    font-weight: 900 !important;
+    padding: 5px 0px 5px 0px !important;
+    border-radius: 20px !important; 
+}
+.table-form th{
+    color: #093c69;
+    background-color: rgba(0,0,0,0.1);
+    text-align: center;
+    font-family: jost;
+    font-weight: 900;
+    padding: 15px 0px 15px 0px !important;
+    border-radius: 20px !important;
+}
+.table-form tbody{
+    color: rgba(0,0,0,0.5);
+    background-color: rgba(0,0,0,0.1);
+    text-align: center;
+}
+.table-form td{
+    text-align: center;
+    font-family: face2;
+    font-weight: 100;
+    padding: 5px 0px 5px 0px !important;
+    border-radius: 20px !important;
+}
+.first-btn{
+    border-radius: 20px !important;
+    padding: 5px 10px 5px 10px !important;
+    color: white;
+    background-color: rgba(11, 33, 230, 0.267);
+}
+.first-btn:hover{
+    background-color: rgba(11, 33, 230, 0.532);
+}
+.second-btn{
+    border-radius: 20px !important;
+    padding: 5px 10px 5px 10px !important;
+    color: white;
+    background-color: rgba(226, 8, 8, 0.337);
+}
+.second-btn:hover{
+    background-color: rgba(226, 8, 8, 0.552);
+}
+.search{
+    margin-left: 250px;
 }

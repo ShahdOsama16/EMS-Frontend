@@ -15,9 +15,8 @@ export class RegisterComponent {
     UserDataForm = new FormGroup({
         userName: new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(9), Validators.pattern(/^[A-Z]/)]),
         phone: new FormControl(),
-        // age: new FormControl(),
         email: new FormControl(),
-        password: new FormControl(null, [Validators.required]), // Added Validators.required for password
+        password: new FormControl(null, [Validators.required]), 
         weight: new FormControl(),
         height: new FormControl(),
         bod: new FormControl(),
@@ -29,7 +28,7 @@ export class RegisterComponent {
         this._ShareDataApiService.register(this.UserDataForm.value).subscribe(
             (res) => {
                 console.log('Registration API Response:', res);
-                this._Router.navigate(['/login']); // Redirect to login after successful registration
+                this._Router.navigate(['/login']); 
                 alert('Registration successful! Please log in.');
             },
             (error) => {
