@@ -17,7 +17,7 @@ interface WorkoutDetail {
 @Component({
   selector: 'app-yoga',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule],
   templateUrl: './yoga.component.html',
   styleUrls: ['./yoga.component.css'],
 })
