@@ -14,7 +14,7 @@
         <p><strong>Address:</strong><input type="text" class="form-control" formControlName="address" placeholder="address"></p>
         <p><strong>Email:</strong> <input type="text" class="form-control" formControlName="email" placeholder="email"></p>
       </form>
-      <button (click)="logout()">Logout</button>
+      <!-- <button (click)="logout()">Logout</button> -->
     </div>
 
     <h3>Your Cart</h3>
@@ -27,7 +27,6 @@
           <span>{{ item.product?.name }}</span>
           <span>Qty: {{ item.quantity }}</span>
         </div>
-        <span class="item-price">${{ item.product?.price * item.quantity | number: '1.2-2' }}</span>
         <div class="quantity-controls">
           <button (click)="changeQuantity(item, -1)">-</button>
           <span>{{ item.quantity }}</span>
@@ -41,9 +40,9 @@
       <h3>Order Summary</h3>
       <div *ngIf="isLoadingOrderSummary">Loading order summary...</div>
       <div *ngIf="orderSummary && !isLoadingOrderSummary">
-        <p><strong>Subtotal:</strong> ${{ orderSummary.subtotal }}</p>
-        <p><strong>Shipping:</strong> ${{ orderSummary.shipping }}</p>
-        <p><strong>Total:</strong> ${{ orderSummary.total }}</p>
+        <p><strong>Subtotal:</strong> {{ orderSummary.subtotal }} EGP</p>
+        <p><strong>Shipping:</strong> {{ orderSummary.shipping }} EGP</p>
+        <p><strong>Total:</strong> {{ orderSummary.total }} EGP</p>
       </div>
       <div *ngIf="!orderSummary && !isLoadingOrderSummary && !errorMessage">
         <p>Order summary not available.</p>

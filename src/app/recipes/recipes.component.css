@@ -97,15 +97,12 @@
     font-size: 20px;
     font-weight: 900;
     background: linear-gradient(90deg, #0667e4, #00b6ee) !important;
-    /* border: none; */
     transition: all 5s ease-in-out;
 }
 .card-body a:hover{
     background: linear-gradient(90deg, #0667e4, #00b6ee) !important;
     border: none;
 }
-
-/* Styles specifically for smaller devices (portrait phones, less than 576px) */
 @media (max-width: 575.98px) {
     .recipes-page {
       padding: 10px;

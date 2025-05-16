@@ -2,11 +2,11 @@
 import { Component, OnInit } from '@angular/core';
  import { CommonModule } from '@angular/common';
  import { Router, RouterLink } from '@angular/router';
- import { ShareDataApiService } from '../share-data-api.service'; // Adjust path
+ import { ShareDataApiService } from '../share-data-api.service'; 
  import { Observable, Subscription } from 'rxjs';
 
  interface Product {
-  id: string; // Assuming your backend returns an ID
+  id: string; 
   imageUrl: string;
   name: string;
   category: string;
@@ -24,6 +24,7 @@ import { Component, OnInit } from '@angular/core';
   products: any ;
   productSubscription: Subscription | undefined;
   errorMessage: string = '';
+  imageBaseUrl = 'https://passantmohamed-001-site1.mtempurl.com/images/';
 
   constructor(private router: Router, private shareddataapiservice: ShareDataApiService) {}
 
@@ -40,7 +41,7 @@ import { Component, OnInit } from '@angular/core';
   loadProducts(): void {
     this.productSubscription = this.shareddataapiservice.getProducts().subscribe({
       next: (data) => {
-        this.products = data; // Assuming the API returns an array of products
+        this.products = data;
       },
       error: (error) => {
         this.errorMessage = 'Error loading products.';
@@ -50,7 +51,7 @@ import { Component, OnInit } from '@angular/core';
   }
 
   updateProduct(product: Product): void {
-    // Navigate to an update product page with the product ID
+  
     this.router.navigate(['/admin/update-product', product.id]);
   }
 
@@ -59,7 +60,7 @@ import { Component, OnInit } from '@angular/core';
       this.shareddataapiservice.deleteUser(product.id).subscribe({
         next: (response) => {
           console.log('Product deleted:', response);
-          this.loadProducts(); // Reload the product list
+          this.loadProducts(); 
         },
         error: (error) => {
           this.errorMessage = 'Error deleting product.';

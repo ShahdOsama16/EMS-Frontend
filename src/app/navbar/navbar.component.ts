@@ -15,8 +15,8 @@ export class NavbarComponent implements OnInit {
   logined: any;
   cartCount: number = 0;
   isAdmin: boolean = false;
-  isSpecialUser: boolean = false; // New property to track the specific user
-  specialUsernames = ['Shahd', 'Mariam','Sara','Maya']; // Array of usernames who should see the icon
+  isSpecialUser: boolean = false; 
+  specialUsernames = ['Shahd', 'Mariam','Sara','Maya']; 
 
   constructor(
     private shareDataApiService: ShareDataApiService,
@@ -29,23 +29,21 @@ export class NavbarComponent implements OnInit {
     this.shareDataApiService.clearAuthData();
     this.shareDataApiService.isLogin.next(false);
     this.isAdmin = false;
-    this.isSpecialUser = false; // Reset on logout
+    this.isSpecialUser = false; 
   }
 
   ngOnInit(): void {
     this.shareDataApiService.isLogin.subscribe((x) => {
       this.logined = x;
       this.checkAdminStatus();
-      this.checkSpecialUserStatus(); // Call this when login status changes
+      this.checkSpecialUserStatus();
     });
-
-    // Subscribe to cart count changes
     this.cartService.cartCount$.subscribe((count) => {
       this.cartCount = count;
     });
 
     this.checkAdminStatus();
-    this.checkSpecialUserStatus(); // Check on component initialization
+    this.checkSpecialUserStatus(); 
   }
 
   checkAdminStatus(): void {
@@ -60,7 +58,6 @@ export class NavbarComponent implements OnInit {
     if (this.logined) {
       this.shareDataApiService.getCurrentUserDetails().subscribe({
         next: (userDetails) => {
-          // Assuming your user details response has a 'userName' property
           if (userDetails && userDetails.userName) {
             const currentUsernameLower = userDetails.userName.toLowerCase();
             this.isSpecialUser = this.specialUsernames.map(name => name.toLowerCase()).includes(currentUsernameLower);
@@ -70,7 +67,7 @@ export class NavbarComponent implements OnInit {
         },
         error: (error) => {
           console.error('Error fetching user details:', error);
-          this.isSpecialUser = false; // Default to false on error
+          this.isSpecialUser = false; 
         }
       });
     } else {
@@ -87,8 +84,8 @@ export class NavbarComponent implements OnInit {
 }
 
 window.addEventListener('scroll', () => {
-  const navbar = document.querySelector('.navbar'); // Select by class name
-  if (navbar) { // Check if the element exists before trying to manipulate it
+  const navbar = document.querySelector('.navbar'); 
+  if (navbar) { 
     if (window.scrollY > 0) {
       navbar.classList.add('scrolled');
     } else {

@@ -2,7 +2,7 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /* Important for consistent sizing */
+    box-sizing: border-box; 
   }
   
   @font-face {
@@ -21,19 +21,18 @@
   }
   
   .navbar {
-    background-color: transparent ; /* Slightly transparent background */
     box-shadow: 0px 0px 42px #337ab7;
     z-index: 999999;
-    transition: background-color 0.3s ease; /* Smooth transition for background */
+    transition: background-color 0.3s ease; 
   }
   
-  .navbar.scrolled { /* Class added by JS on scroll */
-    background-color: rgb(15, 15, 15) !important; /* Opaque background when scrolled */
+  .navbar.scrolled { 
+    background-color: rgb(15, 15, 15) !important; 
   }
   
-  .nav-comp { /* Added to contain image and text */
+  .nav-comp { 
       display: flex;
-      align-items: center; /* vertically center content */
+      align-items: center;
   }
   
   .nav-info {
@@ -41,43 +40,42 @@
   }
   
   .navimg img {
-    width: 85px; /* Consistent height */
-    height: 50px !important; /* Maintain aspect ratio */
+    width: 85px; 
+    height: 50px !important; 
     border-radius: 50%;
-    margin-right: 10px; /* Space between image and text */
+    margin-right: 10px; 
   }
   
   .navimg {
     font-family: myfont3;
-    font-size: 25px; /* Slightly smaller font */
-    /* color: rgb(3, 95, 141); Ensure text is visible */
+    font-size: 25px; 
     color: rgb(2, 90, 134);
   }
   
-  .navbar-nav .nav-link { /* Targets all nav links within navbar-nav */
-    color: white; /* Initial color white */
-    padding: 10px 15px; /* Consistent padding */
+  .navbar-nav .nav-link { 
+    color: white; 
+    padding: 10px 15px; 
     font-family: myfont3;
-    transition: color 0.3s ease; /* Smooth transition for text color */
+    transition: color 0.3s ease; 
     color: rgb(12, 108, 156);
-    /* color: rgb(2, 90, 134); */
+   
   }
   
   .navbar-nav .nav-link:hover {
       color: #337ab7;
   }
   
-  .navbar-nav .nav-link.smsm, /* Active link style */
-  .navbar-nav .nav-link.active { /* Active Link Style with Angular directive */
+  .navbar-nav .nav-link.smsm, 
+  .navbar-nav .nav-link.active { 
     background-color: #337ab7;
     color: white !important;
-    border-radius: 5px; /* Add some rounded corners for visual feedback */
+    border-radius: 5px; 
   }
   
-  .logout-link {  /* Style for logout link */
+  .logout-link {  
     color: white;
     font-family: myfont3;
-    cursor: pointer; /* Indicate clickable */
+    cursor: pointer;
     transition: color 0.3s ease;
     padding-left:200px;
   }
@@ -88,18 +86,17 @@
   
   .cartIconContainer {
     display: flex !important;
-    align-items: center; /* Vertically center the icon and count */
+    align-items: center; 
     color: white !important;
     
   }
   
   .cartIconContainer span {
-    margin-left: 5px; /* Space between the icon and the count */
+    margin-left: 5px; 
     color: white !important;
     display: flex;
   }
   
-  /* Optional: Style the cart icon image */
   .cartIconContainer img {
     width: 20px;
     height: 20px;
@@ -110,124 +107,122 @@
     color: white !important;
   }
   
-  /* Hide the zero count */
   .cartIconContainer span {
-    display: none; /* Hide by default */
+    display: none; 
   }
   
-  .cartIconContainer span.cart-count-visible { /* Add class to show the count */
+  .cartIconContainer span.cart-count-visible { 
     display: inline;
   }
-  
-  
-  /* ... (your existing styles) ... */
-
-/* Responsive Adjustments */
-
-/* For very small screens (phones) */
+ 
 @media (max-width: 576px) {
-    .nav-comp {
-      flex-direction: column; /* Stack logo and nav items vertically */
-      align-items: flex-start; /* Align items to the left */
-    }
-  
-    .navimg {
-      font-size: 20px;
-      margin-bottom: 10px; /* Add space below logo */
-    }
-  
-    .nav-info {
-      margin-left: 0;
-      width: 100%; /* Take full width */
-    }
-  
-    .navbar-nav {
-      flex-direction: column; 
-      width: 100%; 
-    }
-  
-    .navbar-nav .nav-link {
-      padding: 10px 15px;
-      text-align: left; /* Align text to the left */
-    }
-  
-    /* .logout-link {
-      padding-left: 15px; 
-      text-align: left; 
-      width: 100%;
-    } */
-  
-    .navbar-toggler {
-      align-self: flex-end; /* Align the toggler to the right */
-    }
+  .nav-comp {
+    flex-direction: column; 
+    align-items: flex-start; 
   }
-  
-  /* For small screens (tablets) */
-  @media (min-width: 577px) and (max-width: 768px) {
-    .nav-comp {
-      align-items: center; /* Center items vertically */
-    }
-  
-    .navimg {
-      font-size: 22px;
-    }
-  
-    .nav-info {
-      margin-left: 20px; /* Adjust margin */
-    }
-  
-    /* .navbar-nav {
-      
-    } */
-  
-    .navbar-nav .nav-link {
-      padding: 10px 15px;
-    }
-  
-    .logout-link {
-      padding-left: 50px;
-    } 
+
+  .navimg {
+    font-size: 20px; 
+    margin-bottom: 10px;
   }
-  
-  /* For medium screens (desktops) */
-  @media (min-width: 769px) and (max-width: 992px) {
-    .navimg {
-      font-size: 23px;
-    }
-  
-    .nav-info {
-      margin-left: 25px;
-    }
-  
-    .navbar-nav .nav-link {
-      padding: 10px 15px;
-    }
-  
-    .logout-link {
-      padding-left: 200px;
-    }
+
+  .nav-info {
+    margin-left: 0; 
+    width: 100%; }
+
+  .navbar-nav {
+    flex-direction: column; 
+    width: 100%; 
   }
-  
-  /* For large screens (large desktops) */
-  @media (min-width: 993px) and (max-width: 1200px) {
-    .navimg {
-      font-size: 24px;
-    }
-  
-    .nav-info {
-      margin-left: 28px;
-    }
-  
-    .navbar-nav .nav-link {
-      padding: 10px 15px;
-    }
-  
-    .logout-link {
-      padding-left: 350px;
-    }
+
+  .navbar-nav .nav-link {
+    padding: 10px 15px; 
+    text-align: left; 
   }
-  
-  /* For extra large screens (very large desktops) */
-  @media (min-width: 1201px) {
-    /* Revert to original styles */
+
+  .navbar-toggler {
+    align-self: flex-end;}
+
+  .logout-link {
+    padding-left: 15px; 
+    text-align: left; 
+    width: 100%; 
   }
+
+  .cartIconContainer {
+    justify-content: flex-end; 
+    margin-right: 15px; 
+  }
+}
+
+@media (min-width: 577px) and (max-width: 768px) {
+  .nav-comp {
+    align-items: center; 
+  }
+
+  .navimg {
+    font-size: 22px;
+  }
+
+  .nav-info {
+    margin-left: 20px; 
+  }
+
+  .navbar-nav .nav-link {
+    padding: 10px 15px; 
+  }
+
+  .logout-link {
+    padding-left: 50px; 
+  }
+
+  .cartIconContainer {
+    margin-right: 20px; 
+  }
+}
+
+@media (min-width: 769px) and (max-width: 992px) {
+  .navimg {
+    font-size: 23px; 
+  }
+
+  .nav-info {
+    margin-left: 25px; 
+  }
+
+  .navbar-nav .nav-link {
+    padding: 10px 15px; 
+  }
+
+  .logout-link {
+    padding-left: 200px; 
+  }
+
+  .cartIconContainer {
+    margin-right: 25px; 
+  }
+}
+@media (min-width: 993px) and (max-width: 1200px) {
+  .navimg {
+    font-size: 24px; 
+  }
+
+  .nav-info {
+    margin-left: 28px; 
+  }
+
+  .navbar-nav .nav-link {
+    padding: 10px 15px; 
+  }
+
+  .logout-link {
+    padding-left: 350px; 
+  }
+
+  .cartIconContainer {
+    margin-right: 30px; 
+  }
+}
+@media (min-width: 1201px) {
+
+}

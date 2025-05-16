@@ -26,7 +26,7 @@
     <div class="product-info">
       <h1 class="product-title">{{ singleProduct?.title }}</h1>
       <div class="product-price">
-        <span class="currency">£</span>{{ singleProduct?.price | number:'1.2-2' }}
+        <span class="currency">EGP</span>{{ singleProduct?.price | number:'1.2-2' }}
       </div>
       <div class="product-availability">
         Availability: <span *ngIf="singleProduct?.quantityAvailable > 0" class="available">In Stock ({{ singleProduct?.quantityAvailable }})</span>

@@ -58,7 +58,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       next: (items) => {
         this.cartItems = items;
         this.calculateTotal();
-        this.loadOrderSummary(); // Load order summary after cart items
+        this.loadOrderSummary();
         this.isLoadingCart = false;
       },
       error: (error) => {
@@ -95,20 +95,28 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.isLoadingCart = true;
+    // Immediately update the quantity in the local cartItems array
+    const index = this.cartItems.findIndex(cartItem => cartItem.id === item.id);
+    if (index !== -1) {
+      this.cartItems[index] = { ...this.cartItems[index], quantity: newQuantity };
+      this.calculateTotal();
+      this.loadOrderSummary(); // Update order summary as quantity changes
+    }
+
+    // Then, make the API call to update the backend
     this.cartService.updateCartItemQuantity(item.id, newQuantity).subscribe({
       next: (updatedItem) => {
-        const index = this.cartItems.findIndex(cartItem => cartItem.id === item.id);
-        if (index !== -1) {
-          this.cartItems[index] = { ...this.cartItems[index], quantity: updatedItem.quantity };
-          this.calculateTotal();
-        }
-        this.isLoadingCart = false;
+        // The local update is already done, no need to update again here
       },
       error: (error) => {
         this.errorMessage = 'Failed to update quantity.';
         console.error('Error updating quantity:', error);
-        this.isLoadingCart = false;
+        // Optionally, revert the local change if the API call fails
+        if (index !== -1) {
+          this.cartItems[index].quantity = item.quantity; // Revert to the old quantity
+          this.calculateTotal();
+          this.loadOrderSummary();
+        }
       }
     });
   }
@@ -119,6 +127,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       next: () => {
         this.cartItems = this.cartItems.filter((cartItem) => cartItem.id !== item.id);
         this.calculateTotal();
+        this.loadOrderSummary(); // Update order summary after removing item
         this.isLoadingCart = false;
       },
       error: (error) => {
@@ -135,7 +144,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       return;
     }
     if (this.cartItems.length > 0) {
-      this.router.navigate(['/checkout-form']); // Ensure this route exists
+      this.router.navigate(['/checkout-form']);
     } else {
       this.errorMessage = 'Your cart is empty. Add items to proceed.';
     }
@@ -144,7 +153,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   login(): void {
     localStorage.setItem('authToken', 'fake_token');
     this.isLoggedIn = true;
-    this.loadCartData(); // Reload cart and order summary after login
+    this.loadCartData();
   }
 
   logout(): void {
@@ -157,11 +166,11 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
   placeOrder(): void {
     if (!this.isLoggedIn || !this.checkoutForm.valid || this.cartItems.length === 0) {
-      this.errorMessage = 'Please fill in all shipping information and ensure your cart is not empty.';
+      this.errorMessage = '';
       alert(this.errorMessage);
       return;
     }
-  
+
     const orderData = {
       shippingInfo: this.checkoutForm.value,
       items: this.cartItems.map(item => ({
@@ -171,7 +180,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       totalAmount: this.orderSummary?.total || this.total + 5,
       shippingCost: this.orderSummary?.shipping || 5
     };
-  
+
     this.apiService.createOrder(true).subscribe({
       next: (response) => {
         console.log('Order placed successfully:', response);
@@ -190,5 +199,4 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       }
     });
   }
-  
 }

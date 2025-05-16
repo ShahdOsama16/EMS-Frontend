@@ -8,6 +8,7 @@ import { RecipesComponent } from '../recipes/recipes.component';
 import { ContactComponent } from '../contact/contact.component';   
 import {  ReactiveFormsModule } from '@angular/forms';
 import { CheckoutComponent } from '../checkout/checkout.component';
+import { FitnessInfoComponent } from '../fitness-info/fitness-info.component';
 
 @Component({
   selector: 'app-all-components',
@@ -17,12 +18,11 @@ import { CheckoutComponent } from '../checkout/checkout.component';
     AboutComponent,
     FooterComponent,
     BuyproductComponent,
-    WorkoutsComponent, // Add WorkoutsComponent to imports
-    RecipesComponent,  // Add RecipesComponent to imports
+    WorkoutsComponent, 
+    RecipesComponent,
     ContactComponent, 
     ReactiveFormsModule,
-    CheckoutComponent, // Add ContactComponent to imports
-    ContactComponent,
+    ContactComponent
 
   ],
   templateUrl: './all-components.component.html',

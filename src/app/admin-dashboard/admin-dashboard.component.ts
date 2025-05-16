@@ -18,7 +18,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
   userCountSubscription: Subscription | undefined;
   errorMessage: string = '';
 
-  // Bar Chart Example (User Registrations)
+ 
   public barChartLabels: string[] = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'];
   public barChartType: ChartType = 'bar';
   public barChartLegend = true;
@@ -29,7 +29,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
     ]
   };
 
-  // Pie Chart Example (Product Categories)
   public pieChartLabels: string[] = ['product', 'recipes', 'workouts'];
   public pieChartData: ChartData<'pie'> = {
     labels: this.pieChartLabels,
@@ -39,7 +38,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
   };
   public pieChartType: ChartType = 'pie';
 
-  // Line Chart Example (Website Traffic)
+ 
   public lineChartData: ChartConfiguration['data'] = {
     datasets: [
       {

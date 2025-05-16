@@ -9,15 +9,11 @@ import { ContactComponent } from './contact/contact.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NavbarComponent,ReactiveFormsModule,CheckoutComponent,ContactComponent], //Remove all unused imports.
+  imports: [RouterOutlet, NavbarComponent,ReactiveFormsModule], 
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent  {
 
-  // constructor(private authservice: AuthService, private router: Router) {}
 
-  // ngOnInit(): void {
-  //   this.authservice.checkAuthOnStartup(); // Check for existing token
-  // }
 }

@@ -2,31 +2,87 @@
     <div class="TITLE mt-5">
         <div class="title">
             <h1>Legs Exercises</h1>
-            <div class="circle1"></div> <div class="circle2"></div>
-            <div class="circle3"></div> <div class="circle4"></div>
-            <div class="circle5"></div> <div class="circle6"></div><div class="circle7"></div>
+            <div class="circle1"></div>
+      <div class="circle2"></div>
+      <div class="circle3"></div>
+      <div class="circle4"></div>
+      <div class="circle5"></div>
+      <div class="circle6"></div>
+      <div class="circle7"></div>
         </div>
     </div>
     <div class="stretch-content">
         <div class="row g-2">
             <div class="col-5">
-                <video autoplay loop muted src="../../assets/images/aerobics gif.mp4"></video>
+                <video autoplay loop muted src="../../assets/images/leg gif.mp4"></video>
             </div>
-            <div class="col-7">
+            <div class="col-7 stretch-h3">
                 <h3>What is Legs Exercises?</h3>
-                <p>Aerobics is a dynamic form of exercise that combines rhythmic movements with music to elevate your heart rate and improve overall fitness. It's a fantastic way to burn calories, strengthen your cardiovascular system, and boost your energy levels.</p>
+                <p>Leg exercises are foundational for building lower body strength, power, and muscle mass. They target major muscle groups including the quadriceps, hamstrings, glutes, and calves, contributing to overall athleticism and stability. Exercises range from compound movements like squats and deadlifts that work multiple leg muscles simultaneously to isolation exercises such as leg extensions and hamstring curls. A comprehensive leg routine incorporates a variety of exercises to ensure balanced development of all lower body muscle groups.</p>
             </div>
         </div>
     </div>
-   
+    <div class="machine textedit">
+      <h2>Prepare your Goals</h2>
+      <div class="line"></div>
+      <div class="row machs-img">
+        <div class="mach-img col-5">
+          <img src="../../assets/images/3D dumbbells without background.png">
+        </div>
+        <div class="mach-buttons col-7 stretch-h3">
+<div class="turn">
+  <button (click)="sendFitnessCommand(1, null, null, null)">Turn On</button>
+  <button (click)="sendFitnessCommand(0, null, null, null)">Turn Off</button>
+</div>
+<div class="modes">
+  <h4>Modes</h4>
+  <button (click)="sendFitnessCommand(null, 1, null, null)">Acupuncture</button>
+  <button (click)="sendFitnessCommand(null, 2, null, null)">Stroke</button>
+  <button (click)="sendFitnessCommand(null, 3, null, null)">Massage</button>
+  <button (click)="sendFitnessCommand(null, 4, null, null)">Cupping</button>
+  <button (click)="sendFitnessCommand(null, 5, null, null)">Manipulation</button>
+  <button (click)="sendFitnessCommand(null, 6, null, null)">Scraping</button>
+  <button (click)="sendFitnessCommand(null, 7, null, null)">Weight Reducing</button>
+  <button (click)="sendFitnessCommand(null, 8, null, null)">Immunotherapy</button>
+</div>
+<div class="time">
+  <h4>Time</h4>
+  <button (click)="sendFitnessCommand(null, null, 5, null)">5 minutes</button>
+  <button (click)="sendFitnessCommand(null, null, 10, null)">10 minutes</button>
+  <button (click)="sendFitnessCommand(null, null, 15, null)">15 minutes</button>
+  <!-- <button (click)="selectAllTime()">All Time</button> -->
+</div>
+<div class="power">
+  <h4>Power</h4>
+  <button (click)="sendFitnessCommand(null, null, null, 1)">1 watt</button>
+  <button (click)="sendFitnessCommand(null, null, null, 2)">2 watt</button>
+  <button (click)="sendFitnessCommand(null, null, null, 3)">3 watt</button>
+  <button (click)="sendFitnessCommand(null, null, null, 4)">4 watt</button>
+  <button (click)="sendFitnessCommand(null, null, null, 5)">5 watt</button>
+  <button (click)="sendFitnessCommand(null, null, null, 6)">6 watt</button>
+  <button (click)="sendFitnessCommand(null, null, null, 7)">7 watt</button>
+  <button (click)="sendFitnessCommand(null, null, null, 8)">8 watt</button>
+  <button (click)="sendFitnessCommand(null, null, null, 9)">9 watt</button>
+  <button (click)="sendFitnessCommand(null, null, null, 10)">10 watt</button>
+  <button (click)="sendFitnessCommand(null, null, null, 11)">11 watt</button>
+  <button (click)="sendFitnessCommand(null, null, null, 12)">12 watt</button>
+  <button (click)="sendFitnessCommand(null, null, null, 13)">13 watt</button>
+  <button (click)="sendFitnessCommand(null, null, null, 14)">14 watt</button>
+  <button (click)="sendFitnessCommand(null, null, null, 15)">15 watt</button>
+  <button (click)=" submit()">Submit</button>
+</div>
+        </div>
+      </div>
+    </div>
     <div class="stretching-online">
-        <h2>NO-EQUIPMENT <i class="fa-solid fa-dumbbell"></i></h2>
-        <h2>Daily Home legs Workout</h2>
+        <h2>Legs Workout</h2>
         <div class="line"></div>
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-          <div *ngFor="let workout of  legsWorkouts " class="col">
-            <div class="card h-100">
-              <iframe
+    </div>
+    <div class="stretching-videos">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 editvideo videoos">
+      <div *ngFor="let workout of  legsWorkouts " class="col single-video">
+            <div>
+              <iframe 
               *ngIf="workout.videoUrl"
               class="card-img-top"
               [src]="getSafeVideoUrl(workout.videoUrl)"
@@ -35,17 +91,14 @@
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerpolicy="strict-origin-when-cross-origin"
                 allowfullscreen
-                style="height: 200px;" ></iframe>
+                ></iframe>
               <div class="card-body">
                 <h5 class="card-title">{{ workout.name }}</h5>
                 <p class="card-text">{{ workout.description }}</p>
-                <!-- <p class="card-text"><small class="text-muted">ID: {{ workout.id }}</small></p> -->
-                <p class="card-text"><small class="text-muted">Category: {{ workout.category }}</small></p>
-                <a [routerLink]="['/aerobics', workout.id]" class="btn btn-primary">Let's Trainee</a>
-                <a [routerLink]="['/workout-details', workout.id]" class="btn btn-secondary ms-2"><i class="fas fa-link"></i> Details</a>
               </div>
             </div>
-          </div>
-        </div>
       </div>
+    </div>
+    </div>    
 </section>
+

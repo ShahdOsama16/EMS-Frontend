@@ -225,17 +225,6 @@ img{
   44% {
     content: "P|";
   }
-  /* 45% { */
-    /* content: "Pro|";
-  }
-  46% {
-    content: "Pr|";
-    
-  }
-  
-  47% {
-    content: "P|";
-  } */
 }
 .layer{
     position: absolute;
@@ -296,27 +285,17 @@ img{
   top: 25% !important; 
 }
 
-
-/* ... (your existing styles) ... */
-
-/* Responsive Styles */
-
-/* For very small screens (phones) */
 @media (max-width: 576px) {
-  /* .Home-page {
-   
-  } */
-
   .carousel-item img {
-    height: 300px !important; /* Adjust image height */
+    height: 300px !important; 
   }
 
   .layer {
-    height: 300px !important; /* Adjust layer height */
+    height: 300px !important; 
   }
 
   .carousel-caption {
-    top: 10% !important; /* Adjust caption position */
+    top: 10% !important; 
   }
 
   .carousel-caption h2 {
@@ -342,27 +321,21 @@ img{
 
   .carousel-control-prev .carousel-control-prev-icon,
   .carousel-control-next .carousel-control-next-icon {
-    padding: 20px 25px; /* Added 'px' here */
+    padding: 20px 25px; 
     bottom: 50px;
   }
 }
-
-/* For small screens (tablets) */
 @media (min-width: 577px) and (max-width: 768px) {
-  /* .Home-page {
-    
-  } */
-
   .carousel-item img {
-    height: 400px !important; /* Adjust image height */
+    height: 400px !important; 
   }
 
   .layer {
-    height: 400px !important; /* Adjust layer height */
+    height: 400px !important; 
   }
 
   .carousel-caption {
-    top: 15% !important; /* Adjust caption position */
+    top: 15% !important; 
   }
 
   .carousel-caption h2 {
@@ -388,27 +361,22 @@ img{
 
   .carousel-control-prev .carousel-control-prev-icon,
   .carousel-control-next .carousel-control-next-icon {
-    padding: 25px 30px; /* Added 'px' here */
+    padding: 25px 30px; 
     bottom: 80px;
   }
 }
-
-/* For medium screens (desktops) */
 @media (min-width: 769px) and (max-width: 992px) {
-   /* .Home-page {
-    
-  } */
 
   .carousel-item img {
-    height: 500px !important; /* Adjust image height */
+    height: 500px !important; 
   }
 
   .layer {
-    height: 500px !important; /* Adjust layer height */
+    height: 500px !important; 
   }
 
   .carousel-caption {
-    top: 20% !important; /* Adjust caption position */
+    top: 20% !important; 
   }
 
   .carousel-caption h2 {
@@ -434,26 +402,23 @@ img{
 
   .carousel-control-prev .carousel-control-prev-icon,
   .carousel-control-next .carousel-control-next-icon {
-    padding: 28px 32px; /* Added 'px' here */
+    padding: 28px 32px; 
     bottom: 100px;
   }
 }
 
-/* For large screens (large desktops) */
 @media (min-width: 993px) and (max-width: 1200px) {
-   /* .Home-page {
-    
-  } */
+ 
   .carousel-item img {
-    height: 600px !important; /* Adjust image height */
+    height: 600px !important; 
   }
 
   .layer {
-    height: 600px !important; /* Adjust layer height */
+    height: 600px !important; 
   }
 
   .carousel-caption {
-    top: 22% !important; /* Adjust caption position */
+    top: 22% !important; 
   }
 
   .carousel-caption h2 {
@@ -479,53 +444,48 @@ img{
 
   .carousel-control-prev .carousel-control-prev-icon,
   .carousel-control-next .carousel-control-next-icon {
-    padding: 29px 33px; /* Added 'px' here */
+    padding: 29px 33px; 
     bottom: 120px;
   }
 }
 
-/* For extra large screens (very large desktops) */
 @media (min-width: 1201px) {
-   /* .Home-page {
-    
-  } */
 
   .carousel-item img {
-    height: 650px !important; /* Revert to original height */
+    height: 650px !important; 
   }
 
   .layer {
-    height: 700px !important; /* Revert to original height */
-  }
+    height: 700px !important; }
 
   .carousel-caption {
-    top: 25% !important; /* Revert to original caption position */
+    top: 25% !important; 
   }
 
   .carousel-caption h2 {
-    font-size: 40px; /* Revert to original font size */
+    font-size: 40px; 
     margin-bottom: 70px;
   }
 
   .carousel-caption p {
-    font-size: 20px; /* Revert to original font size */
+    font-size: 20px; 
     margin-bottom: 80px;
   }
 
   .carousel-caption button {
-    padding: 16px 48px; /* Revert to original padding */
-    font-size: 24px; /* Revert to original font size */
+    padding: 16px 48px; 
+    font-size: 24px; 
   }
 
   .carousel-control-prev,
   .carousel-control-next {
-    height: 300px !important; /* Revert to original height */
-    top: 40% !important; /* Revert to original top position */
+    height: 300px !important; 
+    top: 40% !important; 
   }
 
   .carousel-control-prev .carousel-control-prev-icon,
   .carousel-control-next .carousel-control-next-icon {
-    padding: 30px 35px; /* Revert to original padding */
-    bottom: 140px; /* Revert to original bottom position */
+    padding: 30px 35px; 
+    bottom: 140px; 
   }
 }
