@@ -3,7 +3,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
  import { Router, RouterLink } from '@angular/router';
  import { ChartConfiguration, ChartData, ChartType } from 'chart.js';
  import { NgChartsModule } from 'ng2-charts';
- import { ShareDataApiService } from '../share-data-api.service'; // Adjust the path
+ import { ShareDataApiService } from '../share-data-api.service'; 
  import { Subscription } from 'rxjs';
 
  @Component({
@@ -78,7 +78,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
         this.totalUsers = count;
       },
       error: (error) => {
-        this.errorMessage = 'Error loading total user count.';
+        this.errorMessage = '';
         console.error(this.errorMessage, error);
       }
     });

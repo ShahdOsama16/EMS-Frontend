@@ -1,3 +1,4 @@
+
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
@@ -12,6 +13,8 @@ export class FitnessDataService {
   constructor() {
     console.log('FitnessDataService constructed. Initial data:', this._fitnessData.getValue());
   }
+
+   
 
   private loadFitnessData(): any[] {
     const storedData = localStorage.getItem(this.STORAGE_KEY);

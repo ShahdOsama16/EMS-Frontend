@@ -45,6 +45,9 @@
     background-color: #337ab7;
 }
 
+.buy-content{
+  padding-top: 160px !important;
+}
 
 
 @media (max-width: 575.98px) {
