@@ -20,7 +20,21 @@
   font-family: myface3;
   src: url(../../../public/assets/fonts/Jost/static/Jost-Regular.ttf);
 }
-
+.sub{
+  padding: 8px 180px 8px 180px !important;
+  border-radius: 50px;
+  border: 2px solid ;
+  color: #fff !important;
+  font-family: jost !important;
+  font-size: 20px !important;
+  font-weight: 900 !important;
+  background: linear-gradient(90deg, rgb(12, 108, 156) , #00b6ee);
+  transition: all 5s ease-in-out !important;
+  margin: 10px 0px 10px 0px;
+}
+.sub:hover{
+  background: linear-gradient(90deg, #00b6ee, rgb(12, 108, 156));
+}
 .TITLE{
   display: flex;
   justify-content: center;

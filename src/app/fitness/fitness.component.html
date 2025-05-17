@@ -28,22 +28,20 @@
     </div>
   </div>
 
-  <!-- Machine Controller Section -->
   <div class="machine textedit">
     <h2>Prepare your Goals</h2>
     <div class="line"></div>
     <div class="row machs-img">
       <div class="mach-img col-5">
-        <img src="../../assets/images/3D dumbbells without background.png" alt="3D Dumbbells">
+        <img src="../assets/images/Adobe Express - file (6).png" alt="3D Dumbbells">
       </div>
       <div class="mach-buttons col-7 stretch-h3">
-        <!-- Turn On/Off -->
+       
         <div class="turn">
           <button (click)="sendFitnessCommand(1, null, null, null)">Turn On</button>
           <button (click)="sendFitnessCommand(0, null, null, null)">Turn Off</button>
         </div>
 
-        <!-- Modes -->
         <div class="modes">
           <h4>Modes</h4>
           <button (click)="sendFitnessCommand(null, 1, null, null)">Acupuncture</button>
@@ -56,7 +54,7 @@
           <button (click)="sendFitnessCommand(null, 8, null, null)">Immunotherapy</button>
         </div>
 
-        <!-- Time Selection -->
+      
         <div class="time">
           <h4>Time</h4>
           <button (click)="sendFitnessCommand(null, null, 5, null)">5 minutes</button>
@@ -64,19 +62,18 @@
           <button (click)="sendFitnessCommand(null, null, 15, null)">15 minutes</button>
         </div>
 
-        <!-- Power Levels -->
+    
         <div class="power">
           <h4>Power</h4>
           <ng-container *ngFor="let power of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]">
             <button (click)="sendFitnessCommand(null, null, null, power)">{{ power }} watt</button>
           </ng-container>
-          <button (click)="submit()">Submit</button>
+          <button (click)="submit()" class="sub">Submit</button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Online Workout Section -->
   <div class="stretching-online">
     <h2>Bi & Tri Workout</h2>
     <div class="line"></div>

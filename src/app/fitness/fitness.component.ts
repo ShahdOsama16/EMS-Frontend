@@ -1,197 +1,195 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
+import { ShareDataApiService } from '../share-data-api.service';
+import { Router, RouterLink } from '@angular/router';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
-import { CommonModule } from '@angular/common';
 import { FitnessDataService } from '../fitnessdataservice';
-
-interface Workout {
-  name: string;
-  description: string;
-  videoUrl: string;
-  category: string;
-  id: number;
-}
+import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-fitness',
-  standalone: true,
+  selector: 'app-fitness-info',
   imports: [CommonModule],
   templateUrl: './fitness.component.html',
-  styleUrls: ['./fitness.component.css'],
+  styleUrls: ['./fitness.component.css']
 })
-export class FitnessComponent implements OnInit, OnDestroy {
-  biTriWorkouts: Workout[] = [];
-  private apiUrl = 'https://passantmohamed-001-site1.mtempurl.com/api/app/workout?MaxResultCount=36';
-  private fitnessInfoApiUrl = 'https://passantmohamed-001-site1.mtempurl.com/api/app/fitness-info';
-  private subscription?: Subscription;
-
-  selectedMode: number | null = null;
-  selectedPower: number | null = null;
-  isOnOrOff: number | null = null;
-  selectedTime: number | null = null;
-
-  defaultMode = 0;
-  initialPowerOff = 0;
-  defaultTime = 0;
-
-  modeNames: { [key: number]: string } = {
-    1: 'Acupuncture',
-    2: 'Stroke',
-    3: 'Massage',
-    4: 'Cupping',
-    5: 'Manipulation',
-    6: 'Scraping',
-    7: 'Weight Reducing',
-    8: 'Immunotherapy',
-    0: 'Off',
-  };
+export class FitnessInfoComponent implements OnInit, OnDestroy {
+  fitnessData: any[] = [];
+  error: string = '';
+  selectedFitnessId: string | null = null;
+  private subscription: Subscription | undefined;
+  submitData: any;
+  routePath: string; // Store the current route
 
   constructor(
-    private sanitizer: DomSanitizer,
-    private http: HttpClient,
+    private apiService: ShareDataApiService,
     private router: Router,
+    private sanitizer: DomSanitizer,
     private fitnessDataService: FitnessDataService
-  ) {}
+  ) {
+    this.submitData = this.router.getCurrentNavigation()?.extras?.state?.['submitData'];
+    this.routePath = '/fitness-info'; 
+    console.log('FitnessInfoComponent constructed. submitData from state:', this.submitData);
+  }
 
   ngOnInit(): void {
-    this.fetchBiTriWorkouts();
+    console.log('FitnessInfoComponent - ngOnInit started');
+
+    // Load initial data directly from the service
+    this.fitnessData = this.fitnessDataService.getFitnessData();
+    console.log('FitnessInfoComponent - ngOnInit - Initial fitnessData:', this.fitnessData);
+
+    // Subscribe to future updates from the service
+    this.subscription = this.fitnessDataService.fitnessData$.subscribe(data => {
+      this.fitnessData = data;
+      console.log('FitnessInfoComponent - Data received from subscription:', this.fitnessData);
+    });
+
+    // Process submitData only once after the component is initialized
+    if (this.submitData) {
+      console.log('FitnessInfoComponent - ngOnInit - Processing submitData:', this.submitData);
+      const isDuplicate = this.fitnessData.some(item =>
+        item.category === this.submitData.category &&
+        item.time === this.submitData.time &&
+        item.power === this.submitData.power &&
+        item.mode === this.submitData.mode
+      );
+
+      if (!isDuplicate) {
+        this.fitnessData = [...this.fitnessData, this.submitData];
+        this.fitnessDataService.setFitnessData(this.fitnessData);
+        console.log('FitnessInfoComponent - ngOnInit - submitData added. New fitnessData:', this.fitnessData);
+      }
+
+      // Clear submitData and router state to prevent re-processing
+       this.router.navigate([this.routePath], { replaceUrl: true });
+      this.submitData = null;
+      console.log('FitnessInfoComponent - ngOnInit - submitData processed and cleared.');
+    } else {
+      console.log('FitnessInfoComponent - ngOnInit - No submitData to process.');
+    }
+
+    console.log('FitnessInfoComponent - ngOnInit finished. Current fitnessData:', this.fitnessData);
   }
 
   ngOnDestroy(): void {
-    this.subscription?.unsubscribe();
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+      console.log('FitnessInfoComponent - ngOnDestroy - Subscription unsubscribed.');
+    }
   }
 
-  fetchBiTriWorkouts(): void {
-    this.subscription = this.http.get<{ items: Workout[] }>(this.apiUrl).subscribe({
-      next: (response) => {
-        this.biTriWorkouts = response.items.filter(
-          (workout) => workout.category === 'Biceps' || workout.category === 'Triceps'
-        );
-        console.log('Bi & Tri Workouts:', this.biTriWorkouts);
-      },
-      error: (error) => {
-        console.error('Error fetching Bi & Tri workouts:', error);
-      },
-    });
-  }
-
-  getSafeVideoUrl(url: string | null | undefined): SafeResourceUrl | null {
-    if (!url) return null;
-
-    if (url.includes('youtube.com/shorts/')) {
-      const shortId = url.split('shorts/')[1]?.split('?')[0];
-      const embedUrl = `https://www.youtube.com/embed/${shortId}`;
-      return this.sanitizer.bypassSecurityTrustResourceUrl(embedUrl);
-    }
-
-    if (url.includes('youtube.com/watch?v=') || url.includes('youtu.be/')) {
-      const videoId = url.includes('v=') ? url.split('v=')[1]?.split('&')[0] : url.split('be/')[1]?.split('?')[0];
-      if (videoId) {
-        return this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${videoId}`);
-      }
-    }
-
-    if (url.includes('vimeo.com')) {
-      const videoId = url.split('vimeo.com/')[1]?.split('?')[0];
-      if (videoId) {
-        return this.sanitizer.bypassSecurityTrustResourceUrl(`https://player.vimeo.com/video/${videoId}`);
-      }
-    }
-
+  getSafeVideoUrl(url: string): SafeResourceUrl {
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 
-  sendFitnessCommand(
-    onOrOff: number | null,
-    mode: number | null,
-    time: number | null,
-    power: number | null
-  ): void {
-    const command = {
-      onOrOff: onOrOff ?? this.isOnOrOff ?? 0,
-      mode: mode ?? this.selectedMode ?? this.defaultMode,
-      time: time ?? this.selectedTime ?? this.defaultTime,
-      power: power ?? this.selectedPower ?? (onOrOff === 1 ? this.initialPowerOff : 1),
-    };
-
-    const token = localStorage.getItem('accessToken');
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json',
-    });
-
-    this.http.post<any>(this.fitnessInfoApiUrl, command, { headers }).subscribe({
-      next: (response) => {
-        console.log('Fitness command sent successfully:', response);
+  loadFitnessInfo(): void {
+    this.apiService.getFitnessInfo().subscribe({
+      next: (data) => {
+        this.fitnessData = data; // Directly assign
+        console.log('FitnessInfoComponent - loadFitnessInfo - Data from API:', data);
+        // this.fitnessDataService.setFitnessData(data); //  DON'T USE THIS HERE.
+        this.error = '';
       },
-      error: (error) => {
-        console.error('Error sending fitness command:', error);
-      },
-    });
-
-    // Update state
-    if (onOrOff !== null) {
-      this.isOnOrOff = onOrOff;
-      if (onOrOff === 0) {
-        this.resetAll();
-      } else {
-        this.selectedPower = this.initialPowerOff;
+      error: (err) => {
+        this.error = 'Error loading fitness information.';
+        console.error('FitnessInfoComponent - loadFitnessInfo - Error:', err);
       }
-    }
-
-    if (mode !== null) this.selectedMode = mode;
-    if (power !== null) this.selectedPower = power;
-    if (time !== null) {
-      this.selectedTime = time;
-      console.log('Time button clicked, selectedTime:', this.selectedTime);
-    }
+    });
   }
 
-  selectAllTime(): void {
-    this.selectedTime = null;
-    console.log('Selected Time: All Time');
+  createFitnessEntry(newFitnessData: any): void {
+    this.apiService.createFitnessInfo(newFitnessData).subscribe({
+      next: (response) => {
+        console.log('Fitness info created:', response);
+        this.loadFitnessInfo(); // Reload from API
+      },
+      error: (err) => {
+        this.error = 'Error creating fitness information.';
+        console.error(this.error, err);
+      }
+    });
   }
 
-  resetAll(): void {
-    this.selectedMode = 0;
-    this.selectedPower = 0;
-    this.selectedTime = 0;
-    console.log('All settings reset to zero.');
+  generateCommand(dataToGenerate: any): void {
+    this.apiService.generateFitnessCommandString(dataToGenerate).subscribe({
+      next: (response) => {
+        console.log('Command String Generated:', response);
+      },
+      error: (err) => {
+        console.error('Error generating command string:', err);
+      }
+    });
   }
 
-  getLastDataAsObject(): {
-    onOrOff: number;
-    mode: number;
-    modeName: string;
-    time: number;
-    power: number;
-    category: string;
-  } {
-    const onOrOffValue = this.isOnOrOff ?? 0;
-    const modeValue = this.selectedMode ?? 0;
-    const timeValue = this.selectedTime ?? 0;
-    const powerValue = this.selectedPower ?? 0;
-
-    return {
-      onOrOff: onOrOffValue,
-      mode: modeValue,
-      modeName: this.getModeName(modeValue),
-      time: timeValue,
-      power: powerValue,
-      category: 'Bi & Tri',
-    };
+  updateCommand(id: string, newCommand: any): void {
+    this.apiService.updateFitnessCommandString(id, newCommand).subscribe({
+      next: (response) => {
+        console.log(`Command String for ID ${id} updated:`, response);
+      },
+      error: (err) => {
+        console.error(`Error updating command string for ID ${id}:`, err);
+      }
+    });
   }
 
-  submit(): void {
-    const lastData = this.getLastDataAsObject();
-    console.log('Submit Button Clicked - Last Data:', lastData);
-    this.fitnessDataService.addFitnessData(lastData);
-    this.router.navigate(['/fitness-info'], { state: { submitData: lastData } });
+
+
+  getCommandAsPayload(id: string): void {
+    this.apiService.getFitnessCommandAsPayload(id).subscribe({
+      next: (payload) => {
+        console.log(`Command as Payload for ID ${id}:`, payload);
+      },
+      error: (err) => {
+        console.error(`Error fetching command as payload for ID ${id}:`, err);
+      }
+    });
   }
 
-  getModeName(mode: number | null): string {
-    return mode !== null && this.modeNames[mode] ? this.modeNames[mode] : 'Unknown';
+  getCommandStringById(id: string): void {
+    this.apiService.getFitnessCommandStringById(id).subscribe({
+      next: (command) => {
+        console.log(`Command String for ID ${id}:`, command);
+      },
+      error: (err) => {
+        console.error(`Error fetching command string for ID ${id}:`, err);
+      }
+    });
+  }
+
+  updateFitnessItem(id: string, updatedData: any): void {
+    this.apiService.updateFitnessInfo(id, updatedData).subscribe({
+      next: (response) => {
+        console.log(`Fitness info with ID ${id} updated:`, response);
+        this.loadFitnessInfo();  // Reload from API
+      },
+      error: (err) => {
+        console.error(`Error updating fitness info with ID ${id}:`, err);
+      }
+    });
+  }
+
+  deleteFitnessItem(id: string): void {
+    this.apiService.deleteFitnessInfo(id).subscribe({
+      next: (response) => {
+        console.log(`Fitness info with ID ${id} deleted:`, response);
+        this.loadFitnessInfo(); // Reload from API.
+      },
+      error: (err) => {
+        console.error(`Error deleting fitness info with ID ${id}:`, err);
+      }
+    });
+  }
+
+  fetchFitnessItemById(id: string): void {
+    this.apiService.getFitnessInfoById(id).subscribe({
+      next: (item) => {
+        console.log(`Fitness info with ID ${id}:`, item);
+        this.selectedFitnessId = id;
+      },
+      error: (err) => {
+        console.error(`Error fetching fitness info with ID ${id}:`, err);
+      }
+    });
   }
 }
+

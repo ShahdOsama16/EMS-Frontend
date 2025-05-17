@@ -74,72 +74,7 @@ z-index: 9999;
   background-color: #0056b3;
   transition: margin-left 1s ease-in-out; 
 }
-/* .circle1{
-  position: absolute;
-  top: -10px;
-  right:290px;
-  box-shadow: 0px 0px 14px rgb(230, 180, 205); 
-  background: linear-gradient(90deg, rgb(236, 236, 236), #feedf9) !important;
-  border-radius: 50%;
-  width:100px;
-  height: 100px;
-  transition: all 0.5s ease-in;
-}
-.circle2{
-  position: absolute;
-  top: -15px;
-  right:380px;
-  box-shadow: 0px 0px 14px rgb(230, 180, 205); 
-  background: linear-gradient(90deg, rgb(236, 236, 236), #feedf9) !important;
-  border-radius: 50%;
-  width:110px;
-  height: 110px;
-  transition: all 0.5s ease-in;
-}
-.circle3{
-  position: absolute;
-  top: -10px;
-  left:290px;
-  box-shadow: 0px 0px 14px rgb(230, 180, 205); 
-  background: linear-gradient(90deg, rgb(236, 236, 236), #feedf9) !important;
-  border-radius: 50%;
-  width:100px;
-  height: 100px;
-  transition: all 0.5s ease-in;
-}
-.circle4{
-  position: absolute;
-  top: -15px;
-  left:380px;
-  box-shadow: 0px 0px 14px rgb(230, 180, 205); 
-  background: linear-gradient(90deg, rgb(236, 236, 236), #feedf9) !important;
-  border-radius: 50%;
-  width:110px;
-  height: 110px;
-  transition: all 0.5s ease-in;
-}
-.circle5{
-  position: absolute;
-  top: -20px;
-  right: 480px;
-  box-shadow: 0px 0px 14px rgb(230, 180, 205); 
-  background: linear-gradient(90deg, rgb(236, 236, 236), #feedf9) !important;
-  border-radius: 50%;
-  width:120px;
-  height: 120px;
-  transition: all 0.5s ease-in;
-}
-.circle7{
-  position: absolute;
-  top: -20px;
-  left:480px;
-  box-shadow: 0px 0px 14px rgb(230, 180, 205); 
-  background: linear-gradient(90deg, rgb(236, 236, 236), #feedf9) !important;
-  border-radius: 50%;
-  width:120px;
-  height: 120px;
-  transition: all 0.5s ease-in;
-} */
+
 .circle3:hover, .circle4:hover, .circle7:hover{
   margin-left: 20px !important;
   
@@ -182,7 +117,6 @@ z-index: 9999;
   margin-right: 35px;
   padding: 20px 5px 20px 5px;
   border-radius: 0.75rem;
-  /* box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);  */
   box-shadow: 0 0 50px #720e47;
   border: 1px solid #ddd;
 }
@@ -610,3 +544,19 @@ z-index: 9999;
   @media (min-width: 1201px) {
 
   }
+
+  .sub{
+  padding: 8px 180px 8px 180px !important;
+  border-radius: 50px;
+  border: 2px solid ;
+  color: #fff !important;
+  font-family: jost !important;
+  font-size: 20px !important;
+  font-weight: 900 !important;
+  background: linear-gradient(90deg, rgb(12, 108, 156) , #00b6ee);
+  transition: all 5s ease-in-out !important;
+  margin: 10px 0px 10px 0px;
+}
+.sub:hover{
+  background: linear-gradient(90deg, #00b6ee, rgb(12, 108, 156));
+}

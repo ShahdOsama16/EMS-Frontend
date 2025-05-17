@@ -105,8 +105,6 @@ export class YogaComponent implements OnInit, OnDestroy {
 
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
-
- 
       selectedMode: number | null = null;
       selectedPower: number | null = null;
       isOnOrOff: number | null = null;
