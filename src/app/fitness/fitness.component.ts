@@ -36,6 +36,7 @@ export class FitnessInfoComponent implements OnInit, OnDestroy {
 
     // Load initial data directly from the service
     this.fitnessData = this.fitnessDataService.getFitnessData();
+     this.loadFitnessInfo();
     console.log('FitnessInfoComponent - ngOnInit - Initial fitnessData:', this.fitnessData);
 
     // Subscribe to future updates from the service
@@ -82,20 +83,26 @@ export class FitnessInfoComponent implements OnInit, OnDestroy {
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 
-  loadFitnessInfo(): void {
-    this.apiService.getFitnessInfo().subscribe({
-      next: (data) => {
-        this.fitnessData = data; // Directly assign
-        console.log('FitnessInfoComponent - loadFitnessInfo - Data from API:', data);
-        // this.fitnessDataService.setFitnessData(data); //  DON'T USE THIS HERE.
-        this.error = '';
-      },
-      error: (err) => {
-        this.error = 'Error loading fitness information.';
-        console.error('FitnessInfoComponent - loadFitnessInfo - Error:', err);
-      }
-    });
-  }
+loadFitnessInfo(): void {
+  this.apiService.getFitnessInfo().subscribe({
+    next: (response) => {
+      const items = response.items || [];
+      this.fitnessData = items.map((item: any) => ({
+        category: item.workout ?? 'Unknown',
+        time: item.time,
+        power: item.power,
+        modeName: item.mode === 1 ? 'On' : 'Off'
+      }));
+
+      console.log('FitnessInfoComponent - loadFitnessInfo - Mapped Data:', this.fitnessData);
+      this.error = '';
+    },
+    error: (err) => {
+      this.error = 'Error loading fitness information.';
+      console.error('FitnessInfoComponent - loadFitnessInfo - Error:', err);
+    }
+  });
+}
 
   createFitnessEntry(newFitnessData: any): void {
     this.apiService.createFitnessInfo(newFitnessData).subscribe({
