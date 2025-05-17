@@ -332,7 +332,7 @@ button{
 }
 
 .overview-content video {
-  width: 70% !important;
+  width: 500px !important;
   height: 100%;
   object-fit: cover; 
   display: block; 
@@ -528,7 +528,9 @@ button{
   color: #afe2fd;
   font-family: roboto2;
 }
-
+.overview-video source{
+  width:250px !important;
+}
 .the-end a{
   line-height: 30px;
   text-decoration: none !important;
@@ -696,13 +698,14 @@ hr{
           }
 
           .footer .col-4 {
-              width: 90%;
+              width: 100%;
               text-align: center;
-              margin-bottom: 20px;
+              margin-bottom: 20px !important;
           }
 
           .get-touch {
               text-align: center;
+              padding: 0 !important;
           }
       }
       @media (min-width: 577px) and (max-width: 768px) {
@@ -759,13 +762,17 @@ hr{
           }
 
           .footer .col-4 {
-              width: 80%;
+              width: 100%;
               text-align: center;
-              margin-bottom: 25px;
+              margin-bottom: 25px !important;
           }
 
           .get-touch {
               text-align: center;
+              padding: 0 !important;
+          }
+          .end{
+            margin-top: 0 !important;
           }
       }
       @media  (min-width: 769px) and (max-width: 992px) {
@@ -812,5 +819,10 @@ hr{
         .footer .col-4 {
             flex-basis: 45%;
             text-align: center;
+        }
+        .get-touch{
+          text-align: center;
+          padding:0 !important;
+          margin-bottom: 20px !important;
         }
     }

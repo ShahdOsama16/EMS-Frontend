@@ -1,3 +1,4 @@
+<section class="product-page">
 <div class="admin-product-page">
   
 <br>
@@ -7,12 +8,17 @@
 
   <div class="product-list" *ngIf="products?.items?.length > 0; else noProducts">
     <div class="product-card" *ngFor="let product of products.items">
+      <div class="prod-content">
       <img [src]="imageBaseUrl+product.imageUrl" alt="{{ product.title }}" class="product-image">
-      <div class="product-details">
+      <div class="prod-details">
         <h3>{{ product.title }}</h3>
-        <p class="price">product title: ${{ product.title}}</p>
-        <p class="price">Price: ${{ product.price }}</p>
-        <p class="category">Quantity : {{ product.quantityAvailable }}</p>
+        <p class="price"><span>product title:</span> {{ product.title}} </p>
+        <p class="price"><span>Price:</span> {{ product.price }} EGP</p>
+        <p class="category"><span>Quantity Available: </span>{{ product.quantityAvailable }}</p>
+      </div>
+      </div>
+      <div class="product-details">
+        
         <p class="description">{{ product.description }}</p>
         <div class="actions">
           <button (click)="updateProduct(product)" class="update-button">Update</button>
@@ -28,3 +34,4 @@
 
   <button routerLink="/admin/add-product" class="add-button">Add New Product</button>
 </div>
+</section>
