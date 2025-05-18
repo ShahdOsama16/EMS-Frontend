@@ -107,7 +107,7 @@ loadFitnessInfo(): void {
     this.apiService.createFitnessInfo(newFitnessData).subscribe({
       next: (response) => {
         console.log('Fitness info created:', response);
-        this.loadFitnessInfo(); // Reload from API
+        this.loadFitnessInfo(); 
       },
       error: (err) => {
         this.error = 'Error creating fitness information.';
