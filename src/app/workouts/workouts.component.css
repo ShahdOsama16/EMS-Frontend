@@ -423,18 +423,13 @@
       font-size: 2.2em;
     }
   }
-  
 
-/* Media Queries for Responsiveness */
-
-/* Extra small devices (phones, less than 576px) */
 @media (max-width: 575.98px) {
     .workouts-heading h1 {
       font-size: 2em;
     }
   
     .col-4 {
-      width: 100%; /* Stack workout boxes */
     }
   
     .explore-info h5 {
@@ -457,7 +452,7 @@
     }
   
     .col-4 {
-      width: 50%; /* Two workout boxes per row */
+      width: 50%; 
     }
   
     .explore-info h5 {
@@ -480,8 +475,7 @@
     }
   
     .col-4 {
-      width: 33.33333333%; /* Back to three per row */
-    }
+      width: 33.33333333%; }
   
     .explore-info h5 {
       font-size: 1.2em;

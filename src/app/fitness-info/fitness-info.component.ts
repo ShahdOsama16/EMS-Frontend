@@ -18,7 +18,8 @@ export class FitnessInfoComponent implements OnInit, OnDestroy {
   selectedFitnessId: string | null = null;
   private subscription: Subscription | undefined;
   submitData: any;
-  routePath: string; // Store the current route
+  routePath: string; 
+  selectedWorkoutCategory: string = ''; 
 
   constructor(
     private apiService: ShareDataApiService,
@@ -27,27 +28,24 @@ export class FitnessInfoComponent implements OnInit, OnDestroy {
     private fitnessDataService: FitnessDataService
   ) {
     this.submitData = this.router.getCurrentNavigation()?.extras?.state?.['submitData'];
-    this.routePath = '/fitness-info'; 
+    this.routePath = '/fitness-info';
     console.log('FitnessInfoComponent constructed. submitData from state:', this.submitData);
   }
 
   ngOnInit(): void {
     console.log('FitnessInfoComponent - ngOnInit started');
-
-    // Load initial data directly from the service
     this.fitnessData = this.fitnessDataService.getFitnessData();
     this.loadFitnessInfo();
     console.log('FitnessInfoComponent - ngOnInit - Initial fitnessData:', this.fitnessData);
 
-    // Subscribe to future updates from the service
     this.subscription = this.fitnessDataService.fitnessData$.subscribe(data => {
       this.fitnessData = data;
       console.log('FitnessInfoComponent - Data received from subscription:', this.fitnessData);
     });
 
-    // Process submitData only once after the component is initialized
-    if (this.submitData) {
-      console.log('FitnessInfoComponent - ngOnInit - Processing submitData:', this.submitData);
+    
+    if (this.submitData && this.submitData.category) { 
+      this.selectedWorkoutCategory = this.submitData.category;
       const isDuplicate = this.fitnessData.some(item =>
         item.category === this.submitData.category &&
         item.time === this.submitData.time &&
@@ -60,13 +58,11 @@ export class FitnessInfoComponent implements OnInit, OnDestroy {
         this.fitnessDataService.setFitnessData(this.fitnessData);
         console.log('FitnessInfoComponent - ngOnInit - submitData added. New fitnessData:', this.fitnessData);
       }
-
-      // Clear submitData and router state to prevent re-processing
-       this.router.navigate([this.routePath], { replaceUrl: true });
+      this.router.navigate([this.routePath], { replaceUrl: true });
       this.submitData = null;
       console.log('FitnessInfoComponent - ngOnInit - submitData processed and cleared.');
     } else {
-      console.log('FitnessInfoComponent - ngOnInit - No submitData to process.');
+      console.log('FitnessInfoComponent - ngOnInit - No submitData to process or no category in it.');
     }
 
     console.log('FitnessInfoComponent - ngOnInit finished. Current fitnessData:', this.fitnessData);
@@ -83,31 +79,73 @@ export class FitnessInfoComponent implements OnInit, OnDestroy {
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 
-loadFitnessInfo(): void {
-  this.apiService.getFitnessInfo().subscribe({
-    next: (response) => {
-      const items = response.items || [];
-      this.fitnessData = items.map((item: any) => ({
-        category: item.workout ?? 'Unknown',
-        time: item.time,
-        power: item.power,
-        modeName: item.mode === 1 ? 'On' : 'Off'
-      }));
-
-      console.log('FitnessInfoComponent - loadFitnessInfo - Mapped Data:', this.fitnessData);
-      this.error = '';
-    },
-    error: (err) => {
-      this.error = 'Error loading fitness information.';
-      console.error('FitnessInfoComponent - loadFitnessInfo - Error:', err);
+  loadFitnessInfo(): void {
+    this.apiService.getFitnessInfo().subscribe({
+      next: (response) => {
+        const items = response.items || [];
+        this.fitnessData = items.map((item: any) => {
+          return {
+            category: item.workout || 'Category',
+            time: item.time,
+            power: item.power,
+            modeName: this.getModeName(item.mode),
+          };
+        });
+        console.log('FitnessInfoComponent - loadFitnessInfo - Mapped Data:', this.fitnessData);
+        this.error = '';
+      },
+      error: (err) => {
+        this.error = 'Error loading fitness information.';
+        console.error('FitnessInfoComponent - loadFitnessInfo - Error:', err);
+      },
+    });
+  }
+  getModeName(mode: number): string {
+    switch (mode) {
+      case 1:
+        return 'Acupuncture';
+      case 2:
+        return 'Stroke';
+      case 3:
+        return 'Massage';
+      case 4:
+        return 'Cupping';
+      case 5:
+        return 'Manipulation';
+      case 6:
+        return 'Scraping';
+      case 7:
+        return 'Weight Reducing';
+      case 8:
+        return 'Immunotherapy';
+      default:
+        return 'Off';
     }
-  });
+  }
+ updateCategory(index: number, event: Event): void {
+    const selectElement = event.target as HTMLSelectElement;
+    if (selectElement) {
+      this.fitnessData[index].category = selectElement.value;
+      console.log(`Category updated for index ${index}:`, this.fitnessData[index].category);
+    }
+  }
+  
+ chooseWorkout(event: Event): void {
+  const workoutName = (event.target as HTMLSelectElement)?.value;
+  if (workoutName) {
+    this.selectedWorkoutCategory = workoutName;
+    console.log('Selected Workout Category:', this.selectedWorkoutCategory);
+    this.loadFitnessInfo();
+  } else {
+    console.warn('Could not get the value from the event target.');
+  }
 }
+
   createFitnessEntry(newFitnessData: any): void {
     this.apiService.createFitnessInfo(newFitnessData).subscribe({
       next: (response) => {
         console.log('Fitness info created:', response);
-        this.loadFitnessInfo(); 
+        this.loadFitnessInfo();
       },
       error: (err) => {
         this.error = 'Error creating fitness information.';
@@ -138,8 +176,6 @@ loadFitnessInfo(): void {
     });
   }
 
-
-
   getCommandAsPayload(id: string): void {
     this.apiService.getFitnessCommandAsPayload(id).subscribe({
       next: (payload) => {
@@ -166,7 +202,7 @@ loadFitnessInfo(): void {
     this.apiService.updateFitnessInfo(id, updatedData).subscribe({
       next: (response) => {
         console.log(`Fitness info with ID ${id} updated:`, response);
-        this.loadFitnessInfo();  // Reload from API
+        this.loadFitnessInfo();   
       },
       error: (err) => {
         console.error(`Error updating fitness info with ID ${id}:`, err);
@@ -178,7 +214,7 @@ loadFitnessInfo(): void {
     this.apiService.deleteFitnessInfo(id).subscribe({
       next: (response) => {
         console.log(`Fitness info with ID ${id} deleted:`, response);
-        this.loadFitnessInfo(); // Reload from API.
+        this.loadFitnessInfo(); 
       },
       error: (err) => {
         console.error(`Error deleting fitness info with ID ${id}:`, err);
@@ -198,4 +234,3 @@ loadFitnessInfo(): void {
     });
   }
 }
-

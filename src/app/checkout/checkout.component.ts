@@ -94,26 +94,20 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       this.removeItem(item);
       return;
     }
-
-    // Immediately update the quantity in the local cartItems array
     const index = this.cartItems.findIndex(cartItem => cartItem.id === item.id);
     if (index !== -1) {
       this.cartItems[index] = { ...this.cartItems[index], quantity: newQuantity };
       this.calculateTotal();
-      this.loadOrderSummary(); // Update order summary as quantity changes
+      this.loadOrderSummary(); 
     }
-
-    // Then, make the API call to update the backend
     this.cartService.updateCartItemQuantity(item.id, newQuantity).subscribe({
       next: (updatedItem) => {
-        // The local update is already done, no need to update again here
       },
       error: (error) => {
         this.errorMessage = 'Failed to update quantity.';
         console.error('Error updating quantity:', error);
-        // Optionally, revert the local change if the API call fails
         if (index !== -1) {
-          this.cartItems[index].quantity = item.quantity; // Revert to the old quantity
+          this.cartItems[index].quantity = item.quantity; 
           this.calculateTotal();
           this.loadOrderSummary();
         }
@@ -127,7 +121,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       next: () => {
         this.cartItems = this.cartItems.filter((cartItem) => cartItem.id !== item.id);
         this.calculateTotal();
-        this.loadOrderSummary(); // Update order summary after removing item
+        this.loadOrderSummary(); 
         this.isLoadingCart = false;
       },
       error: (error) => {

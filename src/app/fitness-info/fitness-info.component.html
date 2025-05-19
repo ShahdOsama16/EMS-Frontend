@@ -1,51 +1,66 @@
 <section class="profile-page">
-  <div class="profile row">
-    <div class="profile-nav col-2">
-      <div class="name">
-        <img src="../assets/images/ensannn.jpg">
-        <h2></h2>
-      </div>
-      <div class="profile-list">
-        <ul>
-          <li>
-            <a routerLink="/profile" class="pro-page">Profile</a>
-          </li>
-          <li>
-            <a routerLink="/fitness-info" class="pro-page">Fitness Info</a>
+    <div class="profile row">
+        <div class="profile-nav col-2">
+            <div class="name">
+                <img src="../assets/images/ensannn.jpg" alt="Profile Picture">
+                <h2></h2>
+            </div>
+            <div class="profile-list">
+                <ul>
+                    <li>
+                        <a routerLink="/profile" class="pro-page">Profile</a>
+                    </li>
+                    <li>
+                        <a routerLink="/fitness-info" class="pro-page">Fitness Info</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="profile-info col-10">
+            <h1><i class="fa-solid fa-dumbbell"></i> Fitness Info</h1>
+            <p>Use the table below to track and follow your exercise progress. It's a great way to monitor your workouts and stay motivated!</p>
 
-          </li>
-        </ul>
-      </div>
+            <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+
+            <div class="table-responsive" *ngIf="fitnessData && fitnessData.length > 0">
+                <table class="table-form">
+                    <thead class="">
+                        <tr>
+                            <th>Index</th>
+                            <th>Category</th>
+                            <th>Duration</th>
+                            <th>Power</th>
+                            <th>Mode</th>
+                            <th>Workout</th> 
+                          </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of fitnessData; let i = index">
+                            <td>{{ i + 1 }}</td>
+                            <td>{{ item.category }}</td>
+                            <td>{{ item.time }} minutes</td>
+                            <td>{{ item.power }} Watt</td>
+                            <td>{{ item.modeName }}</td>
+                            <td>
+                                <div class="form-group">
+                                    <select class="form-select" [id]="'workoutSelect_' + i" (change)="updateCategory(i, $event)">
+                  <option value="" [selected]="item.category === 'Unknown' || !item.category">category</option>
+                  <option value="Chest" [selected]="item.category === 'Chest'">Chest</option>
+                  <option value="Shoulder" [selected]="item.category === 'Shoulder'">Shoulder</option>
+                  <option value="Leg" [selected]="item.category === 'Leg'">Leg</option>
+                  <option value="abs" [selected]="item.category === 'abs'">Abs</option>
+                  <option value="Bi $ Tri" [selected]="item.category === 'Bi $ Tri'">Bi $ Tri</option>
+                  <option value="Back" [selected]="item.category === 'Back'">Back</option>
+                </select>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div *ngIf="!fitnessData || fitnessData.length === 0 && !error">
+                <p>No fitness information available.</p>
+            </div>
+        </div>
     </div>
-    <div class="profile-info col-10">
-      <h1><i class="fa-solid fa-dumbbell"></i> Fitness Info</h1>
-      <p>Use the table below to track and follow your exercise progress. It's a great way to monitor your workouts and stay motivated!</p>
-
-      <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
-
-     <table class="table container-fluid data mt-3" >
-  <thead class="head">
-  <tr>
-    <th>Index:</th>
-    <th>Category:</th>
-    <th>Duration:</th>
-    <th>Power:</th>
-    <th>mode:</th> </tr>
-</thead>
-<tbody class="tbody">
-  <tr *ngFor="let item of fitnessData; let i = index">
-    <td>{{ i + 1 }}</td>
-    <td>{{ item.category }}</td> 
-    <td>{{ item.time }} minutes</td>
-    <td>{{ item.power }} Watt</td>
-    <th>{{ item.modeName }}</th> </tr>
-</tbody>
-  
-</table>
-      <div *ngIf="!fitnessData || fitnessData.length === 0 && !error">
-        <p>No fitness information available.</p>
-      </div>
-
-      </div>
-  </div>
- </section>
+</section>

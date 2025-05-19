@@ -90,7 +90,6 @@
     margin-bottom: 25px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     box-shadow: 0 0 5px #720e47; 
-    /* background: linear-gradient(90deg, #fff, #c0f0fa); */
   }
   
   .user-info h3 {
@@ -120,7 +119,6 @@
     border-radius: 8px;
     margin-bottom: 25px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    /* background: linear-gradient(90deg, #c0f0fa , #fff); */
     box-shadow: 0 0 5px #720e47; 
   }
   
@@ -222,7 +220,6 @@
     border-radius: 8px;
     margin-bottom: 25px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    /* background: linear-gradient(90deg, #fff, #c0f0fa); */
     box-shadow: 0 0 5px #720e47; 
   }
   .order-summary p{

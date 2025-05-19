@@ -393,7 +393,7 @@
 	color: #458ece;
   }
 
-/* Responsive Styles */
+
 @media (max-width: 576px) {
 
 	.footer {
@@ -588,8 +588,8 @@
   
   @media (min-width: 769px) and (max-width: 992px) {
 	.footer { flex-direction: row; justify-content: space-around; padding: 30px; }
-	.footer .col-4 { flex-basis: 45%; text-align: center; } /* Adjust basis and alignment */
-	.get-touch { text-align: left; padding-left: 50px !important; } /* Adjust padding */
+	.footer .col-4 { flex-basis: 45%; text-align: center; } 
+	.get-touch { text-align: left; padding-left: 50px !important; }
   }
   @media (min-width: 993px) and (max-width: 1200px) {
 	.login-page {

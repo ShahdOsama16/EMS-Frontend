@@ -3,7 +3,7 @@ import { SharedCartService } from '../../shared-cart.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { ShareDataApiService } from '../share-data-api.service'; // Assuming you might need it
+import { ShareDataApiService } from '../share-data-api.service'; 
 
 @Component({
   selector: 'app-cart',
@@ -19,13 +19,12 @@ export class CartComponent implements OnInit, OnDestroy {
   constructor(
     private cartService: SharedCartService,
     private router: Router,
-    private apiService: ShareDataApiService // If you are using it here
+    private apiService: ShareDataApiService 
   ) {}
 
   ngOnInit(): void {
     this.loadCartItems();
     this.cartSubscription = this.cartService.cartCount$.subscribe(count => {
-      // Optionally update a local cart count display if needed
       console.log('Cart Count Updated:', count);
     });
   }
@@ -44,7 +43,6 @@ export class CartComponent implements OnInit, OnDestroy {
       },
       error: (error) => {
         console.error('Error loading cart items:', error);
-        // Optionally display an error message to the user
       }
     });
   }
@@ -64,11 +62,10 @@ export class CartComponent implements OnInit, OnDestroy {
       next: () => {
         item.quantity = newQuantity;
         this.calculateTotal();
-        // The cart count will be updated automatically in the service
+        
       },
       error: (error) => {
         console.error('Error updating quantity:', error);
-        // Optionally display an error message
       }
     });
   }
@@ -78,11 +75,10 @@ export class CartComponent implements OnInit, OnDestroy {
       next: () => {
         this.cartItems = this.cartItems.filter((cartItem) => cartItem.id !== item.id);
         this.calculateTotal();
-        // The cart count will be updated automatically in the service
+        
       },
       error: (error) => {
         console.error('Error removing item:', error);
-        // Optionally display an error message
       }
     });
   }
