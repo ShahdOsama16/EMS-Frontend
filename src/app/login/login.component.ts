@@ -3,7 +3,6 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { ShareDataApiService } from '../share-data-api.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -21,12 +20,10 @@ export class LoginComponent {
     ]),
     password: new FormControl(null, [Validators.required])
   });
-
   constructor(
     private _ShareDataApiService: ShareDataApiService,
     private _Router: Router
   ) {}
-
   userlogindisplay() {
     if (this.loginData.valid) {
       this._ShareDataApiService.login(this.loginData.value).subscribe({
@@ -54,7 +51,6 @@ export class LoginComponent {
       alert('Please ensure the form is filled out correctly.');
     }
   }
-
   logout() {
     this._ShareDataApiService.clearAuthData();
     this._ShareDataApiService.isLogin.next(false);

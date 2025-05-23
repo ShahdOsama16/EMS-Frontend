@@ -18,10 +18,9 @@
         </div>
         <div class="profile-info col-10">
             <h1><i class="fa-solid fa-dumbbell"></i> Fitness Info</h1>
-            <p>Use the table below to track and follow your exercise progress. It's a great way to monitor your workouts and stay motivated!</p>
-
+            <p>Use the table below to track and follow your exercise progress. 
+                It's a great way to monitor your workouts and stay motivated!</p>
             <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
-
             <div class="table-responsive" *ngIf="fitnessData && fitnessData.length > 0">
                 <table class="table-form">
                     <thead class="">

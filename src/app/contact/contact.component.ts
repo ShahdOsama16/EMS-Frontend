@@ -14,7 +14,6 @@ export class ContactComponent implements OnInit {
   contactForm: FormGroup;
   submissionSuccess: boolean = false;
   submissionError: string = '';
-
   constructor(
     private fb: FormBuilder,
     private shareDataApiService: ShareDataApiService
@@ -26,23 +25,19 @@ export class ContactComponent implements OnInit {
       message: ['', Validators.required]
     });
   }
-
   ngOnInit(): void {
   }
-
   submitContactForm(formData: any): void {
     console.log('Form Data:', formData); 
     this.shareDataApiService.createContactUs(formData).subscribe({
       
     });
   }
-
   onSubmit(): void {
     if (this.contactForm.valid) {
       const formData = this.contactForm.value;
       this.submissionSuccess = false;
       this.submissionError = '';
-
       this.shareDataApiService.createContactUs(formData).subscribe({
         next: (response) => {
           console.log('Contact message sent successfully:', response);

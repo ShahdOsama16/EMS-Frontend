@@ -6,7 +6,6 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FitnessDataService } from '../fitnessdataservice';
-
 interface Workout {
   name: string;
   description: string;
@@ -14,7 +13,6 @@ interface Workout {
   category: string;
   id: number;
 }
-
 @Component({
   selector: 'app-aerobics',
   standalone: true,
@@ -28,19 +26,16 @@ export class AerobicsComponent implements OnInit, OnDestroy {
   private fitnessInfoApiUrl = 'https://passantmohamed-001-site1.mtempurl.com/api/app/fitness-info';
   private deviceId = 11; 
   private subscription: Subscription | undefined;
-
-  constructor(private sanitizer: DomSanitizer, private http: HttpClient,private router:Router,private fitnessDataService: FitnessDataService ) { }
-
+  constructor(private sanitizer: DomSanitizer, private http: HttpClient,
+    private router:Router,private fitnessDataService: FitnessDataService ) { }
   ngOnInit(): void {
     this.fetchLegsWorkouts();
   }
-
   ngOnDestroy(): void {
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
   }
-
   fetchLegsWorkouts(): void {
     this.subscription = this.http.get<{ items: Workout[] }>(this.apiUrl).subscribe(
       (response) => {
@@ -52,7 +47,6 @@ export class AerobicsComponent implements OnInit, OnDestroy {
       }
     );
   }
-
   getSafeVideoUrl(url: string | null | undefined): SafeResourceUrl | null {
     if (!url) return null;
 
@@ -85,18 +79,13 @@ export class AerobicsComponent implements OnInit, OnDestroy {
     }
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
-
-  
       selectedMode: number | null = null;
       selectedPower: number | null = null;
       isOnOrOff: number | null = null;
       selectedTime: number | null = null;
-
       defaultMode: number = 0; 
      initialPowerOff: number = 0; 
       defaultTime: number = 0;   
-  
-
       sendFitnessCommand(onOrOff: number | null, mode: number | null, time: number | null, power: number | null): void {
         const command = {
           onOrOff: onOrOff !== null ? onOrOff : this.isOnOrOff !== null ? this.isOnOrOff : 0, 
@@ -104,29 +93,23 @@ export class AerobicsComponent implements OnInit, OnDestroy {
           time:time !== null ? time: this.selectedTime !== null ? this.selectedTime : this.defaultTime, 
           power: power !== null ? power : this.selectedPower !== null ? this.selectedPower :  (onOrOff === 1 ? this.initialPowerOff : 1)
         };
-
         const token = localStorage.getItem('accessToken');
         const headers = new HttpHeaders({
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
         });
-
         console.log('Sending command to:', this.fitnessInfoApiUrl);
         console.log('Command body:', JSON.stringify(command, null, 2));
-
         this.http.post<any>(this.fitnessInfoApiUrl, command, { headers })
           .subscribe({
             next: (response) => {
               console.log('Fitness command sent successfully:', response);
-            
             },
             error: (error) => {
               console.error('Error sending fitness command:', error);
               console.error('Error details:', error);
-            
             }
           });
-
         if (onOrOff !== null) {
           this.isOnOrOff = onOrOff;
           if (onOrOff === 0) {
@@ -146,7 +129,6 @@ export class AerobicsComponent implements OnInit, OnDestroy {
        console.log('Time button clicked, selectedTime:', this.selectedTime); 
     }
       }
-
     selectAllTime(): void {
     this.selectedTime = null;
     console.log('Selected Time: All Time');
@@ -164,14 +146,12 @@ export class AerobicsComponent implements OnInit, OnDestroy {
   const timeValue = this.selectedTime !== null ? this.selectedTime : 0;
   const powerValue = this.selectedPower !== null ? this.selectedPower : 0;
   const categoryValue = 'Legs';
-
   console.log('onOrOffValue:', onOrOffValue);
   console.log('modeValue:', modeValue);
   console.log('modeNameValue:', modeNameValue);
   console.log('timeValue:', timeValue);
   console.log('powerValue:', powerValue);
   console.log('categoryValue:', categoryValue);
-
   return {
     onOrOff: onOrOffValue,
     mode: modeValue,
@@ -181,18 +161,12 @@ export class AerobicsComponent implements OnInit, OnDestroy {
     category: categoryValue
   };
 }
-
 submit(): void {
     const lastData = this.getLastDataAsObject();
     console.log('Submit Button Clicked - Last Data:', lastData);
     this.fitnessDataService.addFitnessData(lastData);
     this.router.navigate(['/fitness-info'], { state: { submitData: lastData } });
   }
-
-
-
-
-
   modeNames: { [key: number]: string } = {
     1: 'Acupuncture',
     2: 'Stroke',
@@ -204,11 +178,7 @@ submit(): void {
     8: 'Immunotherapy',
     0: 'Off'
    }
-
   getModeName(mode: number | null): string {
     return mode !== null && this.modeNames[mode] ? this.modeNames[mode] : 'Unknown';
   }
-
-
-
 }

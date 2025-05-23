@@ -43,40 +43,26 @@
     position: relative;
     justify-content: space-between;
 }
-
-
-
-
 .imgs{
     width: 43%;
     border: 55px solid;
     border-color: transparent #2a86ff transparent  #2a86ff;
     margin-left:10px;
     height: 595px;
-   
-
 }
-
 .imgs img{
     width: 100%;
     height: 485px;  
 }
-
-
-
-
-
-
-
 .about1 {
     width: 69%;
     padding: 10px 24px ;
     margin: 50px 0px 0px;
     margin-left: 30px !important;
-    background: linear-gradient(rgba(255, 255, 255, .8), rgba(255, 255, 255, .8)),url(../../../public/assets/images/3D\ dumbbells\ without\ background.png);
+    background: linear-gradient(rgba(255, 255, 255, .8), rgba(255, 255, 255, .8)),
+    url(../../../public/assets/images/3D\ dumbbells\ without\ background.png);
     height:485px;
 }
-
 .about1 h5 {
     font-size: 50px;
     margin: 0px 0px 8px;
@@ -86,7 +72,6 @@
     position: relative;
     font-family: face;
 }
-
 .about h5::before {
     content: "";
     width: 50px;
@@ -98,7 +83,6 @@
     background: linear-gradient(90deg, #0667e4, #00b6ee) !important;
     border: 1px solid #0858c0 !important;
 }
-
 .about1 h1 {
     font-size: 32.05px;
     margin: 0px 0px 24px;
@@ -106,7 +90,6 @@
     font-family: secondfont;
     color: #2a86ff;
 }
-
 .about1 .ladies {
     top:300px;
     font-size: 32.05px;
@@ -114,7 +97,6 @@
     color: #2a86ff;
     font-family: myfont;
 }
-
 .about .about1 p {
     font-size: 16px;
     margin: 0px 0px 24px;
@@ -414,8 +396,6 @@ ul{
       margin-top: 18px;
     }
   }
-  
-  
   @media (min-width: 1201px) {
     .about {
       margin: 30px 70px 100px 70px;

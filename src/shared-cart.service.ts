@@ -29,7 +29,6 @@ export class SharedCartService {
       }
     });
   }
-
   addToCart(productData: any): Observable<any> {
     const token = localStorage.getItem('accessToken'); 
     const headers = new HttpHeaders({
@@ -64,7 +63,6 @@ export class SharedCartService {
       })
     );
   }
-  
   updateCartItemQuantity(productId: number, quantity: number): Observable<any> {
     const token = localStorage.getItem('accessToken');
     const headers = new HttpHeaders({

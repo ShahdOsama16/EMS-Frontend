@@ -57,6 +57,7 @@
   background-size: cover;
   background-position: center center;
   display: block;
+  padding-top: 50px !important;
 }
 
 .video-overlay {

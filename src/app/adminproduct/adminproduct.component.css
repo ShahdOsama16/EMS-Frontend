@@ -182,13 +182,11 @@ h2 {
   margin-bottom: 15px;
   flex-grow: 1;
 }
-
 .actions {
   display: flex;
   gap: 10px;
   margin-top: auto; 
 }
-
 .update-button {
   border-radius: 20px !important;
     padding: 5px 10px 5px 10px !important;
@@ -198,7 +196,6 @@ h2 {
 .update-button:hover{
   background-color: rgba(11, 33, 230, 0.736);
 }
-
 .delete-button {
   border-radius: 20px !important;
     padding: 5px 10px 5px 10px !important;
@@ -208,12 +205,6 @@ h2 {
 .delete-button:hover {
   background-color: rgba(226, 8, 8, 0.733);
 }
-
-/* .update-button:hover,
-.delete-button:hover {
-  opacity: 0.8;
-} */
-
 .add-button {
   padding: 10px;
   border-radius: 50px;

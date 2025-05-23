@@ -24,7 +24,6 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   orderSummary: any;
   checkoutForm: FormGroup;
   orderPlacedMessage: string = '';
-
   constructor(
     private cartService: SharedCartService,
     private apiService: ShareDataApiService,
@@ -38,11 +37,9 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     });
     this.isLoggedIn = !!localStorage.getItem('authToken');
   }
-
   ngOnInit(): void {
     this.loadCartData();
   }
-
   ngOnDestroy(): void {
     if (this.cartSubscription) {
       this.cartSubscription.unsubscribe();
@@ -51,7 +48,6 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       this.orderSummarySubscription.unsubscribe();
     }
   }
-
   loadCartData(): void {
     this.isLoadingCart = true;
     this.cartSubscription = this.cartService.getCartItemsDetailed().subscribe({
@@ -68,7 +64,6 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       }
     });
   }
-
   loadOrderSummary(): void {
     this.isLoadingOrderSummary = true;
     this.orderSummarySubscription = this.apiService.getOrderSummary().subscribe({
@@ -83,11 +78,9 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       }
     });
   }
-
   calculateTotal(): void {
     this.total = this.cartItems.reduce((sum, item) => sum + (item.product?.price || 0) * item.quantity, 0);
   }
-
   changeQuantity(item: any, change: number): void {
     const newQuantity = item.quantity + change;
     if (newQuantity <= 0) {
@@ -114,7 +107,6 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       }
     });
   }
-
   removeItem(item: any): void {
     this.isLoadingCart = true;
     this.cartService.removeCartItem(item.id).subscribe({
@@ -131,7 +123,6 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       }
     });
   }
-
   proceedToCheckout(): void {
     if (!this.isLoggedIn) {
       this.router.navigate(['/login']);
@@ -143,13 +134,11 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       this.errorMessage = 'Your cart is empty. Add items to proceed.';
     }
   }
-
   login(): void {
     localStorage.setItem('authToken', 'fake_token');
     this.isLoggedIn = true;
     this.loadCartData();
   }
-
   logout(): void {
     localStorage.removeItem('authToken');
     this.isLoggedIn = false;
@@ -157,14 +146,12 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     this.total = 0;
     this.orderSummary = null;
   }
-
   placeOrder(): void {
     if (!this.isLoggedIn || !this.checkoutForm.valid || this.cartItems.length === 0) {
       this.errorMessage = '';
       alert(this.errorMessage);
       return;
     }
-
     const orderData = {
       shippingInfo: this.checkoutForm.value,
       items: this.cartItems.map(item => ({
@@ -174,7 +161,6 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       totalAmount: this.orderSummary?.total || this.total + 5,
       shippingCost: this.orderSummary?.shipping || 5
     };
-
     this.apiService.createOrder(true).subscribe({
       next: (response) => {
         console.log('Order placed successfully:', response);

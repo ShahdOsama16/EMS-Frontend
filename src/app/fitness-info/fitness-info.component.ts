@@ -5,7 +5,6 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { FitnessDataService } from '../fitnessdataservice';
 import { CommonModule } from '@angular/common';
-
 @Component({
   selector: 'app-fitness-info',
   imports: [RouterLink, CommonModule],
@@ -20,7 +19,6 @@ export class FitnessInfoComponent implements OnInit, OnDestroy {
   submitData: any;
   routePath: string; 
   selectedWorkoutCategory: string = ''; 
-
   constructor(
     private apiService: ShareDataApiService,
     private router: Router,
@@ -31,7 +29,6 @@ export class FitnessInfoComponent implements OnInit, OnDestroy {
     this.routePath = '/fitness-info';
     console.log('FitnessInfoComponent constructed. submitData from state:', this.submitData);
   }
-
   ngOnInit(): void {
     console.log('FitnessInfoComponent - ngOnInit started');
     this.fitnessData = this.fitnessDataService.getFitnessData();
@@ -42,8 +39,6 @@ export class FitnessInfoComponent implements OnInit, OnDestroy {
       this.fitnessData = data;
       console.log('FitnessInfoComponent - Data received from subscription:', this.fitnessData);
     });
-
-    
     if (this.submitData && this.submitData.category) { 
       this.selectedWorkoutCategory = this.submitData.category;
       const isDuplicate = this.fitnessData.some(item =>
@@ -52,7 +47,6 @@ export class FitnessInfoComponent implements OnInit, OnDestroy {
         item.power === this.submitData.power &&
         item.mode === this.submitData.mode
       );
-
       if (!isDuplicate) {
         this.fitnessData = [...this.fitnessData, this.submitData];
         this.fitnessDataService.setFitnessData(this.fitnessData);
@@ -64,21 +58,17 @@ export class FitnessInfoComponent implements OnInit, OnDestroy {
     } else {
       console.log('FitnessInfoComponent - ngOnInit - No submitData to process or no category in it.');
     }
-
     console.log('FitnessInfoComponent - ngOnInit finished. Current fitnessData:', this.fitnessData);
   }
-
   ngOnDestroy(): void {
     if (this.subscription) {
       this.subscription.unsubscribe();
       console.log('FitnessInfoComponent - ngOnDestroy - Subscription unsubscribed.');
     }
   }
-
   getSafeVideoUrl(url: string): SafeResourceUrl {
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
-
   loadFitnessInfo(): void {
     this.apiService.getFitnessInfo().subscribe({
       next: (response) => {
@@ -129,7 +119,6 @@ export class FitnessInfoComponent implements OnInit, OnDestroy {
       console.log(`Category updated for index ${index}:`, this.fitnessData[index].category);
     }
   }
-  
  chooseWorkout(event: Event): void {
   const workoutName = (event.target as HTMLSelectElement)?.value;
   if (workoutName) {
@@ -140,7 +129,6 @@ export class FitnessInfoComponent implements OnInit, OnDestroy {
     console.warn('Could not get the value from the event target.');
   }
 }
-
   createFitnessEntry(newFitnessData: any): void {
     this.apiService.createFitnessInfo(newFitnessData).subscribe({
       next: (response) => {
@@ -164,7 +152,6 @@ export class FitnessInfoComponent implements OnInit, OnDestroy {
       }
     });
   }
-
   updateCommand(id: string, newCommand: any): void {
     this.apiService.updateFitnessCommandString(id, newCommand).subscribe({
       next: (response) => {
@@ -175,7 +162,6 @@ export class FitnessInfoComponent implements OnInit, OnDestroy {
       }
     });
   }
-
   getCommandAsPayload(id: string): void {
     this.apiService.getFitnessCommandAsPayload(id).subscribe({
       next: (payload) => {
@@ -186,7 +172,6 @@ export class FitnessInfoComponent implements OnInit, OnDestroy {
       }
     });
   }
-
   getCommandStringById(id: string): void {
     this.apiService.getFitnessCommandStringById(id).subscribe({
       next: (command) => {

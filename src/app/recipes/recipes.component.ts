@@ -13,10 +13,8 @@ interface Recipe {
   difficulty: string;
   cuisine: string;
   image: string;
-
   mealType: string; 
 }
-
 @Component({
   selector: 'app-recipes',
   imports: [CommonModule,],

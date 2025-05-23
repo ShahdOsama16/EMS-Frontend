@@ -13,21 +13,16 @@ export class FitnessDataService {
   constructor() {
     console.log('FitnessDataService constructed. Initial data:', this._fitnessData.getValue());
   }
-
-   
-
   private loadFitnessData(): any[] {
     const storedData = localStorage.getItem(this.STORAGE_KEY);
     const loadedData = storedData ? JSON.parse(storedData) : [];
     console.log('FitnessDataService - loadFitnessData:', loadedData);
     return loadedData;
   }
-
   private saveFitnessData(data: any[]): void {
     localStorage.setItem(this.STORAGE_KEY, JSON.stringify(data));
     console.log('FitnessDataService - saveFitnessData:', data);
   }
-
   addFitnessData(newData: any): void {
     const currentValue = this._fitnessData.getValue();
     const newValue = [...currentValue, newData];

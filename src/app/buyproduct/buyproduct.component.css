@@ -44,84 +44,64 @@
 .buy-content button:hover{
     background-color: #337ab7;
 }
-
 .buy-content{
   padding-top: 160px !important;
 }
-
-
 @media (max-width: 575.98px) {
     .buy-container {
       flex-direction: column; 
       text-align: center; 
       padding: 20px;
     }
-  
     .buy-img img {
       max-width: 80%; 
       height: auto;
       margin-bottom: 20px;
     }
-  
     .buy-content {
       text-align: center;
     }
-  
     .buy-content h1 {
       font-size: 2rem;
       margin-bottom: 15px;
     }
-  
     .buy-content p {
       font-size: 0.9rem;
       margin-bottom: 20px;
     }
   }
-  
-
   @media (min-width: 576px) and (max-width: 767.98px) {
     .buy-container {
       padding: 30px;
     }
-  
     .buy-content h1 {
       font-size: 2.2rem;
     }
-  
     .buy-content p {
       font-size: 0.95rem;
     }
   }
-  
-
   @media (min-width: 768px) and (max-width: 991.98px) {
     .buy-container {
       padding: 40px;
     }
-  
     .buy-content h1 {
       font-size: 2.8rem;
     }
-  
     .buy-content p {
       font-size: 1.05rem;
     }
   }
-  
- 
   @media (min-width: 992px) {
     .buy-container {
       padding: 50px;
     }
-  
     .buy-content h1 {
       font-size: 3rem;
     }
-  
     .buy-content p {
       font-size: 1.1rem;
     }
-  
     .buy-img img {
       max-width: 500px; 
       height: auto;

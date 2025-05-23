@@ -23,7 +23,6 @@ export class CartComponent implements OnInit, OnDestroy {
     private router: Router,
     private apiService: ShareDataApiService 
   ) { }
-
   ngOnInit(): void {
     this.loadCartItems();
     this.cartSubscription = this.cartService.cartCount$.subscribe(count => {
@@ -31,13 +30,11 @@ export class CartComponent implements OnInit, OnDestroy {
       console.log('Cart Count Updated:', count);
     });
   }
-
   ngOnDestroy(): void {
     if (this.cartSubscription) {
       this.cartSubscription.unsubscribe();
     }
   }
-
   loadCartItems(): void {
     this.isLoading = true;
     this.cartService.getCartItemsDetailed().subscribe({
@@ -55,15 +52,12 @@ export class CartComponent implements OnInit, OnDestroy {
       }
     });
   }
-
   calculateTotal(): void {
     this.total = this.cartItems.reduce((sum, item) => sum + (item.price || 0) * item.quantity, 0);
   }
-
   changeQuantity(item: any, change: number): void {
     const originalQuantity = item.quantity;
     const newQuantity = originalQuantity + change;
-
     if (newQuantity <= 0) {
       this.removeItem(item);
       return;
@@ -73,11 +67,9 @@ export class CartComponent implements OnInit, OnDestroy {
       this.cartItems[index] = { ...this.cartItems[index], quantity: newQuantity };
       this.calculateTotal();
     }
-
     this.cartService.updateCartItemQuantity(item.id, newQuantity).subscribe({
       next: (response) => {
         console.log('Quantity updated successfully on server:', response);
-        
       },
       error: (error) => {
         this.errorMessage = 'Failed to update quantity.';
@@ -89,7 +81,6 @@ export class CartComponent implements OnInit, OnDestroy {
       }
     });
   }
-
   removeItem(item: any): void {
     this.isLoading = true;
     this.cartService.removeCartItem(item.id).subscribe({
@@ -107,7 +98,6 @@ export class CartComponent implements OnInit, OnDestroy {
       }
     });
   }
-
   proceedToCheckout(): void {
     this.router.navigate(['/checkout']);
   }

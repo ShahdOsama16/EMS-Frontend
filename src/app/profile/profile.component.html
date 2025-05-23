@@ -18,29 +18,20 @@
       </div>
       <div class="profile-info col-10">
         <h1><i class="fa-solid fa-address-card"></i> Profile</h1>
-  
         <div *ngIf="message" class="alert alert-info alert-top">{{ message }}</div>
-  
         <div *ngIf="!isEditing; else editProfile">
           <h3>Name</h3>
           <p>{{ profileData.userName }}</p>
-  
           <h3>Age</h3>
           <p>{{ getFullAge(profileData.bod) }}</p>
-
-  
           <h3>Email</h3>
           <p>{{ profileData.email }}</p>
-  
           <h3>Weight</h3>
           <p>{{ profileData.weight }} kg</p>
-  
           <h3>Height</h3>
           <p>{{ profileData.height }} cm</p>
-  
           <button (click)="startEdit()" class="btn btn-primary edits text-white p-2 mb-2">Edit Profile</button>
         </div>
-  
         <ng-template #editProfile>
           <form [formGroup]="updateForm" (ngSubmit)="saveProfile()">
             <label for="userName">User Name</label>
@@ -52,12 +43,10 @@
                 Phone Number is required.
               </div>
             </div>
-  
             <div class="form-group">
               <label for="age">Age</label>
               <input type="number" id="age" formControlName="age" class="form-control">
             </div>
-  
             <div class="form-group">
               <label for="email">Email</label>
               <input type="email" id="email" formControlName="email" class="form-control">
@@ -66,17 +55,14 @@
                 <div *ngIf="updateForm.get('email')?.errors?.['email']">Email is invalid.</div>
               </div>
             </div>
-  
             <div class="form-group">
               <label for="weight">Weight</label>
               <input type="number" id="weight" formControlName="weight" class="form-control">
             </div>
-  
             <div class="form-group">
               <label for="height">Height</label>
               <input type="number" id="height" formControlName="height" class="form-control">
             </div>
-  
             <button type="submit" class="btn btn-primary text-white p-2 mb-2 edits">Save Changes</button>
             <button type="button" (click)="cancelEdit()" class="btn btn-secondary text-white p-2 mb-2 edits">Cancel</button>
           </form>
