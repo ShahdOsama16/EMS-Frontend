@@ -56,7 +56,7 @@
 .profile-nav{
     background-color: #1e6fb6;
     padding-top: 105px;
-    height: 200vh !important; 
+    height: 600vh !important; 
     padding-bottom: 100px;
 }
 .name{
@@ -168,10 +168,10 @@
     margin-bottom: 10px;
     width: 50%;
 }
-
 .table-form{
     width: 95% !important;
     border-radius: 20px !important;
+    margin-top: 20px;
 }
 .table-form thead{
     color: #093c69;
@@ -203,24 +203,26 @@
     padding: 5px 0px 5px 0px !important;
     border-radius: 20px !important;
 }
-.first-btn{
+.form-select{
     border-radius: 20px !important;
     padding: 5px 10px 5px 10px !important;
     color: white;
     background-color: rgba(11, 33, 230, 0.267);
+    width:100%;
+    text-align: center;
 }
-.first-btn:hover{
+.form-select:hover{
     background-color: rgba(11, 33, 230, 0.532);
 }
-.second-btn{
+.form-group option{
     border-radius: 20px !important;
     padding: 5px 10px 5px 10px !important;
+    color: rgba(11, 33, 230, 0.484);
+    background-color: white;
+    width:100%;
+    text-align: center;
+}
+.form-group option:hover{
     color: white;
-    background-color: rgba(226, 8, 8, 0.337);
-}
-.second-btn:hover{
-    background-color: rgba(226, 8, 8, 0.552);
-}
-.search{
-    margin-left: 250px;
+    background-color: rgba(11, 33, 230, 0.267);
 }

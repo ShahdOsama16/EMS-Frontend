@@ -1,10 +1,8 @@
-// register.component.ts
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ShareDataApiService } from '../share-data-api.service';
 import { Router } from '@angular/router';
-
 @Component({
     selector: 'app-register',
     imports: [ReactiveFormsModule, CommonModule],
@@ -22,7 +20,6 @@ export class RegisterComponent {
         bod: new FormControl(),
         address: new FormControl()
     });
-
     userdatadisplay() {
         console.log('Register form value:', this.UserDataForm.value);
         this._ShareDataApiService.register(this.UserDataForm.value).subscribe(

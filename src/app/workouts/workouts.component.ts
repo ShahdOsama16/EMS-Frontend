@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { ShareDataApiService } from '../share-data-api.service';
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
-
 @Component({
   selector: 'app-workouts',
   templateUrl: './workouts.component.html',
@@ -15,13 +14,10 @@ export class WorkoutsComponent implements OnInit {
   allWorkouts: any[] = [];
   chestWorkouts: any[] = [];
   errorMessage: string = '';
-
   constructor(private apiService: ShareDataApiService, private router: Router) { }
-
   ngOnInit(): void {
     this.loadWorkouts();
   }
-
   loadWorkouts(): void {
     this.apiService.getWorkouts().subscribe(
       (response) => {

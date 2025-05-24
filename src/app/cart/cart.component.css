@@ -53,18 +53,15 @@
     border-bottom: 2px solid #f0f0f0;
     padding-bottom: 15px;
 }
-
 .cart-header h2 {
     font-size: 2em;
     color: rgb(12, 108, 156);
     margin: 0;
 }
-
 #cart-items {
     display: grid;
     gap: 15px;
 }
-
 #cart-total {
     display: flex;
     justify-content: flex-end;
@@ -72,7 +69,6 @@
     padding: 20px;
     border-top: 1px solid #f0f0f0;
 }
-
 .total-label {
     font-size: 1.2em;
     font-weight: 600;
@@ -82,13 +78,11 @@
   font-weight: 800;
     
 }
-
 .total-amount {
     font-size: 1.4em;
     font-weight: bold;
     color: #333;
 }
-
 .checkout-button {
     background-color: #1e42c5;
     color: white;
@@ -100,23 +94,18 @@
     font-size: 1.1em;
     transition: background-color 0.3s ease;
 }
-
 .checkout-button:hover {
   background: linear-gradient(90deg, #00b6ee,  rgb(12, 108, 156));
 }
-
-
 @media (max-width: 768px) {
     .cart-page {
         width: 95%;
         padding: 20px;
     }
-
     .cart-header h2 {
         font-size: 1.8em;
     }
 }
-
 .cart-item {
     display: grid;
     grid-template-columns: 1fr auto auto auto;
@@ -126,20 +115,16 @@
     transition: background-color 0.2s ease;
     gap: 15px;
 }
-
 .cart-item:last-child {
     border-bottom: none;
 }
-
 .cart-item:hover {
     background-color: #f9f9f9;
 }
-
 .item-details {
     display: flex;
     align-items: center;
 }
-
 .item-image {
     width: 80px;
     height: 80px;
@@ -148,19 +133,16 @@
     border-radius: 8px;
     box-shadow: 0 0 5px #720e47;
 }
-
 .item-info {
     display: flex;
     flex-direction: column;
 }
-
 .item-name {
     font-size: 1.1em;
     font-weight: 600;
     color: #333;
     margin-bottom: 5px;
 }
-
 .item-price {
     color: #666;
     font-family: 'Courier New', Courier, monospace;
@@ -172,12 +154,10 @@
     color: #28a745;
     font-weight: 600;
    }
-
 .quantity-control {
     display: flex;
     align-items: center;
 }
-
 .quantity-button {
     background-color: #f0f0f0;
     border: none;
@@ -190,11 +170,9 @@
     text-align: center;
     box-shadow: 0 0 4px #720e47; 
 }
-
 .quantity-button:hover {
     background-color: #e0e0e0;
 }
-
 .item-quantity {
     margin: 0 15px;
     font-size: 1.1em;
@@ -204,7 +182,6 @@
     min-width: 30px; 
     text-align: center; 
 }
-
 .item-total-price {
     font-size: 1.1em;
     font-family: 'Courier New', Courier, monospace;
@@ -223,7 +200,6 @@
     background-color: rgba(233, 6, 6, 0.692);
     font-family: jost;
 }
-
 .remove-button:hover {
     background-color: rgba(226, 8, 8, 0.84);
 }
@@ -241,15 +217,12 @@
   transition: all 5s ease-in-out !important;
   margin: 10px 10px 0px 0px;
 }
-
-
 @media (max-width: 600px) {
     .cart-item {
         grid-template-columns: 1fr;
         grid-template-rows: auto auto auto;
         text-align: center;
     }
-
     .item-details {
         justify-content: center;
     }
@@ -258,19 +231,15 @@
     .cart-item {
       gap: 20px;
     }
-  
     .item-details {
       flex-direction: row;
     }
-  
     .item-info {
       align-items: flex-start;
     }
-  
     .quantity-control {
       flex-direction: row;
     }
-  
     .item-total-price {
       min-width: 80px;
       text-align: right;
@@ -280,108 +249,87 @@
     .cart-item {
       align-items: center;
     }
-  
     .item-details {
       flex-direction: row;
     }
-  
     .quantity-control {
       flex-direction: row;
     }
-  
     .checkout-button {
       max-width: 400px;
       margin-left: auto;
       margin-right: auto;
     }
   }
-  
   @media (min-width: 992px) {
     .cart-page {
       padding: 30px;
     }
-  
     .cart-header h2 {
       font-size: 2.5em;
     }
-  
     .cart-item {
       padding: 20px;
       gap: 30px;
     }
-  
     .item-image {
       width: 100px;
       height: 100px;
     }
-  
     .item-info {
       gap: 8px;
     }
-  
     .quantity-control {
       gap: 15px;
     }
-  
     .quantity-button {
       padding: 8px 15px;
       font-size: 1.1em;
     }
-  
     .item-quantity {
       font-size: 1.2em;
       min-width: 30px;
     }
-  
     .item-total-price {
       min-width: 100px;
       font-size: 1.2em;
     }
-  
     .remove-button {
       padding: 10px 20px;
       font-size: 1em;
     }
-  
     #cart-total {
       font-size: 1.4em;
     }
-  
     .checkout-button {
       max-width: 500px;
       padding: 15px 25px;
       font-size: 1.2em;
     }
   }
-  
   @media (max-width: 575.98px) {
     .cart-item {
       flex-direction: column;
       align-items: flex-start;
       gap: 10px;
     }
-  
     .item-details {
       flex-direction: row;
       align-items: center;
       width: 100%;
     }
-  
     .item-info {
       flex-grow: 1;
     }
-  
     .quantity-control {
       flex-direction: row;
       width: 100%;
       justify-content: space-between;
     }
-  
     .item-total-price {
       width: 100%;
       text-align: left;
     }
-  
     .remove-button {
       width: 100%;
     }

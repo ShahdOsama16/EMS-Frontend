@@ -4,7 +4,6 @@ import { ShareDataApiService } from '../share-data-api.service';
 import { CommonModule } from '@angular/common';
 import { SharedCartService } from '../../shared-cart.service';
 import { NgChartsModule } from 'ng2-charts';
-
 @Component({
   selector: 'app-navbar',
   imports: [RouterLink, RouterLinkActive, CommonModule, NgChartsModule],
@@ -17,13 +16,11 @@ export class NavbarComponent implements OnInit {
   isAdmin: boolean = false;
   isSpecialUser: boolean = false; 
   specialUsernames = ['Shahd', 'Mariam','Sara','Maya']; 
-
   constructor(
     private shareDataApiService: ShareDataApiService,
     private router: Router,
     private cartService: SharedCartService
   ) { }
-
   logOut(): void {
     this.router.navigate(['/login']);
     this.shareDataApiService.clearAuthData();
@@ -31,7 +28,6 @@ export class NavbarComponent implements OnInit {
     this.isAdmin = false;
     this.isSpecialUser = false; 
   }
-
   ngOnInit(): void {
     this.shareDataApiService.isLogin.subscribe((x) => {
       this.logined = x;
@@ -45,7 +41,6 @@ export class NavbarComponent implements OnInit {
     this.checkAdminStatus();
     this.checkSpecialUserStatus(); 
   }
-
   checkAdminStatus(): void {
     if (this.logined) {
       this.isAdmin = this.shareDataApiService.isAdminUser();
@@ -53,7 +48,6 @@ export class NavbarComponent implements OnInit {
       this.isAdmin = false;
     }
   }
-
   checkSpecialUserStatus(): void {
     if (this.logined) {
       this.shareDataApiService.getCurrentUserDetails().subscribe({
@@ -74,15 +68,12 @@ export class NavbarComponent implements OnInit {
       this.isSpecialUser = false;
     }
   }
-
   isScrolled = false;
-
   @HostListener('window:scroll', ['$event'])
   onWindowScroll() {
     this.isScrolled = window.pageYOffset > 100;
   }
 }
-
 window.addEventListener('scroll', () => {
   const navbar = document.querySelector('.navbar'); 
   if (navbar) { 

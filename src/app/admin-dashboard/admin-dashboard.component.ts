@@ -1,4 +1,4 @@
-// admin-dashboard.component.ts (using ng2-charts)
+
 import { Component, OnInit, OnDestroy } from '@angular/core';
  import { Router, RouterLink } from '@angular/router';
  import { ChartConfiguration, ChartData, ChartType } from 'chart.js';
@@ -13,12 +13,9 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
   styleUrls: ['./admin-dashboard.component.css']
  })
  export class AdminDashboardComponent implements OnInit, OnDestroy {
-
   totalUsers: number = 0;
   userCountSubscription: Subscription | undefined;
   errorMessage: string = '';
-
- 
   public barChartLabels: string[] = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'];
   public barChartType: ChartType = 'bar';
   public barChartLegend = true;
@@ -37,8 +34,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
     }]
   };
   public pieChartType: ChartType = 'pie';
-
- 
   public lineChartData: ChartConfiguration['data'] = {
     datasets: [
       {

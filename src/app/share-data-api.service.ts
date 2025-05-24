@@ -24,7 +24,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
    const headers = new HttpHeaders({
     'accept': 'text/plain',
     'Content-Type': 'application/json',
-    'RequestVerificationToken': 'CFdJ8G9kUgQegpFMINWX2j02IETD4xFc6pJMTX1GPr-gMcNXAWIfjfa7bdJdg2eCwAVt6A_Adj16sP_dVTM8yxlvUkNH40wruBUlqi4-qesM8S70ggb7hPAPM2PtJ-P36-2rQlkBkVrCIImd7IVfT-CPe3Nw',
+    'RequestVerificationToken': 'CFdJ8G9kUgQegpFMINWX2j02IETD4xFc6pJMTX1GPr-  gMcNXAWIfjfa7bdJdg2eCwAVt6A_Adj16sP_dVTM8yxlvUkNH40wruBUlqi4-qesM8S70ggb7hPAPM2PtJ-P36-2rQlkBkVrCIImd7IVfT-CPe3Nw',
     'X-Requested-With': 'XMLHttpRequest'
    });
    return this._httpClient.post(`${this.baseUrl}/app/authentication/login`, loginData, { headers });

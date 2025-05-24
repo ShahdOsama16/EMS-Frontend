@@ -131,7 +131,7 @@ export class FitnessComponent implements OnInit, OnDestroy {
       },
     });
 
-    // Update state
+   
     if (onOrOff !== null) {
       this.isOnOrOff = onOrOff;
       if (onOrOff === 0) {

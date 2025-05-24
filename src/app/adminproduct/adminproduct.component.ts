@@ -1,4 +1,4 @@
-// adminproduct.component.ts
+
 import { Component, OnInit } from '@angular/core';
  import { CommonModule } from '@angular/common';
  import { Router, RouterLink } from '@angular/router';
@@ -12,7 +12,6 @@ import { Component, OnInit } from '@angular/core';
   category: string;
   price: string;
  }
-
  @Component({
   selector: 'app-adminproduct',
   standalone: true,
@@ -25,19 +24,15 @@ import { Component, OnInit } from '@angular/core';
   productSubscription: Subscription | undefined;
   errorMessage: string = '';
   imageBaseUrl = 'https://passantmohamed-001-site1.mtempurl.com/images/';
-
   constructor(private router: Router, private shareddataapiservice: ShareDataApiService) {}
-
   ngOnInit(): void {
     this.loadProducts();
   }
-
   ngOnDestroy(): void {
     if (this.productSubscription) {
       this.productSubscription.unsubscribe();
     }
   }
-
   loadProducts(): void {
     this.productSubscription = this.shareddataapiservice.getProducts().subscribe({
       next: (data) => {

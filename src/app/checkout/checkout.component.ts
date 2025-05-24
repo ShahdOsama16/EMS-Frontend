@@ -24,7 +24,6 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   orderSummary: any;
   checkoutForm: FormGroup;
   orderPlacedMessage: string = '';
-
   constructor(
     private cartService: SharedCartService,
     private apiService: ShareDataApiService,
@@ -38,11 +37,9 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     });
     this.isLoggedIn = !!localStorage.getItem('authToken');
   }
-
   ngOnInit(): void {
     this.loadCartData();
   }
-
   ngOnDestroy(): void {
     if (this.cartSubscription) {
       this.cartSubscription.unsubscribe();
@@ -51,7 +48,6 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       this.orderSummarySubscription.unsubscribe();
     }
   }
-
   loadCartData(): void {
     this.isLoadingCart = true;
     this.cartSubscription = this.cartService.getCartItemsDetailed().subscribe({
@@ -68,7 +64,6 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       }
     });
   }
-
   loadOrderSummary(): void {
     this.isLoadingOrderSummary = true;
     this.orderSummarySubscription = this.apiService.getOrderSummary().subscribe({
@@ -83,51 +78,42 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       }
     });
   }
-
   calculateTotal(): void {
     this.total = this.cartItems.reduce((sum, item) => sum + (item.product?.price || 0) * item.quantity, 0);
   }
-
   changeQuantity(item: any, change: number): void {
     const newQuantity = item.quantity + change;
     if (newQuantity <= 0) {
       this.removeItem(item);
       return;
     }
-
-    // Immediately update the quantity in the local cartItems array
     const index = this.cartItems.findIndex(cartItem => cartItem.id === item.id);
     if (index !== -1) {
       this.cartItems[index] = { ...this.cartItems[index], quantity: newQuantity };
       this.calculateTotal();
-      this.loadOrderSummary(); // Update order summary as quantity changes
+      this.loadOrderSummary(); 
     }
-
-    // Then, make the API call to update the backend
     this.cartService.updateCartItemQuantity(item.id, newQuantity).subscribe({
       next: (updatedItem) => {
-        // The local update is already done, no need to update again here
       },
       error: (error) => {
         this.errorMessage = 'Failed to update quantity.';
         console.error('Error updating quantity:', error);
-        // Optionally, revert the local change if the API call fails
         if (index !== -1) {
-          this.cartItems[index].quantity = item.quantity; // Revert to the old quantity
+          this.cartItems[index].quantity = item.quantity; 
           this.calculateTotal();
           this.loadOrderSummary();
         }
       }
     });
   }
-
   removeItem(item: any): void {
     this.isLoadingCart = true;
     this.cartService.removeCartItem(item.id).subscribe({
       next: () => {
         this.cartItems = this.cartItems.filter((cartItem) => cartItem.id !== item.id);
         this.calculateTotal();
-        this.loadOrderSummary(); // Update order summary after removing item
+        this.loadOrderSummary(); 
         this.isLoadingCart = false;
       },
       error: (error) => {
@@ -137,7 +123,6 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       }
     });
   }
-
   proceedToCheckout(): void {
     if (!this.isLoggedIn) {
       this.router.navigate(['/login']);
@@ -149,13 +134,11 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       this.errorMessage = 'Your cart is empty. Add items to proceed.';
     }
   }
-
   login(): void {
     localStorage.setItem('authToken', 'fake_token');
     this.isLoggedIn = true;
     this.loadCartData();
   }
-
   logout(): void {
     localStorage.removeItem('authToken');
     this.isLoggedIn = false;
@@ -163,14 +146,12 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     this.total = 0;
     this.orderSummary = null;
   }
-
   placeOrder(): void {
     if (!this.isLoggedIn || !this.checkoutForm.valid || this.cartItems.length === 0) {
       this.errorMessage = '';
       alert(this.errorMessage);
       return;
     }
-
     const orderData = {
       shippingInfo: this.checkoutForm.value,
       items: this.cartItems.map(item => ({
@@ -180,7 +161,6 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       totalAmount: this.orderSummary?.total || this.total + 5,
       shippingCost: this.orderSummary?.shipping || 5
     };
-
     this.apiService.createOrder(true).subscribe({
       next: (response) => {
         console.log('Order placed successfully:', response);

@@ -1,4 +1,4 @@
-// profile.component.ts
+
 import { Component, OnInit } from '@angular/core';
 import { ShareDataApiService } from '../share-data-api.service'; 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'; 
@@ -37,11 +37,9 @@ export class ProfileComponent implements OnInit {
     phoneNumber: ['', Validators.required],
   });
 }
-
  ngOnInit(): void {
    this.loadProfile();
  }
-
  loadProfile(): void {
   this.apiService.getCurrentUserDetails().subscribe({ 
     next: (data) => {
@@ -73,8 +71,6 @@ export class ProfileComponent implements OnInit {
  startEdit(): void {
    this.isEditing = true;
  }
- 
-
  cancelEdit(): void {
    this.isEditing = false;
    this.updateForm.reset(this.profileData); 
@@ -91,15 +87,12 @@ export class ProfileComponent implements OnInit {
     const prevMonth = new Date(today.getFullYear(), today.getMonth(), 0); 
     days += prevMonth.getDate();
   }
-
   if (months < 0) {
     years--;
     months += 12;
   }
-
   return `${years} Years, ${months} Months, ${days} Days`;
 }
-
 saveProfile(): void {
   if (this.updateForm.valid) {
     const updatedProfileData = {
@@ -112,7 +105,6 @@ saveProfile(): void {
       address: this.updateForm.value.address,
     };
     console.log('Data being sent:', updatedProfileData);
-
     this.apiService.updateMyProfile(updatedProfileData).subscribe({
       next: (response) => {
         console.log('Profile updated:', response);

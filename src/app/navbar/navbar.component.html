@@ -4,7 +4,8 @@
       <img src="../assets/images/Adobe Express - file (1).png" alt="Logo">
       EMS Vibes
     </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" 
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="nav-info collapse navbar-collapse" id="navbarSupportedContent">
@@ -34,7 +35,8 @@
           <a class="nav-link" routerLink="login" routerLinkActive="smsm" *ngIf="!logined">Login</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/cart" routerLinkActive="smsm" title="Cart" *ngIf="logined">Cart <i class="fa-solid fa-cart-shopping"></i></a>
+          <a class="nav-link" routerLink="/cart" routerLinkActive="smsm" title="Cart" *ngIf="logined">Cart <i class="fa-solid fa-cart-shopping">
+          </i></a>
           <div class="cartIconContainer">
             <span>{{ cartCount }}</span>
           </div>
@@ -43,7 +45,8 @@
           <a class="nav-link" routerLink="/admin-dashboard" routerLinkActive="smsm" title="Admin"><i class="fa-regular fa-user"></i></a>
         </li>
         <li class="nav-item" *ngIf="logined && isSpecialUser">
-          <a class="nav-link special-icon" routerLink="/admin-dashboard" routerLinkActive="smsm" title="Special Feature"><i class="fa-regular fa-user"></i></a>
+          <a class="nav-link special-icon" routerLink="/admin-dashboard" routerLinkActive="smsm" title="Special Feature">
+            <i class="fa-regular fa-user"></i></a>
         </li>
       </ul>
       <h3 class="navbar-nav me-auto mb-2 mb-lg-0 logout-link" (click)="logOut()">
